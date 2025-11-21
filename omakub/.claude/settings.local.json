@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo:*)",
+      "Bash(xrandr:*)",
+      "Bash(gnome-extensions list:*)",
+      "Bash(gnome-extensions info:*)",
+      "WebFetch(domain:omakub.org)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
