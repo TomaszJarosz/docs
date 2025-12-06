@@ -1,423 +1,423 @@
-# Claude Code - Praktyczne Tipy i Najlepsze Praktyki
+# Claude Code - Practical Tips and Best Practices
 
-Jak efektywnie pracować z Claude Code - sprawdzone techniki i workflow.
+How to work effectively with Claude Code - proven techniques and workflows.
 
-## Filozofia Pracy z Claude Code
+## Philosophy of Working with Claude Code
 
-### Co Claude Code Robi Najlepiej
+### What Claude Code Does Best
 
-✅ **Doskonale:**
-- Pisanie i refaktoryzacja kodu
-- Code review i znajdowanie bugów
-- Pisanie testów
-- Dokumentacja kodu
-- Debugowanie i analiza błędów
-- Tłumaczenie między językami programowania
-- Wyjaśnianie kodu
-- Automatyzacja powtarzalnych zadań
+✅ **Excellent:**
+- Writing and refactoring code
+- Code review and finding bugs
+- Writing tests
+- Code documentation
+- Debugging and error analysis
+- Translating between programming languages
+- Explaining code
+- Automating repetitive tasks
 
-⚠️ **Z ograniczeniami:**
-- Bardzo duże refaktoringi (lepiej małymi krokami)
-- Operacje wymagające kontekstu całego projektu (limit tokenów)
-- Real-time debugging (nie widzę runtime state)
+⚠️ **With limitations:**
+- Very large refactorings (better in small steps)
+- Operations requiring whole project context (token limit)
+- Real-time debugging (I don't see runtime state)
 
-❌ **Nie używaj do:**
-- Zadań wymagających dostępu do internetu (bez MCP)
-- Operacji na bazach produkcyjnych
-- Destructive operations bez weryfikacji
+❌ **Don't use for:**
+- Tasks requiring internet access (without MCP)
+- Operations on production databases
+- Destructive operations without verification
 
-## Podstawowe Zasady Efektywnej Komunikacji
+## Basic Principles of Effective Communication
 
-### 1. Bądź Konkretny
+### 1. Be Specific
 
-❌ **Źle:**
+❌ **Bad:**
 ```
-Napraw to
-```
-
-✅ **Dobrze:**
-```
-W pliku src/auth.ts funkcja validateToken() nie obsługuje przypadku
-gdy token jest expired. Dodaj sprawdzanie expiration time i zwracaj
-odpowiedni błąd.
+Fix this
 ```
 
-### 2. Podawaj Kontekst
-
-❌ **Źle:**
+✅ **Good:**
 ```
-Dodaj walidację
-```
-
-✅ **Dobrze:**
-```
-W formularzu rejestracji (src/components/RegisterForm.tsx) dodaj
-walidację email i hasła:
-- Email: format RFC 5322
-- Hasło: min 8 znaków, 1 wielka litera, 1 cyfra, 1 znak specjalny
-Użyj Zod do walidacji, błędy wyświetl pod inputem.
+In file src/auth.ts the validateToken() function doesn't handle the case
+when token is expired. Add expiration time checking and return
+appropriate error.
 ```
 
-### 3. Dziel Duże Zadania
+### 2. Provide Context
 
-❌ **Źle:**
+❌ **Bad:**
 ```
-Zbuduj cały system autentykacji z JWT, refresh tokens, OAuth,
-2FA, password reset, email verification i role-based access control.
+Add validation
 ```
 
-✅ **Dobrze:**
+✅ **Good:**
 ```
-Krok 1: Stwórz podstawową autentykację z JWT
-Krok 2: Dodaj refresh tokens
-Krok 3: Implementuj password reset
+In the registration form (src/components/RegisterForm.tsx) add
+email and password validation:
+- Email: RFC 5322 format
+- Password: min 8 characters, 1 uppercase letter, 1 digit, 1 special character
+Use Zod for validation, display errors below the input.
+```
+
+### 3. Break Down Large Tasks
+
+❌ **Bad:**
+```
+Build entire authentication system with JWT, refresh tokens, OAuth,
+2FA, password reset, email verification and role-based access control.
+```
+
+✅ **Good:**
+```
+Step 1: Create basic authentication with JWT
+Step 2: Add refresh tokens
+Step 3: Implement password reset
 ...
 ```
 
-Lub:
+Or:
 ```
-Najpierw zrób podstawową autentykację JWT (login/logout/protected routes).
-Potem powiemy sobie o pozostałych features.
-```
-
-### 4. Pytaj o Wyjaśnienia
-
-✅ **Zawsze możesz:**
-```
-Zanim zaczniesz - wyjaśnij mi jak działa ten kod
+First do basic JWT authentication (login/logout/protected routes).
+Then we'll talk about the remaining features.
 ```
 
+### 4. Ask for Explanations
+
+✅ **You can always:**
 ```
-Nie rozumiem dlaczego używasz tego pattern - wytłumacz
+Before you start - explain to me how this code works
 ```
 
 ```
-Jakie są alternatywne podejścia do tego problemu?
+I don't understand why you're using this pattern - explain
 ```
 
-## Prompting Patterns (Sprawdzone Wzorce)
-
-### Pattern 1: "Analizuj → Planuj → Wykonaj"
-
 ```
-1. Przeanalizuj plik src/api/users.ts
-2. Zaproponuj plan refaktoryzacji aby był bardziej testowalny
-3. Jak zaaprobuje plan, wykonaj refaktoryzację
+What are alternative approaches to this problem?
 ```
 
-**Dlaczego działa:** Dajesz mi szansę zrozumieć kontekst przed działaniem.
+## Prompting Patterns (Proven Patterns)
 
-### Pattern 2: "Pokaż Przykład"
-
-```
-Napisz testy dla funkcji calculateDiscount w src/utils/pricing.ts.
-
-Przykład testu który mi się podoba:
-[kod przykładu]
-
-Zrób podobne dla pozostałych przypadków.
-```
-
-**Dlaczego działa:** Widzę Twój preferowany styl i konwencje.
-
-### Pattern 3: "Iteracyjne Ulepszanie"
+### Pattern 1: "Analyze → Plan → Execute"
 
 ```
-[Runda 1]
-Napisz podstawową funkcję do parsowania CSV
-
-[Runda 2]
-Dodaj obsługę błędów i walidację
-
-[Runda 3]
-Dodaj support dla custom delimiterów
-
-[Runda 4]
-Zoptymalizuj dla dużych plików (streaming)
+1. Analyze file src/api/users.ts
+2. Propose refactoring plan to make it more testable
+3. Once I approve the plan, execute the refactoring
 ```
 
-**Dlaczego działa:** Małe, kontrolowane kroki. Łatwiej testować i weryfikować.
+**Why it works:** You give me a chance to understand context before acting.
 
-### Pattern 4: "Zainspiruj się"
-
-```
-Zobacz jak jest zaimplementowane logowanie w src/services/logger.ts.
-
-Zrób podobny serwis do cache'owania, zachowując ten sam pattern
-i styl kodu.
-```
-
-**Dlaczego działa:** Zachowujesz konsystencję w projekcie.
-
-### Pattern 5: "Debuguj ze Mną"
+### Pattern 2: "Show Example"
 
 ```
-Mam błąd: [wklej błąd]
+Write tests for calculateDiscount function in src/utils/pricing.ts.
 
-Kod który powoduje błąd: [ścieżka do pliku]
+Example test I like:
+[example code]
 
-Co próbowałem: [lista rzeczy]
-
-Pomóż mi zrozumieć co się dzieje i jak to naprawić.
+Do similar for remaining cases.
 ```
 
-**Dlaczego działa:** Pełny kontekst = szybsza diagnoza.
+**Why it works:** I see your preferred style and conventions.
 
-### Pattern 6: "Ekspert w Dziedzinie"
+### Pattern 3: "Iterative Improvement"
 
 ```
-Jesteś ekspertem od performance w React. Przejrzyj komponent
-src/components/DataTable.tsx i znajdź wszystkie miejsca gdzie
-możemy poprawić wydajność. Wyjaśnij każdą optymalizację.
+[Round 1]
+Write basic function to parse CSV
+
+[Round 2]
+Add error handling and validation
+
+[Round 3]
+Add support for custom delimiters
+
+[Round 4]
+Optimize for large files (streaming)
 ```
 
-**Dlaczego działa:** Skupiam się na konkretnym aspekcie.
+**Why it works:** Small, controlled steps. Easier to test and verify.
 
-## Workflow Patterns (Sprawdzone Przepływy Pracy)
+### Pattern 4: "Get Inspired"
+
+```
+See how logging is implemented in src/services/logger.ts.
+
+Create similar service for caching, keeping the same pattern
+and code style.
+```
+
+**Why it works:** You maintain consistency in the project.
+
+### Pattern 5: "Debug with Me"
+
+```
+I have an error: [paste error]
+
+Code causing error: [file path]
+
+What I tried: [list of things]
+
+Help me understand what's happening and how to fix it.
+```
+
+**Why it works:** Full context = faster diagnosis.
+
+### Pattern 6: "Domain Expert"
+
+```
+You're an expert in React performance. Review component
+src/components/DataTable.tsx and find all places where
+we can improve performance. Explain each optimization.
+```
+
+**Why it works:** I focus on a specific aspect.
+
+## Workflow Patterns (Proven Work Flows)
 
 ### Workflow 1: Feature Development
 
 ```bash
-# 1. Planowanie
-"Chcę dodać feature X. Jakie pliki będę musiał zmienić/stworzyć?
- Zaproponuj architekturę."
+# 1. Planning
+"I want to add feature X. What files will I need to change/create?
+ Propose architecture."
 
-# 2. Implementacja (małymi krokami)
-"Zacznijmy od modelu danych"
-"Teraz dodaj API endpoint"
-"Teraz frontend component"
+# 2. Implementation (small steps)
+"Let's start with data model"
+"Now add API endpoint"
+"Now frontend component"
 
-# 3. Testy
-"Napisz testy dla tego co stworzyliśmy"
+# 3. Tests
+"Write tests for what we created"
 
-# 4. Dokumentacja
-"Dodaj dokumentację i aktualizuj README"
+# 4. Documentation
+"Add documentation and update README"
 
 # 5. Review
-"Przejrzyj cały feature - czy coś można ulepszyć?"
+"Review the entire feature - can anything be improved?"
 ```
 
 ### Workflow 2: Bug Fixing
 
 ```bash
-# 1. Reprodukcja
-"Mam bug: [opis]. Pomóż znaleźć gdzie jest problem."
+# 1. Reproduction
+"I have a bug: [description]. Help find where the problem is."
 
-# 2. Analiza
-"Przeanalizuj [plik] i wyjaśnij dlaczego to się dzieje"
+# 2. Analysis
+"Analyze [file] and explain why this is happening"
 
 # 3. Fix
-"Napraw bug, zachowując istniejącą funkcjonalność"
+"Fix the bug, keeping existing functionality"
 
 # 4. Test
-"Napisz test który weryfikuje że bug jest naprawiony"
+"Write test that verifies the bug is fixed"
 
 # 5. Verify
-"Sprawdź czy fix nie wprowadza regresji w innych miejscach"
+"Check if fix doesn't introduce regression in other places"
 ```
 
 ### Workflow 3: Refactoring
 
 ```bash
-# 1. Analiza
-"Przeanalizuj [plik/moduł] i znajdź code smells"
+# 1. Analysis
+"Analyze [file/module] and find code smells"
 
 # 2. Plan
-"Zaproponuj plan refaktoryzacji (co i dlaczego)"
+"Propose refactoring plan (what and why)"
 
-# 3. Testy (najpierw!)
-"Przed refaktoryzacją - napisz testy dla obecnej funkcjonalności"
+# 3. Tests (first!)
+"Before refactoring - write tests for current functionality"
 
-# 4. Refactor (małymi krokami)
-"Refaktoryzuj funkcję X"
-"Teraz funkcję Y"
+# 4. Refactor (small steps)
+"Refactor function X"
+"Now function Y"
 
 # 5. Verify
-"Uruchom testy - wszystko powinno przechodzić"
+"Run tests - everything should pass"
 ```
 
 ### Workflow 4: Code Review
 
 ```bash
-# Jako reviewer
-"Przejrzyj PR w plikach: [lista]. Szukaj:
- - Bugów
+# As reviewer
+"Review PR in files: [list]. Look for:
+ - Bugs
  - Security issues
  - Performance problems
  - Code style violations
  - Missing tests
- Sformatuj jako GitHub review comments."
+ Format as GitHub review comments."
 
-# Jako author przed PR
-"Zrób self-review moich zmian i powiedz co powinienem poprawić
- przed wysłaniem PR"
+# As author before PR
+"Do self-review of my changes and tell me what I should improve
+ before submitting PR"
 ```
 
 ### Workflow 5: Learning Codebase
 
 ```bash
-# Eksploracja nowego projektu
-"Przeanalizuj strukturę projektu i wyjaśnij:
- - Jaka jest architektura
- - Jakie są główne moduły
- - Jak działa flow danych
- - Gdzie są punkty wejścia"
+# Exploring new project
+"Analyze project structure and explain:
+ - What is the architecture
+ - What are the main modules
+ - How does data flow work
+ - Where are the entry points"
 
-"Wyjaśnij mi jak działa feature X krok po kroku"
+"Explain to me how feature X works step by step"
 
-"Znajdź wszystkie miejsca gdzie jest używana funkcja Y"
+"Find all places where function Y is used"
 ```
 
-## Praca z Kodem
+## Working with Code
 
-### Dobre Praktyki
+### Good Practices
 
-#### 1. Zawsze Podawaj Ścieżki
+#### 1. Always Provide Paths
 
-✅ **Dobrze:**
+✅ **Good:**
 ```
-Zrefaktoryzuj funkcję getUserData w src/api/users.ts
-```
-
-❌ **Źle:**
-```
-Zrefaktoryzuj funkcję getUserData
+Refactor getUserData function in src/api/users.ts
 ```
 
-#### 2. Wskaż Co Ma Zostać Zachowane
-
-✅ **Dobrze:**
+❌ **Bad:**
 ```
-Zrefaktoryzuj, ale zachowaj:
-- Obecny interface
+Refactor getUserData function
+```
+
+#### 2. Specify What Should Be Preserved
+
+✅ **Good:**
+```
+Refactor, but keep:
+- Current interface
 - Error handling
 - Backwards compatibility
 ```
 
-#### 3. Określ Standard Jakości
+#### 3. Define Quality Standard
 
-✅ **Dobrze:**
+✅ **Good:**
 ```
-Kod powinien:
-- Mieć type safety (TypeScript strict mode)
-- Być pokryty testami (min 80%)
-- Mieć JSDoc dla publicznych funkcji
-- Followować nasze style guide w docs/STYLE.md
-```
-
-#### 4. Poproś o Wyjaśnienia
-
-✅ **Zawsze OK:**
-```
-Dodaj komentarze wyjaśniające dlaczego ten kod jest napisany w ten sposób
+Code should:
+- Have type safety (TypeScript strict mode)
+- Be covered by tests (min 80%)
+- Have JSDoc for public functions
+- Follow our style guide in docs/STYLE.md
 ```
 
+#### 4. Ask for Explanations
+
+✅ **Always OK:**
 ```
-Po implementacji - wyjaśnij mi kluczowe decyzje które podjąłeś
-```
-
-### Praca z Błędami
-
-#### Gdy Dostaniesz Error
-
-```
-Uruchomiłem kod i dostałem błąd:
-[pełny stack trace]
-
-Komenda którą uruchomiłem:
-[komenda]
-
-Kontekst:
-[co próbowałem zrobić]
-```
-
-**Nie:**
-```
-Nie działa
-```
-
-#### Gdy Coś Działa Nieprawidłowo
-
-```
-Funkcja zwraca nieprawidłowy wynik.
-
-Expected: [co powinno być]
-Actual: [co jest]
-Input: [jakie dane wejściowe]
-
-Kod: src/utils/calculate.ts:42
-```
-
-### Praca z Dużymi Zmianami
-
-#### Gdy Projekt Jest Duży
-
-```
-# Zamiast "przejrzyj cały projekt"
-Przejrzyj moduł autentykacji (src/auth/**) i znajdź potencjalne
-problemy z bezpieczeństwem.
+Add comments explaining why this code is written this way
 ```
 
 ```
-# Zamiast "zrefaktoryzuj wszystko"
-Zrefaktoryzuj najpierw src/api/users.ts, potem powiemy o kolejnych.
+After implementation - explain to me key decisions you made
 ```
 
-#### Strategia "Divide and Conquer"
+### Working with Errors
+
+#### When You Get an Error
 
 ```
-# Krok 1: Przegląd
-Przeanalizuj src/services/ i powiedz które pliki wymagają refaktoryzacji.
+I ran the code and got error:
+[full stack trace]
 
-# Krok 2: Priorytetyzacja
-Które są najważniejsze? Zaproponuj kolejność.
+Command I ran:
+[command]
 
-# Krok 3: Wykonanie
-OK, zaczynamy od [plik1]
+Context:
+[what I was trying to do]
 ```
 
-## Praca z Testami
+**Not:**
+```
+Doesn't work
+```
+
+#### When Something Works Incorrectly
+
+```
+Function returns incorrect result.
+
+Expected: [what should be]
+Actual: [what is]
+Input: [what input data]
+
+Code: src/utils/calculate.ts:42
+```
+
+### Working with Large Changes
+
+#### When Project Is Large
+
+```
+# Instead of "review entire project"
+Review authentication module (src/auth/**) and find potential
+security issues.
+```
+
+```
+# Instead of "refactor everything"
+Refactor src/api/users.ts first, then we'll talk about next ones.
+```
+
+#### "Divide and Conquer" Strategy
+
+```
+# Step 1: Overview
+Analyze src/services/ and tell which files need refactoring.
+
+# Step 2: Prioritization
+Which are most important? Propose order.
+
+# Step 3: Execution
+OK, starting with [file1]
+```
+
+## Working with Tests
 
 ### Pattern: Test-Driven Development
 
 ```bash
-# 1. Napisz test (czerwony)
-"Napisz test dla funkcji calculateShipping która:
- - Dla weight < 1kg zwraca 5.00
- - Dla 1-5kg zwraca 10.00
- - Dla >5kg zwraca 15.00 + 2.00 za każdy dodatkowy kg"
+# 1. Write test (red)
+"Write test for calculateShipping function that:
+ - For weight < 1kg returns 5.00
+ - For 1-5kg returns 10.00
+ - For >5kg returns 15.00 + 2.00 for each additional kg"
 
-# 2. Implementuj (zielony)
-"Teraz zaimplementuj funkcję aby testy przechodziły"
+# 2. Implement (green)
+"Now implement function so tests pass"
 
 # 3. Refactor
-"Zoptymalizuj implementację zachowując przejście testów"
+"Optimize implementation keeping tests passing"
 ```
 
 ### Pattern: Existing Code
 
 ```bash
-"Napisz testy dla istniejącej funkcji validateEmail w src/utils/validation.ts.
- Pokryj wszystkie edge cases."
+"Write tests for existing validateEmail function in src/utils/validation.ts.
+ Cover all edge cases."
 ```
 
 ### Pattern: Test Coverage
 
 ```bash
-"Przejrzyj plik src/api/orders.ts i napisz testy dla wszystkich
- funkcji które nie mają testów. Pokrycie powinno być >80%."
+"Review file src/api/orders.ts and write tests for all
+ functions that don't have tests. Coverage should be >80%."
 ```
 
-## Git Workflow z Claude
+## Git Workflow with Claude
 
 ### Commit Messages
 
 ```bash
-# Dobry prompt
-"Zrobiłem zmiany w [pliki]. Wygeneruj commit message według
+# Good prompt
+"I made changes in [files]. Generate commit message according to
  Conventional Commits (feat/fix/docs/etc)."
 
-# Claude generuje:
+# Claude generates:
 feat(auth): add email verification
 
 - Implement email verification service
@@ -428,44 +428,44 @@ feat(auth): add email verification
 Closes #123
 ```
 
-### Code Review przed Commit
+### Code Review before Commit
 
 ```bash
-"Przed commitem - przejrzyj moje zmiany w src/ i powiedz czy
- widzisz jakieś problemy."
+"Before commit - review my changes in src/ and tell if
+ you see any issues."
 ```
 
 ### Pre-commit Hook Ideas
 
 ```bash
-"Zaproponuj pre-commit hook który:
- - Uruchamia testy
- - Sprawdza linting
- - Weryfikuje że commit message jest Conventional Commits
- - Blokuje commit jeśli coś nie przechodzi"
+"Propose pre-commit hook that:
+ - Runs tests
+ - Checks linting
+ - Verifies commit message is Conventional Commits
+ - Blocks commit if something doesn't pass"
 ```
 
-## Dokumentacja
+## Documentation
 
 ### Pattern: Auto-Documentation
 
 ```bash
-"Dodaj JSDoc/docstrings dla wszystkich publicznych funkcji w src/api/users.ts.
+"Add JSDoc/docstrings for all public functions in src/api/users.ts.
  Format:
- - Opis funkcji
- - @param z typami i opisem
- - @returns z opisem
- - @throws jeśli applicable
- - @example z konkretnym przykładem użycia"
+ - Function description
+ - @param with types and description
+ - @returns with description
+ - @throws if applicable
+ - @example with concrete usage example"
 ```
 
 ### Pattern: README Generation
 
 ```bash
-"Wygeneruj README.md dla tego projektu zawierający:
- - Opis projektu
+"Generate README.md for this project containing:
+ - Project description
  - Installation
- - Usage z przykładami
+ - Usage with examples
  - API documentation
  - Development guide
  - Contributing guidelines"
@@ -474,48 +474,48 @@ Closes #123
 ### Pattern: Architecture Documentation
 
 ```bash
-"Wygeneruj docs/ARCHITECTURE.md opisujący:
- - Strukturę projektu
- - Główne moduły i ich odpowiedzialności
- - Flow danych
- - Najważniejsze decyzje architektoniczne i dlaczego"
+"Generate docs/ARCHITECTURE.md describing:
+ - Project structure
+ - Main modules and their responsibilities
+ - Data flow
+ - Most important architectural decisions and why"
 ```
 
-## Debugowanie
+## Debugging
 
-### Efektywne Debugowanie z Claude
+### Effective Debugging with Claude
 
-#### 1. Pełny Kontekst
+#### 1. Full Context
 
 ```
-Problem: [konkretny opis]
-Błąd: [pełny error message + stack trace]
-Kod: [ścieżka do pliku lub fragment]
-Co próbowałem: [lista prób]
+Problem: [specific description]
+Error: [full error message + stack trace]
+Code: [file path or snippet]
+What I tried: [list of attempts]
 Environment: [Node 18, Ubuntu 22.04, etc]
 ```
 
-#### 2. Systematyczne Podejście
+#### 2. Systematic Approach
 
 ```
-"Pomóż mi debugować ten problem systematycznie:
+"Help me debug this problem systematically:
 
-1. Najpierw przeanalizuj kod i wyjaśnij co powinno się dziać
-2. Potem sprawdź gdzie może być problem
-3. Zaproponuj sposób diagnozowania (console.log, debugger, etc)
-4. Gdy znajdziemy problem, zaproponuj fix"
+1. First analyze code and explain what should happen
+2. Then check where problem might be
+3. Propose way to diagnose (console.log, debugger, etc)
+4. When we find problem, propose fix"
 ```
 
 #### 3. Interactive Debugging
 
 ```
-[Po każdym kroku debugging podaję wyniki]
+[After each debugging step I provide results]
 
-Ty: "Dodaj console.log przed linią 42 i powiedz co się wyświetla"
-Ja: [wynik]
-Ty: "OK, teraz sprawdź wartość X"
-Ja: [wynik]
-...iteracyjnie
+You: "Add console.log before line 42 and tell me what displays"
+Me: [result]
+You: "OK, now check value of X"
+Me: [result]
+...iteratively
 ```
 
 ## Performance Optimization
@@ -524,35 +524,35 @@ Ja: [wynik]
 
 ```bash
 # 1. Identify
-"Przeanalizuj src/components/DataGrid.tsx pod kątem performance.
- Znajdź potencjalne bottlenecki."
+"Analyze src/components/DataGrid.tsx for performance.
+ Find potential bottlenecks."
 
 # 2. Measure
-"Dodaj performance measurements aby zweryfikować problem"
+"Add performance measurements to verify problem"
 
 # 3. Optimize
-"Zoptymalizuj [konkretna funkcja/komponent]"
+"Optimize [specific function/component]"
 
 # 4. Verify
-"Sprawdź czy optymalizacja nie zepsuje funkcjonalności (dodaj testy)"
+"Check if optimization doesn't break functionality (add tests)"
 ```
 
 ### Pattern: Bundle Size
 
 ```bash
-"Przeanalizuj bundle size:
- 1. Jakie są największe dependencies?
- 2. Co możemy tree-shake?
- 3. Co można lazy-load?
- 4. Zaproponuj konkretne optymalizacje"
+"Analyze bundle size:
+ 1. What are the largest dependencies?
+ 2. What can we tree-shake?
+ 3. What can be lazy-loaded?
+ 4. Propose specific optimizations"
 ```
 
-## Bezpieczeństwo
+## Security
 
 ### Security Review
 
 ```bash
-"Przejrzyj kod pod kątem bezpieczeństwa:
+"Review code for security:
  - SQL injection
  - XSS
  - CSRF
@@ -560,166 +560,166 @@ Ja: [wynik]
  - Sensitive data exposure
  - Dependency vulnerabilities
 
-Dla każdego znaleziska:
+For each finding:
  - Severity (Critical/High/Medium/Low)
- - Lokalizacja
- - Opis problemu
- - Jak naprawić"
+ - Location
+ - Problem description
+ - How to fix"
 ```
 
 ### Secret Scanning
 
 ```bash
-"Sprawdź czy w projekcie nie ma:
+"Check if project has:
  - API keys
  - Passwords
  - Tokens
  - Private keys
  - Credentials
 
-Jeśli znajdziesz - powiedz gdzie i zasugeruj jak powinno być."
+If you find any - tell me where and suggest how it should be."
 ```
 
-## Anti-Patterns (Czego Unikać)
+## Anti-Patterns (What to Avoid)
 
-### ❌ Zbyt Ogólne Prośby
-
-```
-"Ulepsz kod"
-"Zoptymalizuj to"
-"Napraw błędy"
-```
-
-**Lepiej:**
-```
-"Zoptymalizuj pod kątem memory usage"
-"Napraw błędy TypeScript"
-"Ulepsz error handling"
-```
-
-### ❌ Bez Kontekstu
+### ❌ Too General Requests
 
 ```
-"Dlaczego to nie działa?"
+"Improve code"
+"Optimize this"
+"Fix bugs"
 ```
 
-**Lepiej:**
+**Better:**
 ```
-"Funkcja X w pliku Y zwraca undefined zamiast expected value Z.
- Input to A, B, C. Pomóż znaleźć problem."
-```
-
-### ❌ Wszystko Naraz
-
-```
-"Zrób całą aplikację e-commerce z backendem, frontendem, bazą danych,
- autentykacją, płatnościami, i deploy na AWS"
+"Optimize for memory usage"
+"Fix TypeScript errors"
+"Improve error handling"
 ```
 
-**Lepiej:**
-```
-"Zacznijmy od podstawowego API dla produktów. Najpierw model danych
- i podstawowe CRUD endpoints."
-```
-
-### ❌ Brak Weryfikacji
+### ❌ Without Context
 
 ```
-[Claude coś zrobił]
-[Commituje bez sprawdzenia]
-[Okazuje się że nie działa]
+"Why doesn't this work?"
 ```
 
-**Lepiej:**
+**Better:**
 ```
-[Claude coś zrobił]
-[Testuję]
-"Działa, ale mam pytanie o linię 42 - dlaczego..."
-[Dyskusja/poprawki]
+"Function X in file Y returns undefined instead of expected value Z.
+ Input is A, B, C. Help find problem."
+```
+
+### ❌ Everything at Once
+
+```
+"Build entire e-commerce application with backend, frontend, database,
+ authentication, payments, and deploy to AWS"
+```
+
+**Better:**
+```
+"Let's start with basic API for products. First data model
+ and basic CRUD endpoints."
+```
+
+### ❌ Lack of Verification
+
+```
+[Claude did something]
+[Commits without checking]
+[Turns out it doesn't work]
+```
+
+**Better:**
+```
+[Claude did something]
+[I test]
+"Works, but I have question about line 42 - why..."
+[Discussion/fixes]
 [Commit]
 ```
 
-## Zaawansowane Techniki
+## Advanced Techniques
 
 ### Chain of Thought Prompting
 
 ```
-"Rozwiąż ten problem krok po kroku:
+"Solve this problem step by step:
 
-1. Najpierw wyjaśnij problem własnymi słowami
-2. Wymień wszystkie możliwe rozwiązania
-3. Oceń pros/cons każdego
-4. Wybierz najlepsze i wyjaśnij dlaczego
-5. Zaimplementuj"
+1. First explain problem in your own words
+2. List all possible solutions
+3. Evaluate pros/cons of each
+4. Choose best and explain why
+5. Implement"
 ```
 
 ### Few-Shot Learning
 
 ```
-"Napisz funkcję do walidacji numeru telefonu.
+"Write function to validate phone number.
 
-Przykład podobnego kodu w naszym projekcie:
-[przykład walidacji email]
+Example of similar code in our project:
+[email validation example]
 
-Zrób analogicznie, zachowując ten sam styl i pattern."
+Do analogously, keeping same style and pattern."
 ```
 
 ### Constrained Output
 
 ```
-"Wygeneruj kod który:
-✓ MUSI używać TypeScript strict mode
-✓ MUSI mieć error handling
-✓ MUSI być <100 linii
-✓ NIE MOŻE używać any
-✓ NIE MOŻE mieć side effects
+"Generate code that:
+✓ MUST use TypeScript strict mode
+✓ MUST have error handling
+✓ MUST be <100 lines
+✓ CANNOT use any
+✓ CANNOT have side effects
 "
 ```
 
 ### Meta-Prompting
 
 ```
-"Zanim odpowiesz, zastanów się:
-- Czy dobrze rozumiem problem?
-- Czy mam wszystkie potrzebne informacje?
-- Jakie assumptions robię?
+"Before you answer, think:
+- Do I understand the problem well?
+- Do I have all necessary information?
+- What assumptions am I making?
 
-Jeśli czegoś brakuje - zapytaj mnie najpierw."
+If something is missing - ask me first."
 ```
 
-## Productywność Boostery
+## Productivity Boosters
 
-### 1. Używaj Slash Commands
+### 1. Use Slash Commands
 
 ```bash
-# Zamiast opisywać za każdym razem
+# Instead of describing every time
 /review src/api/users.ts
 
-# Custom command robi:
+# Custom command does:
 # - Code review
-# - Znajdź bugs
-# - Sprawdź best practices
-# - Sugeruj improvements
+# - Find bugs
+# - Check best practices
+# - Suggest improvements
 ```
 
-### 2. Template Prompty
+### 2. Template Prompts
 
-Stwórz `.claude/prompts/` z gotowymi:
+Create `.claude/prompts/` with ready-made:
 
 **refactor.md:**
 ```
-Zrefaktoryzuj {{file}} aby był:
-- Bardziej czytelny
-- Lepiej testowalny
-- DRY (bez duplikacji)
+Refactor {{file}} to be:
+- More readable
+- Better testable
+- DRY (no duplication)
 - SOLID compliant
 
-Wyjaśnij każdą znaczącą zmianę.
+Explain each significant change.
 ```
 
 **security-check.md:**
 ```
-Security review dla {{file}}:
+Security review for {{file}}:
 - Input validation
 - SQL injection
 - XSS
@@ -727,130 +727,130 @@ Security review dla {{file}}:
 - Sensitive data handling
 ```
 
-### 3. Iteracyjny Workflow
+### 3. Iterative Workflow
 
 ```bash
-# Zamiast wszystkiego naraz:
-"Napisz api + testy + docs dla feature X"
+# Instead of everything at once:
+"Write api + tests + docs for feature X"
 
-# Rób iteracyjnie:
-[Runda 1] "Napisz API endpoint"
+# Do iteratively:
+[Round 1] "Write API endpoint"
 [Test] curl ...
-[Runda 2] "Dodaj testy"
+[Round 2] "Add tests"
 [Test] npm test
-[Runda 3] "Dodaj dokumentację"
+[Round 3] "Add documentation"
 ```
 
-### 4. Wykorzystuj Context
+### 4. Leverage Context
 
 ```bash
-# Przy dłuższej sesji:
-"Pamiętasz funkcję X którą napisaliśmy wcześniej?
- Teraz zrób podobnie dla Y"
+# During longer session:
+"Remember function X we wrote earlier?
+ Now do similarly for Y"
 
-"Wykorzystując ten sam pattern co w poprzednim pliku..."
+"Using same pattern as in previous file..."
 ```
 
 ## Quick Tips
 
-### Komunikacja
+### Communication
 
-- 🎯 Bądź konkretny
-- 📍 Podawaj lokalizacje (ścieżki do plików)
-- 📝 Opisuj expected behavior
-- ❓ Pytaj o wyjaśnienia
-- 🔄 Iteruj (małe kroki)
+- 🎯 Be specific
+- 📍 Provide locations (file paths)
+- 📝 Describe expected behavior
+- ❓ Ask for explanations
+- 🔄 Iterate (small steps)
 
-### Kod
+### Code
 
-- ✅ Zawsze testuj
-- 📚 Proś o dokumentację
-- 🔍 Rób code review
+- ✅ Always test
+- 📚 Ask for documentation
+- 🔍 Do code review
 - 🧪 TDD when possible
-- 📦 Małe, atomowe zmiany
+- 📦 Small, atomic changes
 
 ### Workflow
 
-- 📋 Planuj przed działaniem
-- 🔄 Iteruj, nie rób wszystkiego naraz
-- ✓ Weryfikuj każdy krok
-- 💾 Commituj często
-- 📖 Dokumentuj decyzje
+- 📋 Plan before acting
+- 🔄 Iterate, don't do everything at once
+- ✓ Verify each step
+- 💾 Commit often
+- 📖 Document decisions
 
-## Przykładowa Sesja (Best Practices)
+## Example Session (Best Practices)
 
 ```
-Ty: "Chcę dodać feature: user notifications w aplikacji React+Node.js"
+You: "I want to add feature: user notifications in React+Node.js app"
 
-Claude: "OK, zaplanujmy to:
+Claude: "OK, let's plan:
 1. Backend: API endpoints + database model
-2. Frontend: komponenty UI
+2. Frontend: UI components
 3. Real-time: WebSocket integration
-4. Testy
-5. Dokumentacja
+4. Tests
+5. Documentation
 
-Od czego zaczynamy?"
+Where do we start?"
 
-Ty: "Zacznijmy od backend. Jakie endpointy będziemy potrzebować?"
+You: "Let's start with backend. What endpoints will we need?"
 
-Claude: [analiza + propozycja]
+Claude: [analysis + proposal]
 
-Ty: "OK, zróbmy database model najpierw"
+You: "OK, let's do database model first"
 
-Claude: [implementacja modelu]
+Claude: [model implementation]
 
-Ty: "Świetnie. Teraz API endpoints dla CRUD notifications"
+You: "Great. Now API endpoints for CRUD notifications"
 
-Claude: [implementacja]
+Claude: [implementation]
 
-Ty: "Dodaj testy dla tych endpoints"
+You: "Add tests for these endpoints"
 
-Claude: [testy]
+Claude: [tests]
 
-Ty: "Przejrzyj co zrobiliśmy i powiedz czy coś można ulepszyć"
+You: "Review what we did and tell if anything can be improved"
 
-Claude: [code review + sugestie]
+Claude: [code review + suggestions]
 
-Ty: "OK, implementuj sugestię #2"
+You: "OK, implement suggestion #2"
 
 Claude: [refactor]
 
-Ty: "Wygeneruj commit message"
+You: "Generate commit message"
 
 Claude: [conventional commits message]
 
-Ty: "Teraz możemy przejść do frontendu"
+You: "Now we can move to frontend"
 ...
 ```
 
-## Zasoby
+## Resources
 
-- **Dokumentacja:** https://code.claude.com/docs
+- **Documentation:** https://code.claude.com/docs
 - **GitHub Discussions:** https://github.com/anthropics/claude-code/discussions
 - **Prompt Engineering Guide:** https://www.promptingguide.ai/
 
-## Szybka Ściąga
+## Quick Cheat Sheet
 
 ```bash
 ✅ DO:
-- Bądź konkretny i szczegółowy
-- Podawaj pełen kontekst
-- Dziel duże zadania na małe
-- Testuj i weryfikuj
-- Pytaj o wyjaśnienia
-- Iteruj i ulepszaj
+- Be specific and detailed
+- Provide full context
+- Break large tasks into small ones
+- Test and verify
+- Ask for explanations
+- Iterate and improve
 
 ❌ DON'T:
-- Ogólne prośby bez kontekstu
-- Wszystko naraz
-- Commitować bez testowania
-- Zakładać że Claude wie wszystko o projekcie
-- Pomijać edge cases
+- General requests without context
+- Everything at once
+- Commit without testing
+- Assume Claude knows everything about project
+- Skip edge cases
 ```
 
-**Zapamiętaj:**
-- Jestem narzędziem - Ty jesteś developerem
-- Weryfikuj zawsze co robię
-- Małe kroki = mniej błędów
-- Komunikacja > magiczne myślenie
-- Iteracja > perfekcja za pierwszym razem
+**Remember:**
+- I'm a tool - You are the developer
+- Always verify what I do
+- Small steps = fewer errors
+- Communication > magical thinking
+- Iteration > perfection on first try

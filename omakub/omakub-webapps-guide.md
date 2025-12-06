@@ -1,22 +1,22 @@
-# Omakub Web Apps - Instrukcja
+# Omakub Web Apps - Guide
 
-Omakub umożliwia łatwe tworzenie webappów (Progressive Web Apps) które działają jak zwykłe aplikacje desktopowe.
+Omakub enables easy creation of webapps (Progressive Web Apps) that work like regular desktop applications.
 
-## Szybki Start
+## Quick Start
 
-### Stwórz webapp (podstawowe)
-
-```bash
-web2app 'Nazwa Aplikacji' https://adres-strony.com
-```
-
-### Stwórz webapp z własną ikoną
+### Create webapp (basic)
 
 ```bash
-web2app 'Nazwa Aplikacji' https://adres-strony.com https://link-do-ikony.png
+web2app 'App Name' https://website-address.com
 ```
 
-## Przykłady Gotowych Webappów
+### Create webapp with custom icon
+
+```bash
+web2app 'App Name' https://website-address.com https://icon-link.png
+```
+
+## Ready-Made Webapp Examples
 
 ```bash
 # YouTube Music
@@ -50,109 +50,109 @@ web2app 'Spotify' https://open.spotify.com
 web2app 'Discord' https://discord.com/app
 ```
 
-## Preinstalowane Web Apps
+## Pre-installed Web Apps
 
-Omakub domyślnie instaluje:
+Omakub installs by default:
 
-1. **WhatsApp** - Komunikator
-2. **HEY** - Email i kalendarz (37signals)
-3. **Basecamp** - Zarządzanie projektami (37signals)
+1. **WhatsApp** - Messenger
+2. **HEY** - Email and calendar (37signals)
+3. **Basecamp** - Project management (37signals)
 
-## Zarządzanie Webappami
+## Managing Webapps
 
-### Instalacja z menu Omakub
+### Installation from Omakub menu
 
 ```bash
 omakub
-# Wybierz: Install > Web Apps
+# Select: Install > Web Apps
 ```
 
-### Usuwanie webapp
+### Removing webapp
 
 ```bash
-web2app-remove 'Nazwa Aplikacji'
+web2app-remove 'App Name'
 ```
 
-### Lokalizacja plików
+### File locations
 
-Wszystkie webappy są przechowywane jako pliki `.desktop` w:
+All webapps are stored as `.desktop` files in:
 
 ```bash
 ~/.local/share/applications/
 ```
 
-### Sprawdź zainstalowane webappy
+### Check installed webapps
 
 ```bash
 ls ~/.local/share/applications/*.desktop
 ```
 
-### Edycja webapp
+### Editing webapp
 
 ```bash
-# Lista webappów
+# List webapps
 ls ~/.local/share/applications/
 
-# Edytuj plik .desktop
-nvim ~/.local/share/applications/nazwa-aplikacji.desktop
+# Edit .desktop file
+nvim ~/.local/share/applications/app-name.desktop
 ```
 
-## Ikony dla Webappów
+## Icons for Webapps
 
-### Źródła ikon
+### Icon sources
 
 1. **Dashboard Icons** - https://dashboardicons.com/
 2. **Simple Icons** - https://simpleicons.org/
 3. **IconFinder** - https://iconfinder.com/
-4. **Oficjalne strony** - Wiele stron ma ikony w formacie PNG/SVG
+4. **Official websites** - Many sites have icons in PNG/SVG format
 
-### Format ikon
+### Icon format
 
-- **Zalecany:** PNG lub SVG
-- **Rozmiar:** 256x256px lub większy
-- **URL:** Bezpośredni link do pliku obrazu
+- **Recommended:** PNG or SVG
+- **Size:** 256x256px or larger
+- **URL:** Direct link to image file
 
-### Przykład z własną ikoną
+### Example with custom icon
 
 ```bash
 web2app 'Slack' https://app.slack.com https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg
 ```
 
-## Tworzenie Własnego Webapp
+## Creating Your Own Webapp
 
-### Krok po kroku
+### Step by step
 
-1. **Znajdź stronę** którą chcesz jako app
-2. **Znajdź ikonę** (opcjonalnie)
-3. **Uruchom komendę:**
+1. **Find the website** you want as an app
+2. **Find an icon** (optional)
+3. **Run the command:**
    ```bash
-   web2app 'Moja Aplikacja' https://example.com [url-ikony]
+   web2app 'My Application' https://example.com [icon-url]
    ```
-4. **Otwórz launcher** (`Super+Space`)
-5. **Wpisz nazwę** swojej aplikacji
-6. **Gotowe!**
+4. **Open launcher** (`Super+Space`)
+5. **Type the name** of your application
+6. **Done!**
 
-### Przykład: Tworzenie webapp dla Excalidraw
+### Example: Creating webapp for Excalidraw
 
 ```bash
 web2app 'Excalidraw' https://excalidraw.com
 ```
 
-## Zaawansowane Użycie
+## Advanced Usage
 
-### Ręczne tworzenie pliku .desktop
+### Manual creation of .desktop file
 
-Jeśli potrzebujesz większej kontroli, możesz stworzyć plik `.desktop` ręcznie:
+If you need more control, you can create a `.desktop` file manually:
 
 ```bash
-nvim ~/.local/share/applications/moja-aplikacja.desktop
+nvim ~/.local/share/applications/my-app.desktop
 ```
 
-**Zawartość pliku:**
+**File contents:**
 
 ```desktop
 [Desktop Entry]
-Name=Moja Aplikacja
+Name=My Application
 Exec=google-chrome --app=https://example.com
 Icon=/path/to/icon.png
 Type=Application
@@ -161,9 +161,9 @@ Terminal=false
 StartupWMClass=example.com
 ```
 
-### Zmień przeglądarkę
+### Change browser
 
-Domyślnie używany jest Google Chrome. Możesz zmienić na inną:
+Google Chrome is used by default. You can change to another:
 
 ```bash
 # Chromium
@@ -176,141 +176,141 @@ Exec=firefox --new-window https://example.com
 Exec=brave --app=https://example.com
 ```
 
-## Workflow z Webappami
+## Workflow with Webapps
 
-### Organizacja workspace
+### Workspace organization
 
 ```bash
-# Workspace 1: Komunikacja
+# Workspace 1: Communication
 # - Slack webapp
 # - Discord webapp
 # - WhatsApp webapp
 
-# Workspace 2: Praca
+# Workspace 2: Work
 # - GitHub webapp
 # - Linear webapp
 # - Figma webapp
 
-# Workspace 3: Rozrywka
+# Workspace 3: Entertainment
 # - YouTube Music webapp
 # - Spotify webapp
 ```
 
 ### Ulauncher integration
 
-Webappy pojawiają się automatycznie w Ulauncher:
+Webapps appear automatically in Ulauncher:
 
 ```bash
 Super+Space
-wpisz: nazwa webapp
+type: webapp name
 Enter
 ```
 
-### Skróty klawiszowe
+### Keyboard shortcuts
 
-Możesz dodać skróty do uruchamiania webappów w ustawieniach systemu:
+You can add shortcuts to launch webapps in system settings:
 
-1. Otwórz Settings → Keyboard → Shortcuts
-2. Dodaj Custom Shortcut
-3. Command: `gtk-launch nazwa-pliku.desktop`
-4. Przypisz skrót (np. `Super+Shift+G` dla Gmail)
+1. Open Settings → Keyboard → Shortcuts
+2. Add Custom Shortcut
+3. Command: `gtk-launch filename.desktop`
+4. Assign shortcut (e.g. `Super+Shift+G` for Gmail)
 
 ## Troubleshooting
 
-### Webapp się nie uruchamia
+### Webapp doesn't launch
 
 ```bash
-# Sprawdź czy plik istnieje
-ls ~/.local/share/applications/ | grep nazwa
+# Check if file exists
+ls ~/.local/share/applications/ | grep name
 
-# Sprawdź zawartość
-cat ~/.local/share/applications/nazwa.desktop
+# Check contents
+cat ~/.local/share/applications/name.desktop
 
-# Sprawdź uprawnienia
-chmod +x ~/.local/share/applications/nazwa.desktop
+# Check permissions
+chmod +x ~/.local/share/applications/name.desktop
 
-# Odśwież cache
+# Refresh cache
 update-desktop-database ~/.local/share/applications/
 ```
 
-### Ikona się nie wyświetla
+### Icon doesn't display
 
 ```bash
-# Sprawdź czy URL ikony działa
-wget [url-ikony] -O /tmp/test-icon.png
+# Check if icon URL works
+wget [icon-url] -O /tmp/test-icon.png
 
-# Użyj lokalnej ikony zamiast URL
-# Pobierz ikonę:
-wget [url-ikony] -O ~/.local/share/icons/moja-ikona.png
+# Use local icon instead of URL
+# Download icon:
+wget [icon-url] -O ~/.local/share/icons/my-icon.png
 
-# Edytuj .desktop i zmień Icon na:
-Icon=/home/username/.local/share/icons/moja-ikona.png
+# Edit .desktop and change Icon to:
+Icon=/home/username/.local/share/icons/my-icon.png
 ```
 
-### Webapp nie pojawia się w launcherze
+### Webapp doesn't appear in launcher
 
 ```bash
-# Odśwież bazę aplikacji
+# Refresh application database
 update-desktop-database ~/.local/share/applications/
 
 # Restart Ulauncher
 pkill ulauncher && ulauncher &
 ```
 
-### Usunięcie wszystkich webappów
+### Removing all webapps
 
 ```bash
-# Lista wszystkich
+# List all
 ls ~/.local/share/applications/*.desktop
 
-# Usuń wybrane
-rm ~/.local/share/applications/nazwa.desktop
+# Remove selected
+rm ~/.local/share/applications/name.desktop
 
-# OSTROŻNIE: Usuń wszystkie (backup first!)
+# CAREFUL: Remove all (backup first!)
 rm ~/.local/share/applications/*.desktop
 ```
 
 ## Tips & Tricks
 
-### 1. Grupowanie podobnych stron
+### 1. Grouping similar pages
 
 ```bash
-# Stwórz osobne webappy dla różnych kont
+# Create separate webapps for different accounts
 web2app 'Gmail Personal' https://mail.google.com
 web2app 'Gmail Work' https://mail.google.com
 
-# Każdy otworzy się jako osobne okno
+# Each will open as a separate window
 ```
 
-### 2. PWA z notyfikacjami
+### 2. PWA with notifications
 
-Niektóre strony wspierają notyfikacje desktop - po pierwszym uruchomieniu webapp zapyta o pozwolenie.
+Some websites support desktop notifications - after first launch webapp will ask for permission.
 
-### 3. Tryb kiosk
+### 3. Kiosk mode
 
 ```bash
-# Pełny ekran bez żadnych kontrolek
+# Full screen without any controls
 Exec=google-chrome --app=https://example.com --kiosk
 ```
 
-### 4. Backup webappów
+### 4. Backup webapps
 
 ```bash
-# Backup wszystkich webappów
+# Backup all webapps
 cp ~/.local/share/applications/*.desktop ~/backup-webapps/
 
 # Restore
 cp ~/backup-webapps/*.desktop ~/.local/share/applications/
 ```
 
-### 5. Share webappy między użytkownikami
+### 5. Share webapps between users
 
 ```bash
-# Zainstaluj systemowo (wymaga sudo)
+# Install system-wide (requires sudo)
 sudo cp webapp.desktop /usr/share/applications/
 ```
 
-## Popularne Webappy dla Developerów
+## Popular Webapps for Developers
 
 ```bash
 # Development
@@ -345,7 +345,7 @@ web2app 'Google Drive' https://drive.google.com
 web2app 'Dropbox' https://dropbox.com
 ```
 
-## Zasoby
+## Resources
 
 - **Omakub Docs:** https://omakub.org/
 - **Web Apps Manual:** https://learn.omacom.io/1/read/46/web-apps
@@ -357,22 +357,22 @@ web2app 'Dropbox' https://dropbox.com
 ## Quick Reference
 
 ```bash
-# Stwórz webapp
-web2app 'Nazwa' https://url.com
+# Create webapp
+web2app 'Name' https://url.com
 
-# Stwórz webapp z ikoną
-web2app 'Nazwa' https://url.com https://icon-url.png
+# Create webapp with icon
+web2app 'Name' https://url.com https://icon-url.png
 
-# Usuń webapp
-web2app-remove 'Nazwa'
+# Remove webapp
+web2app-remove 'Name'
 
-# Menu instalacji
+# Installation menu
 omakub
 
-# Sprawdź webappy
+# Check webapps
 ls ~/.local/share/applications/
 
-# Odśwież launcher
+# Refresh launcher
 update-desktop-database ~/.local/share/applications/
 ```
 

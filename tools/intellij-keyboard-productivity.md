@@ -1,50 +1,50 @@
 # IntelliJ IDEA - Keyboard Productivity Guide
 
-Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzystać klawiaturę i wyeliminować używanie myszy.
+A guide to IntelliJ IDEA for developers who want to maximize keyboard use and eliminate mouse usage.
 
-## Filozofia Pracy bez Myszy
+## Mouse-Free Work Philosophy
 
-**Dlaczego keyboard-first?**
-- Szybkość - brak przerywania flow na sięganie po mysz
-- Precyzja - dokładne operacje bez klikania
-- Produktywność - mniej zmęczenia, więcej kodu
-- Flow state - utrzymanie koncentracji
+**Why keyboard-first?**
+- Speed - no interruption to flow from reaching for the mouse
+- Precision - accurate operations without clicking
+- Productivity - less fatigue, more code
+- Flow state - maintaining concentration
 
-**Cel:** 95%+ operacji bez myszy
+**Goal:** 95%+ operations without mouse
 
-## Podstawowe Skróty (Musisz Znać)
+## Basic Shortcuts (Must Know)
 
-### Nawigacja Uniwersalna
+### Universal Navigation
 
-| Skrót | Akcja | Opis |
+| Shortcut | Action | Description |
 |-------|-------|------|
-| `Shift Shift` | **Search Everywhere** | Najważniejszy skrót! Szukaj wszystkiego |
-| `Ctrl+Shift+A` | Find Action | Znajdź dowolną akcję/komendę |
-| `Ctrl+N` | Go to Class | Otwórz klasę po nazwie |
-| `Ctrl+Shift+N` | Go to File | Otwórz plik po nazwie |
-| `Ctrl+Alt+Shift+N` | Go to Symbol | Znajdź metodę/field |
-| `Ctrl+E` | Recent Files | Ostatnio otwarte pliki |
-| `Ctrl+Shift+E` | Recent Locations | Ostatnio edytowane miejsca |
+| `Shift Shift` | **Search Everywhere** | Most important shortcut! Search anything |
+| `Ctrl+Shift+A` | Find Action | Find any action/command |
+| `Ctrl+N` | Go to Class | Open class by name |
+| `Ctrl+Shift+N` | Go to File | Open file by name |
+| `Ctrl+Alt+Shift+N` | Go to Symbol | Find method/field |
+| `Ctrl+E` | Recent Files | Recently opened files |
+| `Ctrl+Shift+E` | Recent Locations | Recently edited locations |
 
-**Protip:** `Shift Shift` zastępuje 90% nawigacji myszką!
+**Protip:** `Shift Shift` replaces 90% of mouse navigation!
 
-### Nawigacja w Kodzie
+### Code Navigation
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+B` lub `Ctrl+Click` | Go to Declaration |
+| `Ctrl+B` or `Ctrl+Click` | Go to Declaration |
 | `Ctrl+Alt+B` | Go to Implementation |
 | `Ctrl+U` | Go to Super Method/Class |
 | `Ctrl+Shift+B` | Go to Type Declaration |
 | `Ctrl+G` | Go to Line |
-| `Alt+←/→` | Poprzednia/Następna lokalizacja |
-| `Ctrl+[/]` | Skocz do początku/końca bloku |
-| `Ctrl+F12` | File Structure (metody w klasie) |
-| `Alt+↑/↓` | Poprzednia/Następna metoda |
+| `Alt+←/→` | Previous/Next location |
+| `Ctrl+[/]` | Jump to beginning/end of block |
+| `Ctrl+F12` | File Structure (methods in class) |
+| `Alt+↑/↓` | Previous/Next method |
 
-### Edycja Kodu
+### Code Editing
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Ctrl+Space` | Basic code completion |
 | `Ctrl+Shift+Space` | Smart code completion |
@@ -63,7 +63,7 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 
 ### Refactoring
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Shift+F6` | Rename |
 | `Ctrl+Alt+M` | Extract Method |
@@ -79,7 +79,7 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 
 ### Running & Debugging
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Shift+F10` | Run |
 | `Shift+F9` | Debug |
@@ -95,11 +95,11 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 | `Ctrl+Shift+F8` | View Breakpoints |
 | `Alt+F8` | Evaluate Expression |
 
-## Zaawansowane Skróty
+## Advanced Shortcuts
 
 ### Multi-Cursor & Selection
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Alt+J` | Add Selection for Next Occurrence |
 | `Alt+Shift+J` | Unselect Occurrence |
@@ -109,14 +109,14 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 | `Ctrl+Alt+Shift+Click` | Create Rectangular Selection |
 | `Esc` | Remove All Carets |
 
-**Przykład workflow:**
-1. Zaznacz zmienną
-2. `Alt+J` kilka razy (zaznacza kolejne wystąpienia)
-3. Pisz - wszystkie wystąpienia się zmienią
+**Example workflow:**
+1. Select a variable
+2. `Alt+J` several times (selects next occurrences)
+3. Type - all occurrences will change
 
 ### Live Templates
 
-| Skrót | Template | Rozwinięcie |
+| Shortcut | Template | Expansion |
 |-------|----------|-------------|
 | `psvm` + `Tab` | `public static void main` | Main method |
 | `sout` + `Tab` | `System.out.println()` | Print |
@@ -125,13 +125,13 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 | `ifn` + `Tab` | `if (x == null)` | Null check |
 | `inn` + `Tab` | `if (x != null)` | Not null check |
 
-**Twórz własne!** `Ctrl+Alt+S` → Live Templates
+**Create your own!** `Ctrl+Alt+S` → Live Templates
 
 ### Code Analysis & Fixing
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Alt+Enter` | **Show Intention Actions** (najważniejsze!) |
+| `Alt+Enter` | **Show Intention Actions** (most important!) |
 | `Ctrl+F1` | Show Error Description |
 | `F2` | Next Highlighted Error |
 | `Shift+F2` | Previous Highlighted Error |
@@ -139,11 +139,11 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 | `Ctrl+Alt+L` | Reformat Code |
 | `Ctrl+Alt+O` | Optimize Imports |
 
-**Protip:** `Alt+Enter` to magiczne rozwiązanie większości problemów!
+**Protip:** `Alt+Enter` is the magic solution to most problems!
 
 ### VCS / Git Integration
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Alt+~` | VCS Operations Menu |
 | `Ctrl+K` | Commit |
@@ -156,7 +156,7 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 
 ### Window Management
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Alt+1` | Project Tool Window |
 | `Alt+2` | Favorites |
@@ -171,36 +171,36 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 | `Ctrl+Tab` | Switcher |
 | `Alt+F12` | Terminal |
 
-## Workflow bez Myszy
+## Mouse-Free Workflow
 
-### 1. Otwieranie Plików
-
-```
-❌ Mysz: Klikanie w Project Explorer
-✅ Klawiatura:
-   1. Ctrl+N → wpisz nazwę klasy
-   2. Ctrl+Shift+N → wpisz nazwę pliku
-   3. Shift Shift → wpisz cokolwiek
-   4. Ctrl+E → wybierz z ostatnich
-```
-
-### 2. Nawigacja po Kodzie
+### 1. Opening Files
 
 ```
-❌ Mysz: Scrollowanie i klikanie
-✅ Klawiatura:
-   1. Ctrl+F12 → struktura pliku → wybierz metodę
-   2. Ctrl+Alt+Shift+N → wpisz nazwę metody
-   3. Ctrl+B → idź do definicji
-   4. Alt+←/→ → poprzednia/następna lokalizacja
+❌ Mouse: Clicking in Project Explorer
+✅ Keyboard:
+   1. Ctrl+N → type class name
+   2. Ctrl+Shift+N → type file name
+   3. Shift Shift → type anything
+   4. Ctrl+E → select from recent
+```
+
+### 2. Code Navigation
+
+```
+❌ Mouse: Scrolling and clicking
+✅ Keyboard:
+   1. Ctrl+F12 → file structure → select method
+   2. Ctrl+Alt+Shift+N → type method name
+   3. Ctrl+B → go to definition
+   4. Alt+←/→ → previous/next location
 ```
 
 ### 3. Refactoring
 
 ```
-❌ Mysz: Prawy przycisk → Refactor → wybierz
-✅ Klawiatura:
-   1. Zaznacz kod: Ctrl+W (rozszerz selekcję)
+❌ Mouse: Right click → Refactor → select
+✅ Keyboard:
+   1. Select code: Ctrl+W (expand selection)
    2. Shift+F6 → rename
    3. Ctrl+Alt+M → extract method
    4. Alt+Enter → quick fixes
@@ -209,18 +209,18 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 ### 4. Running Tests
 
 ```
-❌ Mysz: Klik na zieloną strzałkę
-✅ Klawiatura:
-   1. Ctrl+Shift+F10 → run kontekst (test/main)
-   2. Shift+F10 → re-run ostatni
-   3. Ctrl+Shift+F9 → re-compile i run
+❌ Mouse: Click on green arrow
+✅ Keyboard:
+   1. Ctrl+Shift+F10 → run context (test/main)
+   2. Shift+F10 → re-run last
+   3. Ctrl+Shift+F9 → re-compile and run
 ```
 
 ### 5. Debugging
 
 ```
-❌ Mysz: Klikanie w gutter, menu Debug
-✅ Klawiatura:
+❌ Mouse: Clicking in gutter, Debug menu
+✅ Keyboard:
    1. Ctrl+F8 → toggle breakpoint
    2. Shift+F9 → start debug
    3. F8 → step over
@@ -231,42 +231,42 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 ### 6. Git Operations
 
 ```
-❌ Mysz: Klikanie w VCS menu
-✅ Klawiatura:
+❌ Mouse: Clicking in VCS menu
+✅ Keyboard:
    1. Alt+~ → VCS menu
    2. Ctrl+K → commit
    3. Ctrl+Shift+K → push
    4. Ctrl+T → update/pull
 ```
 
-## Praktyczne Scenariusze
+## Practical Scenarios
 
-### Scenariusz 1: Implementacja Nowej Metody
+### Scenario 1: Implementing a New Method
 
 ```
-1. Ctrl+N → Otwórz klasę
-2. Ctrl+F12 → Znajdź miejsce na metodę
-3. Ctrl+O → Override lub Alt+Insert → Generate
+1. Ctrl+N → Open class
+2. Ctrl+F12 → Find place for method
+3. Ctrl+O → Override or Alt+Insert → Generate
 4. Ctrl+Space → Code completion
 5. Ctrl+Alt+T → Surround with try-catch
 6. Ctrl+Alt+L → Reformat
 7. Ctrl+Shift+F10 → Run test
 ```
 
-### Scenariusz 2: Refactor Legacy Code
+### Scenario 2: Refactor Legacy Code
 
 ```
-1. Ctrl+Alt+Shift+N → Znajdź metodę po nazwie
-2. Ctrl+W (kilka razy) → Zaznacz cały blok
+1. Ctrl+Alt+Shift+N → Find method by name
+2. Ctrl+W (several times) → Select entire block
 3. Ctrl+Alt+M → Extract method
 4. Shift+F6 → Rename method
 5. Alt+Enter → Resolve warnings
-6. F2 → Przejdź do następnego błędu
+6. F2 → Go to next error
 7. Alt+Enter → Fix it
 8. Ctrl+K → Commit
 ```
 
-### Scenariusz 3: Fix Bug
+### Scenario 3: Fix Bug
 
 ```
 1. Ctrl+Shift+F → Find in files "problematic code"
@@ -281,7 +281,7 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 10. Shift+F10 → Run tests
 ```
 
-### Scenariusz 4: Code Review w IDE
+### Scenario 4: Code Review in IDE
 
 ```
 1. Alt+9 → Open Git tool window
@@ -297,32 +297,32 @@ Przewodnik po IntelliJ IDEA dla programistów, którzy chcą maksymalnie wykorzy
 
 ### 1. Search Everywhere Mastery
 
-`Shift Shift` potem:
-- Nic nie wpisuj → ostatnie pliki
-- `/` → tylko pliki
-- `#` → tylko klasy
-- `@` → tylko symbole (metody)
-- `:` → linia (go to line)
+`Shift Shift` then:
+- Don't type anything → recent files
+- `/` → files only
+- `#` → classes only
+- `@` → symbols only (methods)
+- `:` → line (go to line)
 
-**Przykład:**
-- `Shift Shift` → `UserService` → otwórz klasę
-- `Shift Shift` → `/application.yml` → otwórz config
-- `Shift Shift` → `@findUser` → skocz do metody
+**Example:**
+- `Shift Shift` → `UserService` → open class
+- `Shift Shift` → `/application.yml` → open config
+- `Shift Shift` → `@findUser` → jump to method
 
 ### 2. Multi-Cursor Power
 
 ```java
-// Masz:
+// You have:
 String name;
 String email;
 String phone;
 
-// Chcesz dodać "private" przed każdym
-// 1. Zaznacz "String" w pierwszej linii
-// 2. Alt+J, Alt+J (zaznacz wszystkie)
-// 3. Home (początek linii)
-// 4. Wpisz "private "
-// Gotowe!
+// You want to add "private" before each
+// 1. Select "String" in first line
+// 2. Alt+J, Alt+J (select all)
+// 3. Home (beginning of line)
+// 4. Type "private "
+// Done!
 
 private String name;
 private String email;
@@ -331,24 +331,24 @@ private String phone;
 
 ### 3. Clipboard History
 
-`Ctrl+Shift+V` → Zobacz historię schowka (ostatnie 5 kopii)
+`Ctrl+Shift+V` → See clipboard history (last 5 copies)
 
 ### 4. Postfix Completion
 
-Zamiast owijać kod, użyj postfix:
+Instead of wrapping code, use postfix:
 
 ```java
-// Wpisz:
+// Type:
 user.null
-// Tab → automatycznie:
+// Tab → automatically:
 if (user == null) {}
 
-// Wpisz:
+// Type:
 list.for
-// Tab → automatycznie:
+// Tab → automatically:
 for (String item : list) {}
 
-// Inne:
+// Others:
 .var → assign to variable
 .return → return statement
 .sout → System.out.println()
@@ -357,114 +357,114 @@ for (String item : list) {}
 
 ### 5. CamelHumps
 
-W ustawieniach włącz "CamelHumps":
-- `Ctrl+→` przeskakuje przez całe słowo
-- Z CamelHumps: `getUserName` → `get|User|Name` (3 kroki)
+Enable "CamelHumps" in settings:
+- `Ctrl+→` jumps through entire word
+- With CamelHumps: `getUserName` → `get|User|Name` (3 steps)
 
 ### 6. Bookmarks
 
 ```
-F11 → Toggle bookmark (z numerem: Ctrl+Shift+[0-9])
+F11 → Toggle bookmark (with number: Ctrl+Shift+[0-9])
 Shift+F11 → Show bookmarks
-Ctrl+[0-9] → Skocz do bookmark
+Ctrl+[0-9] → Jump to bookmark
 
-Użycie: Oznacz ważne miejsca w kodzie podczas debugowania
+Usage: Mark important places in code during debugging
 ```
 
 ### 7. Scratches
 
 `Ctrl+Alt+Shift+Insert` → New scratch file
-- Tymczasowe notatki/testy
-- Nie w projekcie
-- Z syntax highlighting
-- Idealne do testowania snippetów
+- Temporary notes/tests
+- Not in project
+- With syntax highlighting
+- Perfect for testing snippets
 
 ### 8. Local History
 
 `Alt+Shift+C` → Local History
-- IntelliJ zapisuje lokalną historię zmian
-- Możesz wrócić do wcześniejszych wersji
-- Działa nawet bez Git!
+- IntelliJ saves local history of changes
+- You can revert to earlier versions
+- Works even without Git!
 
-## Customizacja
+## Customization
 
-### Zmień Keymap
+### Change Keymap
 
 `Ctrl+Alt+S` → Keymap
 
-**Polecane ustawienia:**
-1. **Dodaj Alt+↑/↓ dla Move Line Up/Down**
-2. **Ctrl+Shift+↑/↓ dla Move Statement**
-3. **F1 dla Quick Documentation** (zamiast Ctrl+Q)
+**Recommended settings:**
+1. **Add Alt+↑/↓ for Move Line Up/Down**
+2. **Ctrl+Shift+↑/↓ for Move Statement**
+3. **F1 for Quick Documentation** (instead of Ctrl+Q)
 
-### Wyłącz Myszy (Hardcore Mode)
+### Disable Mouse (Hardcore Mode)
 
 1. Install plugin: "Key Promoter X"
-   - Pokazuje skrót po każdym kliknięciu myszą
-   - Motywuje do nauki skrótów
+   - Shows shortcut after every mouse click
+   - Motivates learning shortcuts
 
 2. Install plugin: "Presentation Assistant"
-   - Pokazuje wszystkie używane skróty
-   - Świetne do nauki
+   - Shows all used shortcuts
+   - Great for learning
 
-### Produktywne Pluginy
+### Productive Plugins
 
 1. **IdeaVim** - Vim keybindings
-2. **String Manipulation** - Zaawansowane operacje na stringach
-3. **Rainbow Brackets** - Kolorowe nawiasy
-4. **GitToolBox** - Rozszerzone info o Git
-5. **SonarLint** - Code quality w czasie rzeczywistym
+2. **String Manipulation** - Advanced string operations
+3. **Rainbow Brackets** - Colored brackets
+4. **GitToolBox** - Extended Git info
+5. **SonarLint** - Real-time code quality
 
-## Praktyczne Ćwiczenia
+## Practical Exercises
 
-### Tydzień 1: Podstawy
+### Week 1: Basics
 ```
-Dzień 1-2: Nawigacja
-- Shift Shift (100x dziennie)
+Day 1-2: Navigation
+- Shift Shift (100x per day)
 - Ctrl+N, Ctrl+Shift+N
 - Ctrl+E
-- Nie używaj myszy do otwierania plików!
+- Don't use mouse to open files!
 
-Dzień 3-4: Edycja
+Day 3-4: Editing
 - Ctrl+W / Ctrl+Shift+W
 - Ctrl+D, Ctrl+Y
 - Alt+Insert
-- Tylko klawiatura do edycji!
+- Keyboard only for editing!
 
-Dzień 5-7: Refactoring
-- Shift+F6 (rename wszystko)
+Day 5-7: Refactoring
+- Shift+F6 (rename everything)
 - Ctrl+Alt+M (extract method)
 - Alt+Enter (fix warnings)
 ```
 
-### Tydzień 2: Zaawansowane
+### Week 2: Advanced
 ```
-Dzień 1-3: Multi-cursor
-- Alt+J do wszystkiego
-- Ćwicz na długich listach
+Day 1-3: Multi-cursor
+- Alt+J for everything
+- Practice on long lists
 
-Dzień 4-5: Git
-- Alt+~ → wszystkie operacje
+Day 4-5: Git
+- Alt+~ → all operations
 - Ctrl+K → Commit
-- Tylko klawiatura dla Git!
+- Keyboard only for Git!
 
-Dzień 6-7: Debugging
+Day 6-7: Debugging
 - Ctrl+F8 → breakpoints
 - F8, F7 → stepping
 - Alt+F8 → evaluate
-- Zero myszy podczas debug!
+- Zero mouse during debug!
 ```
 
-### Tydzień 3: Mastery
+### Week 3: Mastery
 ```
-- Spróbuj nie używać myszy przez cały dzień
-- Używaj "Key Promoter X"
-- Cel: 95%+ operacji bez myszy
+- Try not using mouse for entire day
+- Use "Key Promoter X"
+- Goal: 95%+ operations without mouse
 ```
 
-## Cheatsheet do Wydrukowania
+## Printable Cheatsheet
 
-### Nawigacja
+### Navigation
 ```
 Shift Shift         Search Everywhere
 Ctrl+N              Go to Class
@@ -474,7 +474,7 @@ Ctrl+B              Go to Declaration
 Alt+←/→             Back/Forward
 ```
 
-### Edycja
+### Editing
 ```
 Ctrl+Space          Code Completion
 Ctrl+W              Expand Selection
@@ -520,51 +520,51 @@ Shift+Esc           Hide Window
 
 ## Keyboard-Only Challenge
 
-### Sprawdź się!
+### Test yourself!
 
-Wykonaj poniższe zadania **TYLKO** używając klawiatury:
+Complete the following tasks using **ONLY** the keyboard:
 
-1. ✅ Otwórz klasę `UserService`
-2. ✅ Znajdź metodę `findById`
-3. ✅ Zobacz wszystkie miejsca gdzie jest użyta
-4. ✅ Przejdź do jednego z nich
-5. ✅ Wróć do `UserService`
-6. ✅ Dodaj nową metodę `deleteUser`
-7. ✅ Extract fragment do nowej metody
-8. ✅ Zmień nazwę zmiennej we wszystkich miejscach
-9. ✅ Ustaw breakpoint
-10. ✅ Uruchom debug
-11. ✅ Evaluate expression w debuggerze
-12. ✅ Zatrzymaj debugger
-13. ✅ Commit zmiany
-14. ✅ Push do remote
+1. ✅ Open `UserService` class
+2. ✅ Find `findById` method
+3. ✅ See all places where it's used
+4. ✅ Go to one of them
+5. ✅ Return to `UserService`
+6. ✅ Add new `deleteUser` method
+7. ✅ Extract fragment to new method
+8. ✅ Rename variable in all places
+9. ✅ Set breakpoint
+10. ✅ Run debug
+11. ✅ Evaluate expression in debugger
+12. ✅ Stop debugger
+13. ✅ Commit changes
+14. ✅ Push to remote
 
-**Jeśli użyłeś myszy choć raz - powtórz!**
+**If you used mouse even once - repeat!**
 
-## Zasoby
+## Resources
 
-- `Help → Keyboard Shortcuts PDF` - oficjalny cheatsheet
-- `Help → Productivity Guide` - Twoje statystyki użycia skrótów
-- https://www.jetbrains.com/help/idea/ - dokumentacja
+- `Help → Keyboard Shortcuts PDF` - official cheatsheet
+- `Help → Productivity Guide` - Your shortcut usage statistics
+- https://www.jetbrains.com/help/idea/ - documentation
 - YouTube: "IntelliJ IDEA Tips and Tricks"
 
 ---
 
 ## Mindset Shift
 
-**Zamiast:** "Gdzie w menu jest ta opcja?"
-**Myśl:** "Jaki skrót otwiera to?"
+**Instead of:** "Where in the menu is this option?"
+**Think:** "What shortcut opens this?"
 
-**Zamiast:** Kliknąć myszą
-**Myśl:** `Shift Shift` → wpisz co szukasz
+**Instead of:** Clicking with mouse
+**Think:** `Shift Shift` → type what you're looking for
 
-**Zamiast:** Scrollować w Project Explorer
-**Myśl:** `Ctrl+N` → otwórz bezpośrednio
+**Instead of:** Scrolling in Project Explorer
+**Think:** `Ctrl+N` → open directly
 
-**Cel:** Mysz tylko do scrollowania dokumentacji (i to rzadko!)
+**Goal:** Mouse only for scrolling documentation (and rarely!)
 
 ---
 
-**Pamiętaj:** Pierwsze 2 tygodnie będą wolniejsze. Po miesiącu będziesz 2x szybszy. Po 3 miesiącach nie wyobrazisz sobie pracy z myszą!
+**Remember:** First 2 weeks will be slower. After a month you'll be 2x faster. After 3 months you won't imagine working with mouse!
 
 🚀 **Happy Coding without Mouse!**

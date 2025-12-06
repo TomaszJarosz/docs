@@ -1,61 +1,61 @@
-# Neovim - Productivity Guide dla Programisty
+# Neovim - Productivity Guide for Programmers
 
-Kompleksowy przewodnik po Neovim dla programistów, którzy chcą osiągnąć maksymalną produktywność.
+Comprehensive Neovim guide for programmers who want to achieve maximum productivity.
 
-## Filozofia Vim/Neovim
+## Vim/Neovim Philosophy
 
-**Modal Editing** - różne tryby do różnych zadań:
-- **Normal Mode** - nawigacja i komendy (domyślny)
-- **Insert Mode** - pisanie tekstu
-- **Visual Mode** - zaznaczanie
-- **Command Mode** - wykonywanie komend
+**Modal Editing** - different modes for different tasks:
+- **Normal Mode** - navigation and commands (default)
+- **Insert Mode** - writing text
+- **Visual Mode** - selection
+- **Command Mode** - executing commands
 
-**Cel:** Większość czasu w Normal Mode, krótkie wizyty w Insert Mode
+**Goal:** Spend most time in Normal Mode, brief visits to Insert Mode
 
-**Myślenie:** Nie "przesuń kursor i wpisz", ale "wykonaj operację"
+**Thinking:** Not "move cursor and type", but "execute operation"
 
-## Podstawowe Tryby
+## Basic Modes
 
-### Przełączanie Trybów
+### Mode Switching
 
-| Klawisz | Z → Do | Opis |
+| Key | From → To | Description |
 |---------|--------|------|
-| `Esc` | Any → Normal | **ZAWSZE wraca do Normal** |
-| `i` | Normal → Insert | Insert przed kursorem |
-| `a` | Normal → Insert | Insert za kursorem (append) |
-| `I` | Normal → Insert | Insert na początku linii |
-| `A` | Normal → Insert | Insert na końcu linii |
-| `o` | Normal → Insert | Nowa linia poniżej |
-| `O` | Normal → Insert | Nowa linia powyżej |
+| `Esc` | Any → Normal | **ALWAYS returns to Normal** |
+| `i` | Normal → Insert | Insert before cursor |
+| `a` | Normal → Insert | Insert after cursor (append) |
+| `I` | Normal → Insert | Insert at beginning of line |
+| `A` | Normal → Insert | Insert at end of line |
+| `o` | Normal → Insert | New line below |
+| `O` | Normal → Insert | New line above |
 | `v` | Normal → Visual | Visual mode (char) |
 | `V` | Normal → Visual Line | Visual mode (line) |
 | `Ctrl+v` | Normal → Visual Block | Visual mode (block) |
 | `:` | Normal → Command | Command mode |
 
-**Złota zasada:** `Esc` zawsze wraca do Normal Mode!
+**Golden rule:** `Esc` always returns to Normal Mode!
 
-## Nawigacja (Normal Mode)
+## Navigation (Normal Mode)
 
-### Podstawowe Ruchy
+### Basic Movements
 
 ```
       ↑ k
 ← h       l →
     ↓ j
 
-h - lewo
-j - dół
-k - góra
-l - prawo
+h - left
+j - down
+k - up
+l - right
 ```
 
-**Nie używaj strzałek!** Twoje palce nie opuszczają home row.
+**Don't use arrows!** Your fingers never leave the home row.
 
-### Ruchy po Słowach
+### Word Movements
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `w` | Next word (początek) |
+| `w` | Next word (beginning) |
 | `W` | Next WORD (ignore punctuation) |
 | `e` | End of word |
 | `E` | End of WORD |
@@ -64,19 +64,19 @@ l - prawo
 | `ge` | End of previous word |
 
 **Word vs WORD:**
-- `word` - słowo (rozdzielane przez znaki specjalne)
-- `WORD` - ciąg znaków (rozdzielany tylko spacją)
+- `word` - word (separated by special characters)
+- `WORD` - string (separated only by space)
 
-Przykład: `user.getName()` ma 5 words ale 1 WORD
+Example: `user.getName()` has 5 words but 1 WORD
 
-### Ruchy po Linii
+### Line Movements
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `0` | Początek linii (kolumna 0) |
-| `^` | Pierwszy znak (nie-whitespace) |
-| `$` | Koniec linii |
-| `g_` | Ostatni znak (nie-whitespace) |
+| `0` | Beginning of line (column 0) |
+| `^` | First character (non-whitespace) |
+| `$` | End of line |
+| `g_` | Last character (non-whitespace) |
 | `f{char}` | Find char (forward) |
 | `F{char}` | Find char (backward) |
 | `t{char}` | Till char (forward) |
@@ -84,7 +84,7 @@ Przykład: `user.getName()` ma 5 words ale 1 WORD
 | `;` | Repeat last f/F/t/T |
 | `,` | Repeat last f/F/t/T (reverse) |
 
-**Przykład:**
+**Example:**
 ```
 cursor here: int getUserName() {
              ^
@@ -92,63 +92,63 @@ f(  → int getUserName() {
                       ^
 ```
 
-### Ruchy po Pliku
+### File Movements
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `gg` | Początek pliku |
-| `G` | Koniec pliku |
-| `{number}G` | Idź do linii {number} |
-| `{number}gg` | Idź do linii {number} |
-| `%` | Idź do matchującego nawiasu/bracketu |
-| `{` | Poprzedni paragraf |
-| `}` | Następny paragraf |
-| `[[` | Poprzednia sekcja/funkcja |
-| `]]` | Następna sekcja/funkcja |
+| `gg` | Beginning of file |
+| `G` | End of file |
+| `{number}G` | Go to line {number} |
+| `{number}gg` | Go to line {number} |
+| `%` | Go to matching bracket |
+| `{` | Previous paragraph |
+| `}` | Next paragraph |
+| `[[` | Previous section/function |
+| `]]` | Next section/function |
 
-### Ruchy po Ekranie
+### Screen Movements
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `Ctrl+d` | Pół strony w dół |
-| `Ctrl+u` | Pół strony w górę |
-| `Ctrl+f` | Pełna strona w dół (forward) |
-| `Ctrl+b` | Pełna strona w górę (backward) |
+| `Ctrl+d` | Half page down |
+| `Ctrl+u` | Half page up |
+| `Ctrl+f` | Full page down (forward) |
+| `Ctrl+b` | Full page up (backward) |
 | `H` | Top of screen (High) |
 | `M` | Middle of screen |
 | `L` | Bottom of screen (Low) |
-| `zt` | Scroll - kursor na górze |
-| `zz` | Scroll - kursor w środku |
-| `zb` | Scroll - kursor na dole |
+| `zt` | Scroll - cursor at top |
+| `zz` | Scroll - cursor in middle |
+| `zb` | Scroll - cursor at bottom |
 
-## Edycja (Normal Mode)
+## Editing (Normal Mode)
 
-### Operatory
+### Operators
 
-Vim używa **operatorów** + **motion**:
+Vim uses **operators** + **motion**:
 
 **Format:** `operator + motion`
 
-**Główne operatory:**
+**Main operators:**
 - `d` - delete (cut)
 - `c` - change (delete + insert mode)
 - `y` - yank (copy)
 - `v` - visual select
 
-**Przykłady:**
+**Examples:**
 - `dw` - delete word
-- `d$` - delete do końca linii
-- `cw` - change word (usuń i wejdź w insert)
+- `d$` - delete to end of line
+- `cw` - change word (delete and enter insert)
 - `yy` - yank line (copy)
 
-### Usuwanie (Delete)
+### Deleting (Delete)
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `x` | Delete char pod kursorem |
-| `X` | Delete char przed kursorem |
+| `x` | Delete char under cursor |
+| `X` | Delete char before cursor |
 | `dd` | Delete line |
-| `D` | Delete do końca linii (jak `d$`) |
+| `D` | Delete to end of line (like `d$`) |
 | `dw` | Delete word |
 | `diw` | Delete inner word |
 | `daw` | Delete a word (with space) |
@@ -156,67 +156,67 @@ Vim używa **operatorów** + **motion**:
 | `da"` | Delete around quotes (with quotes) |
 | `di(` | Delete inside parentheses |
 | `da(` | Delete around parentheses |
-| `dG` | Delete do końca pliku |
-| `dgg` | Delete do początku pliku |
+| `dG` | Delete to end of file |
+| `dgg` | Delete to beginning of file |
 
-### Zmiana (Change = Delete + Insert)
+### Changing (Change = Delete + Insert)
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
 | `cc` | Change line |
-| `C` | Change do końca linii |
+| `C` | Change to end of line |
 | `cw` | Change word |
 | `ciw` | Change inner word |
 | `ci"` | Change inside quotes |
 | `ci{` | Change inside braces |
 | `ct;` | Change till semicolon |
 
-### Kopiowanie i Wklejanie (Yank & Put)
+### Copying and Pasting (Yank & Put)
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
 | `yy` | Yank (copy) line |
-| `Y` | Yank line (jak `yy`) |
+| `Y` | Yank line (like `yy`) |
 | `yw` | Yank word |
 | `yiw` | Yank inner word |
-| `y$` | Yank do końca linii |
-| `p` | Put (paste) za kursorem/poniżej |
-| `P` | Put przed kursorem/powyżej |
-| `gp` | Put i przesuń kursor za wklejony tekst |
+| `y$` | Yank to end of line |
+| `p` | Put (paste) after cursor/below |
+| `P` | Put before cursor/above |
+| `gp` | Put and move cursor after pasted text |
 
 ### Undo & Redo
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
 | `u` | Undo |
 | `Ctrl+r` | Redo |
 | `U` | Undo all changes on line |
 
-### Powtarzanie
+### Repeating
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `.` | **Powtórz ostatnią zmianę** (SUPER WAŻNE!) |
-| `@:` | Powtórz ostatnią komendę |
+| `.` | **Repeat last change** (SUPER IMPORTANT!) |
+| `@:` | Repeat last command |
 
-**Przykład `.` (dot command):**
+**Example `.` (dot command):**
 ```
-1. ciw → zmień słowo na "user"
-2. n → znajdź następne wystąpienie
-3. . → powtórz zmianę (automatycznie zmieni na "user")
-4. n, . → kolejne
+1. ciw → change word to "user"
+2. n → find next occurrence
+3. . → repeat change (automatically changes to "user")
+4. n, . → next one
 ```
 
-## Text Objects - Największa Moc Vim
+## Text Objects - Vim's Greatest Power
 
 **Format:** `operator + i/a + object`
 
-- `i` - **inner** (inside, bez ograniczników)
-- `a` - **around** (with, z ogranicznikami)
+- `i` - **inner** (inside, without delimiters)
+- `a` - **around** (with, with delimiters)
 
-### Dostępne Obiekty
+### Available Objects
 
-| Object | Opis |
+| Object | Description |
 |--------|------|
 | `w` | word |
 | `W` | WORD |
@@ -225,13 +225,13 @@ Vim używa **operatorów** + **motion**:
 | `"` | double quotes |
 | `'` | single quotes |
 | `` ` `` | backticks |
-| `(` lub `)` | parentheses |
-| `{` lub `}` | braces |
-| `[` lub `]` | brackets |
-| `<` lub `>` | angle brackets |
+| `(` or `)` | parentheses |
+| `{` or `}` | braces |
+| `[` or `]` | brackets |
+| `<` or `>` | angle brackets |
 | `t` | tag (HTML/XML) |
 
-### Przykłady
+### Examples
 
 ```javascript
 function getUserName(user) {
@@ -239,70 +239,70 @@ function getUserName(user) {
 }
 ```
 
-**Kursor na `user` w środku funkcji:**
-- `ciw` → change inner word → zmień "user"
-- `ci(` → change inside parentheses → zmień parametr
-- `ci{` → change inside braces → zmień całe wnętrze funkcji
-- `da{` → delete around braces → usuń całą funkcję
+**Cursor on `user` inside function:**
+- `ciw` → change inner word → change "user"
+- `ci(` → change inside parentheses → change parameter
+- `ci{` → change inside braces → change entire function body
+- `da{` → delete around braces → delete entire function
 
-**Kursor gdziekolwiek w stringu:**
+**Cursor anywhere in string:**
 ```javascript
 const message = "Hello, World!";
 ```
-- `ci"` → change inside quotes → zmień zawartość stringa
-- `da"` → delete around quotes → usuń cały string z quotes
+- `ci"` → change inside quotes → change string content
+- `da"` → delete around quotes → delete entire string with quotes
 
 **HTML:**
 ```html
 <div class="container">Content here</div>
 ```
-- `cit` → change inside tag → zmień "Content here"
-- `cat` → change around tag → zmień `<div...>Content here</div>`
-- `dat` → delete around tag → usuń całe `<div>...</div>`
+- `cit` → change inside tag → change "Content here"
+- `cat` → change around tag → change `<div...>Content here</div>`
+- `dat` → delete around tag → delete entire `<div>...</div>`
 
-## Wyszukiwanie
+## Searching
 
-### Podstawowe Wyszukiwanie
+### Basic Search
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
-| `/pattern` | Szukaj do przodu |
-| `?pattern` | Szukaj wstecz |
+| `/pattern` | Search forward |
+| `?pattern` | Search backward |
 | `n` | Next match |
 | `N` | Previous match |
-| `*` | Szukaj słowa pod kursorem (forward) |
-| `#` | Szukaj słowa pod kursorem (backward) |
+| `*` | Search word under cursor (forward) |
+| `#` | Search word under cursor (backward) |
 | `g*` | Partial match forward |
 | `g#` | Partial match backward |
 
-### Wyszukiwanie z Replace
+### Search with Replace
 
 ```vim
-:%s/old/new/g          " Replace w całym pliku
-:%s/old/new/gc         " Replace z potwierdzeniem
-:s/old/new/g           " Replace w linii
-:'<,'>s/old/new/g      " Replace w zaznaczeniu (visual)
+:%s/old/new/g          " Replace in entire file
+:%s/old/new/gc         " Replace with confirmation
+:s/old/new/g           " Replace in line
+:'<,'>s/old/new/g      " Replace in selection (visual)
 ```
 
-**Flagi:**
-- `g` - global (wszystkie w linii)
-- `c` - confirm (pytaj o każdą)
+**Flags:**
+- `g` - global (all in line)
+- `c` - confirm (ask for each)
 - `i` - case insensitive
 
 ## Visual Mode
 
-### Tryby Visual
+### Visual Modes
 
-| Klawisz | Tryb |
+| Key | Mode |
 |---------|------|
 | `v` | Character-wise |
 | `V` | Line-wise |
 | `Ctrl+v` | Block-wise |
 | `gv` | Re-select last visual selection |
 
-### Operacje w Visual Mode
+### Operations in Visual Mode
 
-Po zaznaczeniu:
+After selection:
 - `d` - delete
 - `c` - change
 - `y` - yank
@@ -313,251 +313,251 @@ Po zaznaczeniu:
 - `u` - lowercase
 - `U` - uppercase
 
-### Visual Block (Kolumnowy)
+### Visual Block (Column)
 
-**Super power dla programistów!**
+**Super power for programmers!**
 
 ```
-1. Ctrl+v → rozpocznij block selection
-2. j/k → zaznacz wiele linii
-3. I → insert przed blokiem
-4. Wpisz tekst
-5. Esc → tekst pojawi się we wszystkich liniach!
+1. Ctrl+v → start block selection
+2. j/k → select multiple lines
+3. I → insert before block
+4. Type text
+5. Esc → text appears in all lines!
 ```
 
-**Przykład - dodaj komentarz:**
+**Example - add comment:**
 ```javascript
-// Przed:
+// Before:
 const a = 1;
 const b = 2;
 const c = 3;
 
 // Ctrl+v, jj, I, //, Esc
-// Po:
+// After:
 // const a = 1;
 // const b = 2;
 // const c = 3;
 ```
 
-## Makra - Automatyzacja
+## Macros - Automation
 
-### Nagrywanie i Odtwarzanie
+### Recording and Playback
 
 ```
-1. q{letter} → rozpocznij nagrywanie makra do rejestru {letter}
-2. ... wykonaj operacje ...
-3. q → zakończ nagrywanie
-4. @{letter} → odtwórz makro
-5. @@ → powtórz ostatnie makro
-6. {number}@{letter} → wykonaj makro {number} razy
+1. q{letter} → start recording macro to register {letter}
+2. ... perform operations ...
+3. q → stop recording
+4. @{letter} → play macro
+5. @@ → repeat last macro
+6. {number}@{letter} → execute macro {number} times
 ```
 
-**Przykład:**
+**Example:**
 
 ```javascript
-// Masz:
+// You have:
 getUserId
 getUserName
 getUserEmail
 
-// Chcesz:
+// You want:
 const userId = getUserId();
 const userName = getUserName();
 const userEmail = getUserEmail();
 
-// Makro:
-1. qa              → rozpocznij nagrywanie do 'a'
-2. Iconst <Esc>    → dodaj "const "
-3. A();<Esc>       → dodaj "();"
-4. j               → następna linia
-5. q               → zakończ
+// Macro:
+1. qa              → start recording to 'a'
+2. Iconst <Esc>    → add "const "
+3. A();<Esc>       → add "();"
+4. j               → next line
+5. q               → stop
 
-6. 2@a             → wykonaj 2 razy na pozostałych liniach
+6. 2@a             → execute 2 times on remaining lines
 ```
 
-## Liczniki i Powtórzenia
+## Counts and Repetitions
 
 **Format:** `{count} + {operator/motion}`
 
-**Przykłady:**
-- `3j` - 3 linie w dół
-- `5w` - 5 słów do przodu
-- `2dd` - usuń 2 linie
-- `3cw` - zmień 3 słowa
-- `10p` - wklej 10 razy
-- `100i-<Esc>` - wstaw 100 myślników
+**Examples:**
+- `3j` - 3 lines down
+- `5w` - 5 words forward
+- `2dd` - delete 2 lines
+- `3cw` - change 3 words
+- `10p` - paste 10 times
+- `100i-<Esc>` - insert 100 dashes
 
-## Wcięcia i Formatowanie
+## Indentation and Formatting
 
-| Klawisz | Akcja |
+| Key | Action |
 |---------|-------|
 | `>>` | Indent line right |
 | `<<` | Indent line left |
 | `==` | Auto-indent line |
-| `>%` | Indent block (na nawiasie) |
+| `>%` | Indent block (on bracket) |
 | `=%` | Auto-indent block |
-| `gg=G` | Auto-indent cały plik |
+| `gg=G` | Auto-indent entire file |
 | `gq` | Format text (wrap) |
 
 **Visual mode:**
 ```
-V → zaznacz linie
+V → select lines
 > → indent
 ```
 
-## Rejestry (Registers)
+## Registers
 
-Vim ma wiele schowków (rejestrów):
+Vim has multiple clipboards (registers):
 
-### Główne Rejestry
+### Main Registers
 
-| Rejestr | Opis |
+| Register | Description |
 |---------|------|
-| `"` | Unnamed (domyślny) |
-| `0` | Ostatnie yank |
-| `1-9` | Historia delete |
-| `a-z` | Named registers (użytkownika) |
+| `"` | Unnamed (default) |
+| `0` | Last yank |
+| `1-9` | Delete history |
+| `a-z` | Named registers (user) |
 | `+` | System clipboard |
 | `*` | Selection clipboard |
-| `%` | Nazwa pliku |
-| `/` | Ostatnie wyszukiwanie |
-| `:` | Ostatnia komenda |
+| `%` | Filename |
+| `/` | Last search |
+| `:` | Last command |
 
-### Użycie
-
-```vim
-"ayy        " Yank line do rejestru 'a'
-"ap         " Paste z rejestru 'a'
-"+y         " Yank do system clipboard
-"+p         " Paste ze system clipboard
-:reg        " Zobacz zawartość rejestrów
-```
-
-## Marki (Marks)
-
-Zakładki w pliku/plikach:
+### Usage
 
 ```vim
-m{letter}       " Ustaw mark
-'{letter}       " Skocz do mark (początek linii)
-`{letter}       " Skocz do mark (exact position)
-:marks          " Lista marks
-
-" Użycie:
-ma              " Ustaw mark 'a'
-... zrób coś gdzie indziej ...
-'a              " Wróć do mark 'a'
+"ayy        " Yank line to register 'a'
+"ap         " Paste from register 'a'
+"+y         " Yank to system clipboard
+"+p         " Paste from system clipboard
+:reg        " View register contents
 ```
 
-**Małe litery (a-z):** lokalne (w pliku)
-**Duże litery (A-Z):** globalne (między plikami)
+## Marks
 
-## Praktyczne Workflow
+Bookmarks in file/files:
 
-### Scenariusz 1: Refactor Nazwy Zmiennej
+```vim
+m{letter}       " Set mark
+'{letter}       " Jump to mark (beginning of line)
+`{letter}       " Jump to mark (exact position)
+:marks          " List marks
+
+" Usage:
+ma              " Set mark 'a'
+... do something elsewhere ...
+'a              " Return to mark 'a'
+```
+
+**Lowercase letters (a-z):** local (in file)
+**Uppercase letters (A-Z):** global (between files)
+
+## Practical Workflows
+
+### Scenario 1: Refactor Variable Name
 
 ```
-1. * → znajdź wszystkie wystąpienia
+1. * → find all occurrences
 2. cgn → change next match
-3. Wpisz nową nazwę
+3. Type new name
 4. Esc
-5. . → powtórz na następnym (n + .)
-6. . . . → kolejne
+5. . → repeat on next (n + .)
+6. . . . → next ones
 ```
 
-**Alternatywa:**
+**Alternative:**
 ```
 :%s/oldName/newName/gc
 ```
 
-### Scenariusz 2: Dodaj Logging
+### Scenario 2: Add Logging
 
 ```javascript
 function processUser(user) {
-    // Chcesz dodać console.log przed return
+    // Want to add console.log before return
     return user.id;
 }
 
 // Workflow:
-1. /return<Enter>  → znajdź return
-2. O               → nowa linia powyżej
+1. /return<Enter>  → find return
+2. O               → new line above
 3. console.log('user:', user);
 4. Esc
-5. n               → następny return
-6. .               → powtórz (O + tekst)
+5. n               → next return
+6. .               → repeat (O + text)
 ```
 
-### Scenariusz 3: Zmień String na Template Literal
+### Scenario 3: Change String to Template Literal
 
 ```javascript
-// Przed:
+// Before:
 const msg = "Hello " + name + "!";
 
-// Po:
+// After:
 const msg = `Hello ${name}!`;
 
 // Workflow:
-1. f" → skocz do pierwszego "
-2. r` → zamień na `
-3. f+ → skocz do +
-4. 3s${<Esc> → zamień " + na ${
-5. f+ → drugi +
-6. 2s}<Esc> → zamień + " na }
-7. f" → ostatni "
-8. r` → zamień na `
+1. f" → jump to first "
+2. r` → replace with `
+3. f+ → jump to +
+4. 3s${<Esc> → replace " + with ${
+5. f+ → second +
+6. 2s}<Esc> → replace + " with }
+7. f" → last "
+8. r` → replace with `
 ```
 
-### Scenariusz 4: Multi-line Edit (Block)
+### Scenario 4: Multi-line Edit (Block)
 
 ```javascript
-// Dodaj export przed każdą funkcją:
+// Add export before each function:
 function getUserId() {}
 function getUserName() {}
 function getUserEmail() {}
 
 // Workflow:
 1. Ctrl+v → block visual
-2. 2j → zaznacz 3 linie
+2. 2j → select 3 lines
 3. I → insert mode
 4. export <Esc>
-5. Gotowe!
+5. Done!
 
 export function getUserId() {}
 export function getUserName() {}
 export function getUserEmail() {}
 ```
 
-### Scenariusz 5: Sort & Unique Lines
+### Scenario 5: Sort & Unique Lines
 
 ```vim
-" Zaznacz linie w Visual mode (V)
-:sort           " Sortuj
-:sort u         " Sortuj i usuń duplikaty
+" Select lines in Visual mode (V)
+:sort           " Sort
+:sort u         " Sort and remove duplicates
 
-" Lub całe file:
+" Or entire file:
 :%sort
 :%sort u
 ```
 
-### Scenariusz 6: Skopiuj Metodę do Innej Klasy
+### Scenario 6: Copy Method to Another Class
 
 ```
-1. va{ → zaznacz całą metodę (visual around braces)
+1. va{ → select entire method (visual around braces)
 2. y → yank
-3. :e OtherClass.java → otwórz inny plik
-4. /class<Enter> → znajdź class
-5. } → idź do pierwszej metody
-6. P → paste powyżej
+3. :e OtherClass.java → open other file
+4. /class<Enter> → find class
+5. } → go to first method
+6. P → paste above
 ```
 
-## Command Mode - Potężne Komendy
+## Command Mode - Powerful Commands
 
-### Podstawowe
+### Basic
 
 ```vim
 :w              " Write (save)
 :q              " Quit
-:wq lub :x      " Write and quit
+:wq or :x       " Write and quit
 :q!             " Quit without saving
 :e filename     " Edit file
 :bn             " Next buffer
@@ -567,34 +567,34 @@ export function getUserEmail() {}
 :help topic     " Help
 ```
 
-### Zaawansowane
+### Advanced
 
 ```vim
-:!command       " Wykonaj shell command
+:!command       " Execute shell command
 :r !command     " Read output of command into buffer
-:%!jq           " Filter całego buffera przez jq
-:'<,'>!sort     " Sort zaznaczonych linii
+:%!jq           " Filter entire buffer through jq
+:'<,'>!sort     " Sort selected lines
 
-" Przykłady:
-:!ls            " Zobacz pliki
-:r !date        " Wstaw datę
+" Examples:
+:!ls            " View files
+:r !date        " Insert date
 :%!python -m json.tool  " Format JSON
 ```
 
 ### Range Operations
 
 ```vim
-:10,20d         " Delete linie 10-20
-:10,20y         " Yank linie 10-20
-:10,20s/old/new/g   " Replace w liniach 10-20
-:.,$d           " Delete od bieżącej do końca
-:%d             " Delete wszystko (% = cały plik)
-:'<,'>          " Visual selection (auto-dodane)
+:10,20d         " Delete lines 10-20
+:10,20y         " Yank lines 10-20
+:10,20s/old/new/g   " Replace in lines 10-20
+:.,$d           " Delete from current to end
+:%d             " Delete everything (% = entire file)
+:'<,'>          " Visual selection (auto-added)
 ```
 
 ## Splits & Tabs
 
-### Splits (Okna)
+### Splits (Windows)
 
 ```vim
 :split file     " Horizontal split
@@ -621,12 +621,12 @@ gT              " Previous tab
 {n}gt           " Go to tab n
 ```
 
-## Plugins Must-Have
+## Must-Have Plugins
 
 ### LSP (Language Server Protocol)
 
 ```vim
-" W LazyVim już skonfigurowane:
+" In LazyVim already configured:
 gd              " Go to definition
 gr              " References
 K               " Hover documentation
@@ -666,24 +666,24 @@ K               " Hover documentation
 ## Vimrc - Essential Settings
 
 ```vim
-" ~/.config/nvim/init.vim lub init.lua
+" ~/.config/nvim/init.vim or init.lua
 
-" Podstawowe
-set number              " Numery linii
+" Basic
+set number              " Line numbers
 set relativenumber      " Relative line numbers
 set mouse=a             " Mouse support
 set clipboard=unnamedplus  " System clipboard
 
-" Taby i wcięcia
+" Tabs and indentation
 set tabstop=4           " Tab = 4 spaces
 set shiftwidth=4        " Indent = 4 spaces
-set expandtab           " Spacje zamiast tabów
+set expandtab           " Spaces instead of tabs
 set autoindent          " Auto indent
 set smartindent         " Smart indent
 
-" Wyszukiwanie
+" Search
 set ignorecase          " Case insensitive search
-set smartcase           " Case sensitive jeśli uppercase
+set smartcase           " Case sensitive if uppercase
 set incsearch           " Incremental search
 set hlsearch            " Highlight search
 
@@ -720,7 +720,7 @@ vnoremap J :m '>+1<CR>gv=gv    " Move line down
 vnoremap K :m '<-2<CR>gv=gv    " Move line up
 
 " Better paste
-vnoremap p "_dP            " Paste bez kopiowania
+vnoremap p "_dP            " Paste without copying
 
 " Quick save
 nnoremap <leader>w :w<CR>
@@ -754,19 +754,19 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 ### 1. Ciw > dw
 
 ```
-Zamiast: dw (delete word - ale kursor musi być na początku)
-Używaj: ciw (change inner word - działa gdziekolwiek w słowie)
+Instead of: dw (delete word - but cursor must be at beginning)
+Use: ciw (change inner word - works anywhere in word)
 ```
 
 ### 2. Dot Command Optimization
 
 ```
-Zawsze myśl: "Czy będę to powtarzać?"
-Jeśli tak - użyj . (dot)
+Always think: "Will I repeat this?"
+If yes - use . (dot)
 
-Przykład:
-Zamiast: ciw → type → Esc → w → ciw → type → Esc
-Użyj: ciw → type → Esc → w → . → w → .
+Example:
+Instead of: ciw → type → Esc → w → ciw → type → Esc
+Use: ciw → type → Esc → w → . → w → .
 ```
 
 ### 3. Relative Line Numbers
@@ -774,33 +774,33 @@ Użyj: ciw → type → Esc → w → . → w → .
 ```
 :set relativenumber
 
-Teraz możesz: 5j (zamiast jjjjj)
-               3k (zamiast kkk)
+Now you can: 5j (instead of jjjjj)
+             3k (instead of kkk)
 ```
 
-### 4. Wyszukiwanie i Zmiana
+### 4. Search and Change
 
 ```
-/pattern<Enter>  → znajdź
+/pattern<Enter>  → find
 cgn → change next match
-. . . → powtarzaj na kolejnych
+. . . → repeat on next ones
 
-Szybsze niż :%s/old/new/g dla kilku zmian!
+Faster than :%s/old/new/g for few changes!
 ```
 
 ### 5. Case Conversion
 
 ```
-~ → toggle case (na znaku)
-gU{motion} → uppercase (np. gUiw - uppercase word)
+~ → toggle case (on character)
+gU{motion} → uppercase (e.g. gUiw - uppercase word)
 gu{motion} → lowercase
 ```
 
 ### 6. Join Lines
 
 ```
-J → join następną linię (usuń newline)
-gJ → join bez dodawania spacji
+J → join next line (remove newline)
+gJ → join without adding space
 ```
 
 ### 7. Auto-completion (Insert Mode)
@@ -815,79 +815,79 @@ Ctrl+x Ctrl+l → Line completion
 ### 8. Ex Commands Range
 
 ```
-:g/pattern/d → usuń wszystkie linie z pattern
-:g!/pattern/d → usuń wszystkie linie BEZ pattern
-:v/pattern/d → to samo co powyżej
+:g/pattern/d → delete all lines with pattern
+:g!/pattern/d → delete all lines WITHOUT pattern
+:v/pattern/d → same as above
 ```
 
 ## Keyboard-Only Challenge
 
-Wykonaj bez myszy:
+Complete without mouse:
 
-1. ✅ Otwórz plik (Neovim + filename)
-2. ✅ Znajdź funkcję (/<name>)
-3. ✅ Skopiuj funkcję (va{y)
-4. ✅ Idź do końca pliku (G)
-5. ✅ Wklej (p)
-6. ✅ Zmień nazwę funkcji (ciw)
-7. ✅ Dodaj komentarz powyżej (O)
+1. ✅ Open file (Neovim + filename)
+2. ✅ Find function (/<name>)
+3. ✅ Copy function (va{y)
+4. ✅ Go to end of file (G)
+5. ✅ Paste (p)
+6. ✅ Change function name (ciw)
+7. ✅ Add comment above (O)
 8. ✅ Auto-indent (==)
-9. ✅ Zapisz (:w)
-10. ✅ Wyjdź (:q)
+9. ✅ Save (:w)
+10. ✅ Quit (:q)
 
-**Jeśli użyłeś myszy - powtórz!**
+**If you used mouse - repeat!**
 
 ## Learning Path
 
-### Tydzień 1: Podstawy
+### Week 1: Basics
 ```
-Dzień 1-2: Ruchy (hjkl, w, b, 0, $)
-Dzień 3-4: Tryby (i, a, o, v, Esc)
-Dzień 5: Operatory (d, c, y) + motion
-Dzień 6-7: Text objects (iw, i", i()
-```
-
-### Tydzień 2: Workflow
-```
-Dzień 1-2: Dot command (.)
-Dzień 3-4: Wyszukiwanie (/, *, n)
-Dzień 5: Visual mode & blocks
-Dzień 6-7: Registers & clipboard
+Day 1-2: Movements (hjkl, w, b, 0, $)
+Day 3-4: Modes (i, a, o, v, Esc)
+Day 5: Operators (d, c, y) + motion
+Day 6-7: Text objects (iw, i", i()
 ```
 
-### Tydzień 3: Mastery
+### Week 2: Workflow
 ```
-Dzień 1-2: Makra (q)
-Dzień 3-4: Splits & buffers
-Dzień 5: Advanced motions
-Dzień 6-7: Custom mappings
+Day 1-2: Dot command (.)
+Day 3-4: Searching (/, *, n)
+Day 5: Visual mode & blocks
+Day 6-7: Registers & clipboard
 ```
 
-### Tydzień 4: Speed
+### Week 3: Mastery
 ```
-- Używaj tylko klawiatury
-- Cel: 80% operacji bez myśli
-- Opanuj . (dot) command
-- Użyj vimtutor (vim -c 'Tutor')
+Day 1-2: Macros (q)
+Day 3-4: Splits & buffers
+Day 5: Advanced motions
+Day 6-7: Custom mappings
+```
+
+### Week 4: Speed
+```
+- Use only keyboard
+- Goal: 80% operations without thinking
+- Master . (dot) command
+- Use vimtutor (vim -c 'Tutor')
 ```
 
 ## Vimtutor
 
-**Najlepszy sposób nauki!**
+**Best way to learn!**
 
 ```bash
-# Uruchom tutorial
+# Run tutorial
 nvim -c 'Tutor'
 
-# Lub w Neovim:
+# Or in Neovim:
 :Tutor
 
-# 30 minut dziennie przez tydzień = opanowane podstawy
+# 30 minutes daily for a week = mastered basics
 ```
 
-## Przydatne Komendy
+## Useful Commands
 
-### Statystyki
+### Statistics
 
 ```vim
 g Ctrl+g        " Word count, line count
@@ -913,30 +913,30 @@ do                      " Diff obtain (get change)
 dp                      " Diff put (send change)
 ```
 
-## Zasoby
+## Resources
 
-- `:help user-manual` - oficjalna dokumentacja
-- `:Tutor` - interaktywny tutorial
-- https://vim-adventures.com/ - gra do nauki Vim
-- https://vimgolf.com/ - wyzwania Vim
-- https://github.com/ThePrimeagen/vim-be-good - plugin do ćwiczeń
+- `:help user-manual` - official documentation
+- `:Tutor` - interactive tutorial
+- https://vim-adventures.com/ - game for learning Vim
+- https://vimgolf.com/ - Vim challenges
+- https://github.com/ThePrimeagen/vim-be-good - practice plugin
 
 ## Mindset
 
-**Zamiast:** Ruszać kursor i edytować
-**Myśl:** Jaka operacja + na czym (operator + text object)
+**Instead of:** Move cursor and edit
+**Think:** What operation + on what (operator + text object)
 
-**Zamiast:** Myszy i strzałek
-**Myśl:** hjkl i w/b/e
+**Instead of:** Mouse and arrows
+**Think:** hjkl and w/b/e
 
-**Zamiast:** "Jak to zrobić?"
-**Myśl:** "Jak zrobić to powtarzalnie?" (. command)
+**Instead of:** "How to do this?"
+**Think:** "How to do this repeatably?" (. command)
 
-**Cel:**
-- Tydzień 1: Frustracja (to normalne!)
-- Tydzień 2: Zrozumienie
-- Tydzień 3: Płynność
-- Miesiąc: Nie wyobrażasz sobie innego edytora
+**Goal:**
+- Week 1: Frustration (this is normal!)
+- Week 2: Understanding
+- Week 3: Fluency
+- Month: Can't imagine another editor
 
 ---
 

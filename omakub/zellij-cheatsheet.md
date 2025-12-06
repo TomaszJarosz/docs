@@ -1,187 +1,187 @@
 # Zellij Cheatsheet (Omakub Config)
 
-Zellij to nowoczesny terminal multiplexer - alternatywa dla tmux/screen.
+Zellij is a modern terminal multiplexer - an alternative to tmux/screen.
 
-**UWAGA:** Ta konfiguracja jest z **Omakub** i różni się od domyślnej!
+**NOTE:** This configuration is from **Omakub** and differs from the default!
 
-## Podstawowe Koncepty
+## Basic Concepts
 
-Zellij w Omakub działa w **trybach** (modes) z kluczową różnicą:
-- **Domyślnie jesteś w trybie LOCKED** - większość skrótów jest wyłączona!
-- `Ctrl+g` przełącza między **locked** ↔ **normal** mode
-- W locked mode działają tylko skróty `Alt+...` (najważniejsze!)
-- Z normal mode możesz wchodzić w inne tryby (pane, tab, resize, etc.)
+Zellij in Omakub works in **modes** with a key difference:
+- **By default you are in LOCKED mode** - most shortcuts are disabled!
+- `Ctrl+g` switches between **locked** ↔ **normal** mode
+- In locked mode only `Alt+...` shortcuts work (the most important!)
+- From normal mode you can enter other modes (pane, tab, resize, etc.)
 
-## ⭐ Najważniejsze Skróty (Działają Zawsze)
+## ⭐ Most Important Shortcuts (Always Work)
 
-Skróty z **Alt** działają nawet w locked mode:
+Shortcuts with **Alt** work even in locked mode:
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Alt+h/j/k/l` lub `Alt+strzałki` | Nawigacja między panelami/tabami |
-| `Alt+n` | Nowy panel |
+| `Alt+h/j/k/l` or `Alt+arrows` | Navigate between panes/tabs |
+| `Alt+n` | New pane |
 | `Alt+f` | Toggle floating panes |
-| `Alt++` | Zwiększ rozmiar panelu |
-| `Alt+-` | Zmniejsz rozmiar panelu |
-| `Alt+=` | Zwiększ rozmiar panelu |
-| `Alt+[` | Poprzedni layout |
-| `Alt+]` | Następny layout |
-| `Alt+i` | Przenieś tab w lewo |
-| `Alt+o` | Przenieś tab w prawo |
+| `Alt++` | Increase pane size |
+| `Alt+-` | Decrease pane size |
+| `Alt+=` | Increase pane size |
+| `Alt+[` | Previous layout |
+| `Alt+]` | Next layout |
+| `Alt+i` | Move tab left |
+| `Alt+o` | Move tab right |
 
-## Podstawowe Skróty
+## Basic Shortcuts
 
-### Ogólne
-| Skrót | Akcja |
+### General
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` | Przełącz locked ↔ normal mode |
-| `Ctrl+q` | Zamknij Zellij (tylko z normal mode) |
+| `Ctrl+g` | Toggle locked ↔ normal mode |
+| `Ctrl+q` | Close Zellij (only from normal mode) |
 
-## Tryby i Zarządzanie
+## Modes and Management
 
-**UWAGA:** Z locked mode najpierw naciśnij `Ctrl+g` aby przejść do normal mode!
+**NOTE:** From locked mode first press `Ctrl+g` to enter normal mode!
 
-### Panel Mode (z normal: `p`)
-Zarządzanie panelami (podziałami ekranu):
+### Panel Mode (from normal: `p`)
+Managing panes (screen splits):
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `p` → `n` | Nowy panel (domyślny kierunek) |
-| `Ctrl+g` → `p` → `d` | Panel w dół (horizontal split) |
-| `Ctrl+g` → `p` → `r` | Panel w prawo (vertical split) |
-| `Ctrl+g` → `p` → `x` | Zamknij aktywny panel |
-| `Ctrl+g` → `p` → `f` | **Panel na cały ekran (fullscreen)** ⭐ |
-| `Ctrl+g` → `p` → `w` | Przełącz floating panel |
-| `Ctrl+g` → `p` → `e` | Embed floating panel |
-| `Ctrl+g` → `p` → `c` | Zmień nazwę panelu |
-| `Ctrl+g` → `p` → `z` | Toggle panel frames |
+| `Ctrl+g` → `p` → `n` | New pane (default direction) |
+| `Ctrl+g` → `p` → `d` | Pane down (horizontal split) |
+| `Ctrl+g` → `p` → `r` | Pane right (vertical split) |
+| `Ctrl+g` → `p` → `x` | Close active pane |
+| `Ctrl+g` → `p` → `f` | **Fullscreen pane** ⭐ |
+| `Ctrl+g` → `p` → `w` | Toggle floating pane |
+| `Ctrl+g` → `p` → `e` | Embed floating pane |
+| `Ctrl+g` → `p` → `c` | Rename pane |
+| `Ctrl+g` → `p` → `z` | Toggle pane frames |
 
-**Nawigacja w Panel Mode:**
-| Pełny Skrót | Akcja |
+**Navigation in Panel Mode:**
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `p` → `h/←` | Przejdź do panelu po lewej |
-| `Ctrl+g` → `p` → `l/→` | Przejdź do panelu po prawej |
-| `Ctrl+g` → `p` → `j/↓` | Przejdź do panelu poniżej |
-| `Ctrl+g` → `p` → `k/↑` | Przejdź do panelu powyżej |
-| `Ctrl+g` → `p` → `Tab` | Przełącz focus |
+| `Ctrl+g` → `p` → `h/←` | Go to pane on the left |
+| `Ctrl+g` → `p` → `l/→` | Go to pane on the right |
+| `Ctrl+g` → `p` → `j/↓` | Go to pane below |
+| `Ctrl+g` → `p` → `k/↑` | Go to pane above |
+| `Ctrl+g` → `p` → `Tab` | Toggle focus |
 
-### Resize Mode (z normal: `r`)
-Zmiana rozmiaru paneli:
+### Resize Mode (from normal: `r`)
+Resizing panes:
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `r` → `h/←` | Zwiększ w lewo |
-| `Ctrl+g` → `r` → `l/→` | Zwiększ w prawo |
-| `Ctrl+g` → `r` → `j/↓` | Zwiększ w dół |
-| `Ctrl+g` → `r` → `k/↑` | Zwiększ w górę |
-| `Ctrl+g` → `r` → `+` | Zwiększ rozmiar |
-| `Ctrl+g` → `r` → `-` | Zmniejsz rozmiar |
-| `Ctrl+g` → `r` → `=` | Zwiększ rozmiar (jak +) |
-| `Ctrl+g` → `r` → `H/J/K/L` | Zmniejsz w danym kierunku |
+| `Ctrl+g` → `r` → `h/←` | Increase left |
+| `Ctrl+g` → `r` → `l/→` | Increase right |
+| `Ctrl+g` → `r` → `j/↓` | Increase down |
+| `Ctrl+g` → `r` → `k/↑` | Increase up |
+| `Ctrl+g` → `r` → `+` | Increase size |
+| `Ctrl+g` → `r` → `-` | Decrease size |
+| `Ctrl+g` → `r` → `=` | Increase size (like +) |
+| `Ctrl+g` → `r` → `H/J/K/L` | Decrease in given direction |
 
-💡 **Szybszy sposób:** Użyj `Alt++` lub `Alt+-` bez wchodzenia w tryb!
+💡 **Faster way:** Use `Alt++` or `Alt+-` without entering mode!
 
-### Tab Mode (z normal: `t`)
-Zarządzanie zakładkami (tabs):
+### Tab Mode (from normal: `t`)
+Managing tabs:
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `t` → `n` | Nowy tab |
-| `Ctrl+g` → `t` → `x` | Zamknij aktywny tab |
-| `Ctrl+g` → `t` → `r` | Zmień nazwę taba |
-| `Ctrl+g` → `t` → `h/←` | Przejdź do poprzedniego taba |
-| `Ctrl+g` → `t` → `l/→` | Przejdź do następnego taba |
-| `Ctrl+g` → `t` → `j` | Przejdź do następnego taba |
-| `Ctrl+g` → `t` → `k` | Przejdź do poprzedniego taba |
-| `Ctrl+g` → `t` → `1-9` | Przejdź do taba numer 1-9 |
-| `Ctrl+g` → `t` → `Tab` | Przełącz na ostatnio używany tab |
-| `Ctrl+g` → `t` → `s` | Sync tab (synchronizuj input) |
+| `Ctrl+g` → `t` → `n` | New tab |
+| `Ctrl+g` → `t` → `x` | Close active tab |
+| `Ctrl+g` → `t` → `r` | Rename tab |
+| `Ctrl+g` → `t` → `h/←` | Go to previous tab |
+| `Ctrl+g` → `t` → `l/→` | Go to next tab |
+| `Ctrl+g` → `t` → `j` | Go to next tab |
+| `Ctrl+g` → `t` → `k` | Go to previous tab |
+| `Ctrl+g` → `t` → `1-9` | Go to tab number 1-9 |
+| `Ctrl+g` → `t` → `Tab` | Switch to last used tab |
+| `Ctrl+g` → `t` → `s` | Sync tab (synchronize input) |
 | `Ctrl+g` → `t` → `[` | Break pane left |
 | `Ctrl+g` → `t` → `]` | Break pane right |
 | `Ctrl+g` → `t` → `b` | Break pane |
 
-### Scroll Mode (z normal: `s`)
-Przewijanie i kopiowanie:
+### Scroll Mode (from normal: `s`)
+Scrolling and copying:
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `s` → `↑/↓` lub `k/j` | Przewijaj w górę/dół |
-| `Ctrl+g` → `s` → `PgUp/PgDn` lub `h/l` | Przewijaj stronami |
-| `Ctrl+g` → `s` → `u` | Pół strony w górę |
-| `Ctrl+g` → `s` → `d` | Pół strony w dół |
+| `Ctrl+g` → `s` → `↑/↓` or `k/j` | Scroll up/down |
+| `Ctrl+g` → `s` → `PgUp/PgDn` or `h/l` | Scroll by pages |
+| `Ctrl+g` → `s` → `u` | Half page up |
+| `Ctrl+g` → `s` → `d` | Half page down |
 | `Ctrl+g` → `s` → `Ctrl+b` | Page scroll up |
 | `Ctrl+g` → `s` → `Ctrl+f` | Page scroll down |
-| `Ctrl+g` → `s` → `f` | Szukaj (enter search) |
-| `Ctrl+g` → `s` → `e` | Edytuj scrollback w edytorze |
-| `Ctrl+g` → `s` → `Ctrl+c` | Wyjdź ze scroll mode |
+| `Ctrl+g` → `s` → `f` | Search (enter search) |
+| `Ctrl+g` → `s` → `e` | Edit scrollback in editor |
+| `Ctrl+g` → `s` → `Ctrl+c` | Exit scroll mode |
 
-**W Search Mode:**
-| Skrót | Akcja |
+**In Search Mode:**
+| Shortcut | Action |
 |-------|-------|
-| `n` | Następny wynik |
-| `p` | Poprzedni wynik |
+| `n` | Next result |
+| `p` | Previous result |
 | `c` | Toggle case sensitivity |
 | `w` | Toggle whole word |
 | `o` | Toggle wrap |
 
-Kopiowanie tekstu:
-1. Wejdź w Scroll Mode (`Ctrl+g` → `s`)
-2. Zaznacz tekst myszką
-3. Tekst automatycznie kopiuje się do schowka
-4. `Ctrl+c` lub `Esc` aby wyjść
+Copying text:
+1. Enter Scroll Mode (`Ctrl+g` → `s`)
+2. Select text with mouse
+3. Text automatically copies to clipboard
+4. `Ctrl+c` or `Esc` to exit
 
-### Session Mode (z normal: `o`)
-Zarządzanie sesjami:
+### Session Mode (from normal: `o`)
+Managing sessions:
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `o` → `d` | Detach (odłącz się od sesji) |
-| `Ctrl+g` → `o` → `w` | Session manager (lista sesji) |
+| `Ctrl+g` → `o` → `d` | Detach (disconnect from session) |
+| `Ctrl+g` → `o` → `w` | Session manager (session list) |
 | `Ctrl+g` → `o` → `c` | Configuration plugin |
 | `Ctrl+g` → `o` → `p` | Plugin manager |
 
-### Move Mode (z normal: `m`)
-Przenoszenie paneli:
+### Move Mode (from normal: `m`)
+Moving panes:
 
-| Pełny Skrót | Akcja |
+| Full Shortcut | Action |
 |-------|-------|
-| `Ctrl+g` → `m` → `n` | Przenieś panel (next) |
-| `Ctrl+g` → `m` → `p` | Przenieś panel wstecz |
-| `Ctrl+g` → `m` → `h/j/k/l` | Przenieś panel w kierunku |
-| `Ctrl+g` → `m` → `strzałki` | Przenieś panel w kierunku |
-| `Ctrl+g` → `m` → `Tab` | Przenieś panel |
+| `Ctrl+g` → `m` → `n` | Move pane (next) |
+| `Ctrl+g` → `m` → `p` | Move pane back |
+| `Ctrl+g` → `m` → `h/j/k/l` | Move pane in direction |
+| `Ctrl+g` → `m` → `arrows` | Move pane in direction |
+| `Ctrl+g` → `m` → `Tab` | Move pane |
 
-## Sesje (Sessions)
+## Sessions
 
-### Tworzenie i Łączenie
+### Creating and Connecting
 ```bash
-# Nowa sesja z nazwą
-zellij -s nazwa-sesji
+# New session with name
+zellij -s session-name
 
-# Nowa sesja z layoutem
-zellij --layout nazwa-layoutu
+# New session with layout
+zellij --layout layout-name
 
-# Lista sesji
+# List sessions
 zellij list-sessions
 
-# Podłącz do sesji
-zellij attach nazwa-sesji
+# Attach to session
+zellij attach session-name
 
-# Podłącz do ostatniej
+# Attach to last
 zellij attach
 
-# Usuń sesję
-zellij delete-session nazwa-sesji
+# Delete session
+zellij delete-session session-name
 
-# Zabij wszystkie sesje
+# Kill all sessions
 zellij delete-all-sessions
 ```
 
-## Layouty
+## Layouts
 
-Layouty są w `~/.config/zellij/layouts/`
+Layouts are in `~/.config/zellij/layouts/`
 
-Przykładowy layout (`dev.kdl`):
+Example layout (`dev.kdl`):
 ```kdl
 layout {
     pane split_direction="vertical" {
@@ -194,158 +194,158 @@ layout {
 }
 ```
 
-Uruchom z layoutem:
+Launch with layout:
 ```bash
 zellij --layout dev
 ```
 
-## Konfiguracja
+## Configuration
 
-Główny plik: `~/.config/zellij/config.kdl`
+Main file: `~/.config/zellij/config.kdl`
 
-### Przydatne opcje
+### Useful options
 ```kdl
-// Wyłącz pasek myszy
+// Disable mouse mode
 mouse_mode false
 
-// Zmień domyślny shell
+// Change default shell
 default_shell "fish"
 
-// Kopiuj do schowka systemowego
+// Copy to system clipboard
 copy_command "xclip -selection clipboard"
 
-// Automatyczne przypinanie
+// Automatic layout
 auto_layout true
 ```
 
-## Floating Panes (Pływające Panele)
+## Floating Panes
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Alt+f` | Toggle floating panes (najszybsze!) ⭐ |
+| `Alt+f` | Toggle floating panes (fastest!) ⭐ |
 | `Ctrl+g` → `p` → `w` | Toggle floating pane |
 | `Ctrl+g` → `p` → `e` | Toggle embedded floating pane |
 
-Floating panes to panele "unoszące się" nad innymi - przydatne do szybkich notatek, kalkulatora itp.
+Floating panes are panels "floating" above others - useful for quick notes, calculator, etc.
 
 ## Tips & Tricks (Omakub Edition)
 
-### 1. ⭐ Używaj skrótów Alt!
-To najważniejsza rada - **używaj `Alt`** zamiast wchodzenia w tryby:
-- `Alt+h/j/k/l` - nawigacja (zamiast `Ctrl+g` → `p` → `h/j/k/l`)
-- `Alt+n` - nowy panel (zamiast `Ctrl+g` → `p` → `n`)
-- `Alt+f` - floating panes (zamiast `Ctrl+g` → `p` → `w`)
-- `Alt++/-` - resize (zamiast wchodzenia w resize mode)
+### 1. ⭐ Use Alt shortcuts!
+This is the most important tip - **use `Alt`** instead of entering modes:
+- `Alt+h/j/k/l` - navigation (instead of `Ctrl+g` → `p` → `h/j/k/l`)
+- `Alt+n` - new pane (instead of `Ctrl+g` → `p` → `n`)
+- `Alt+f` - floating panes (instead of `Ctrl+g` → `p` → `w`)
+- `Alt++/-` - resize (instead of entering resize mode)
 
-### 2. Locked mode to domyślny tryb
-- Zellij startuje w **locked mode** - to normalne!
-- Większość skrótów nie działa - to celowe (żeby nie kolidowały z programami)
-- `Ctrl+g` odblokuje gdy potrzebujesz zaawansowanych funkcji
-- Po akcji automatycznie wraca do locked mode
+### 2. Locked mode is the default mode
+- Zellij starts in **locked mode** - this is normal!
+- Most shortcuts don't work - this is intentional (to avoid conflicts with programs)
+- `Ctrl+g` unlocks when you need advanced features
+- Automatically returns to locked mode after action
 
-### 3. Fullscreen dla focus
-`Ctrl+g` → `p` → `f` - schowaj inne panele i skup się na jednym
+### 3. Fullscreen for focus
+`Ctrl+g` → `p` → `f` - hide other panes and focus on one
 
-### 4. Kopiowanie z Zellij
-Tekst zaznaczony myszką w Scroll Mode (`Ctrl+g` → `s`) automatycznie trafia do schowka systemowego
+### 4. Copying from Zellij
+Text selected with mouse in Scroll Mode (`Ctrl+g` → `s`) automatically goes to system clipboard
 
-### 5. Sesje nazwane
-Zawsze używaj nazw dla sesji roboczych:
+### 5. Named sessions
+Always use names for work sessions:
 ```bash
-zellij -s projekt-backend
-zellij -s projekt-frontend
+zellij -s project-backend
+zellij -s project-frontend
 ```
 
 ### 6. Session manager
-`Ctrl+g` → `o` → `w` pokazuje wszystkie sesje - możesz szybko przełączać się między projektami
+`Ctrl+g` → `o` → `w` shows all sessions - you can quickly switch between projects
 
-### 7. Edycja scrollback
-`Ctrl+g` → `s` → `e` otwiera cały scrollback w nvim - świetne do kopiowania długich outputów
+### 7. Edit scrollback
+`Ctrl+g` → `s` → `e` opens entire scrollback in nvim - great for copying long outputs
 
-### 8. Layouty dla projektów
-Stwórz layout dla każdego projektu z typową konfiguracją paneli (compact to default w Omakub)
+### 8. Layouts for projects
+Create a layout for each project with typical pane configuration (compact is default in Omakub)
 
-## Porównanie z tmux
+## Comparison with tmux
 
-| Funkcja | Zellij (Omakub) | tmux |
+| Feature | Zellij (Omakub) | tmux |
 |---------|--------|------|
 | Unlock/Prefix | `Ctrl+g` (locked↔normal) | `Ctrl+b` |
-| Nawigacja | `Alt+h/j/k/l` ⭐ | `Ctrl+b` → strzałki |
-| Split w pionie | `Ctrl+g` → `p` → `r` | `Ctrl+b` → `%` |
-| Split w poziomie | `Ctrl+g` → `p` → `d` | `Ctrl+b` → `"` |
-| Nowy panel szybki | `Alt+n` ⭐ | brak |
-| Nowy tab | `Ctrl+g` → `t` → `n` | `Ctrl+b` → `c` |
+| Navigation | `Alt+h/j/k/l` ⭐ | `Ctrl+b` → arrows |
+| Vertical split | `Ctrl+g` → `p` → `r` | `Ctrl+b` → `%` |
+| Horizontal split | `Ctrl+g` → `p` → `d` | `Ctrl+b` → `"` |
+| Quick new pane | `Alt+n` ⭐ | none |
+| New tab | `Ctrl+g` → `t` → `n` | `Ctrl+b` → `c` |
 | Detach | `Ctrl+g` → `o` → `d` | `Ctrl+b` → `d` |
 | Scroll | `Ctrl+g` → `s` | `Ctrl+b` → `[` |
 | Resize | `Alt++/-` ⭐ | `Ctrl+b` → `:resize-pane` |
 | Fullscreen | `Ctrl+g` → `p` → `f` | `Ctrl+b` → `z` |
 
-**Główna różnica:** Omakub używa "locked by default" + skróty `Alt` dla częstych akcji!
+**Main difference:** Omakub uses "locked by default" + `Alt` shortcuts for common actions!
 
-## Najczęstsze Problemy
+## Common Problems
 
-### Zellij nie startuje
+### Zellij won't start
 ```bash
-# Sprawdź logi
+# Check logs
 zellij --debug
 
-# Wyczyść cache
+# Clear cache
 rm -rf ~/.cache/zellij
 ```
 
-### Kopiowanie nie działa
-Ustaw w `config.kdl`:
+### Copying doesn't work
+Set in `config.kdl`:
 ```kdl
 copy_command "xclip -selection clipboard"
 ```
 
-### Czcionka się sypie
-Zainstaluj Nerd Font i ustaw w terminalu
+### Font is broken
+Install Nerd Font and set in terminal
 
-## Przydatne Komendy
+## Useful Commands
 
 ```bash
-# Pokaż wersję
+# Show version
 zellij --version
 
-# Uruchom komendę w nowym panelu
+# Run command in new pane
 zellij run -- htop
 
-# Uruchom w tle (bez attachowania)
+# Run in background (without attaching)
 zellij -s background-task run -- long-running-command
 
 # Setup completion (bash)
 zellij setup --generate-completion bash > /etc/bash_completion.d/zellij
 ```
 
-## Zasoby
+## Resources
 
-- Dokumentacja: https://zellij.dev/documentation
+- Documentation: https://zellij.dev/documentation
 - Repo: https://github.com/zellij-org/zellij
-- Layouty społeczności: https://github.com/zellij-org/zellij/discussions
+- Community layouts: https://github.com/zellij-org/zellij/discussions
 
 ---
 
-## Szybki Start (Omakub)
+## Quick Start (Omakub)
 
-**Najprostszy workflow:**
-1. `zellij` - uruchom (startujesz w locked mode)
-2. `Alt+n` - nowy panel ⭐
-3. `Alt+h/j/k/l` - poruszaj się między panelami ⭐
-4. `Alt++/-` - zmień rozmiary ⭐
-5. `Alt+f` - floating panel ⭐
+**Simplest workflow:**
+1. `zellij` - launch (you start in locked mode)
+2. `Alt+n` - new pane ⭐
+3. `Alt+h/j/k/l` - move between panes ⭐
+4. `Alt++/-` - resize ⭐
+5. `Alt+f` - floating pane ⭐
 
-**Zaawansowane funkcje:**
-1. `Ctrl+g` - odblokuj (przejdź do normal mode)
-2. `p` → `d` - podziel panel w dół
-3. `p` → `r` - podziel panel w prawo
+**Advanced features:**
+1. `Ctrl+g` - unlock (enter normal mode)
+2. `p` → `d` - split pane down
+3. `p` → `r` - split pane right
 4. `p` → `f` - fullscreen
-5. `t` → `n` - nowy tab
-6. `o` → `d` - detach z sesji
-7. `Esc` lub `Enter` - wróć do locked mode
+5. `t` → `n` - new tab
+6. `o` → `d` - detach from session
+7. `Esc` or `Enter` - return to locked mode
 
-**Zapamiętaj:**
-- 🔒 **Locked mode** = domyślny, większość skrótów wyłączona
-- ⌨️ **Alt+...** = działają zawsze, nawet w locked mode
-- 🔓 **Ctrl+g** = przełącz locked ↔ normal
-- ✅ Po akcji automatycznie wraca do locked mode
+**Remember:**
+- 🔒 **Locked mode** = default, most shortcuts disabled
+- ⌨️ **Alt+...** = work always, even in locked mode
+- 🔓 **Ctrl+g** = toggle locked ↔ normal
+- ✅ Automatically returns to locked mode after action

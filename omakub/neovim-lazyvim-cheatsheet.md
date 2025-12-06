@@ -1,150 +1,150 @@
 # Neovim + LazyVim Cheatsheet
 
-LazyVim to nowoczesna, w pełni skonfigurowana dystrybucja Neovim z wieloma pluginami.
+LazyVim is a modern, fully configured Neovim distribution with many plugins.
 
-**Leader key:** `Space` (spacja)
+**Leader key:** `Space` (spacebar)
 
-## Podstawy Vim/Neovim
+## Vim/Neovim Basics
 
-### Tryby
-| Tryb | Skrót | Opis |
+### Modes
+| Mode | Shortcut | Description |
 |------|-------|------|
-| Normal | `Esc` | Domyślny tryb, poruszanie i komendy |
-| Insert | `i`, `a`, `o` | Tryb edycji tekstu |
-| Visual | `v`, `V`, `Ctrl+v` | Zaznaczanie tekstu |
-| Command | `:` | Wykonywanie komend |
+| Normal | `Esc` | Default mode, navigation and commands |
+| Insert | `i`, `a`, `o` | Text editing mode |
+| Visual | `v`, `V`, `Ctrl+v` | Text selection |
+| Command | `:` | Execute commands |
 
-### Podstawowe Poruszanie (Normal Mode)
+### Basic Navigation (Normal Mode)
 
-**Podstawy:**
-| Skrót | Akcja |
+**Basics:**
+| Shortcut | Action |
 |-------|-------|
-| `h/j/k/l` | Lewo/Dół/Góra/Prawo |
-| `w` | Następne słowo |
-| `b` | Poprzednie słowo |
-| `e` | Koniec słowa |
-| `0` | Początek linii |
-| `^` | Pierwszy znak w linii |
-| `$` | Koniec linii |
-| `gg` | Początek pliku |
-| `G` | Koniec pliku |
-| `{` / `}` | Poprzedni/następny paragraf |
-| `Ctrl+d` | Pół strony w dół |
-| `Ctrl+u` | Pół strony w górę |
-| `Ctrl+f` | Strona w dół |
-| `Ctrl+b` | Strona w górę |
+| `h/j/k/l` | Left/Down/Up/Right |
+| `w` | Next word |
+| `b` | Previous word |
+| `e` | End of word |
+| `0` | Beginning of line |
+| `^` | First character in line |
+| `$` | End of line |
+| `gg` | Beginning of file |
+| `G` | End of file |
+| `{` / `}` | Previous/next paragraph |
+| `Ctrl+d` | Half page down |
+| `Ctrl+u` | Half page up |
+| `Ctrl+f` | Page down |
+| `Ctrl+b` | Page up |
 
-**Wyszukiwanie:**
-| Skrót | Akcja |
+**Search:**
+| Shortcut | Action |
 |-------|-------|
-| `/tekst` | Szukaj do przodu |
-| `?tekst` | Szukaj wstecz |
-| `n` | Następne dopasowanie |
-| `N` | Poprzednie dopasowanie |
-| `*` | Szukaj słowa pod kursorem |
-| `#` | Szukaj słowa pod kursorem (wstecz) |
+| `/text` | Search forward |
+| `?text` | Search backward |
+| `n` | Next match |
+| `N` | Previous match |
+| `*` | Search word under cursor |
+| `#` | Search word under cursor (backward) |
 
-### Edycja (Normal Mode)
+### Editing (Normal Mode)
 
-**Wchodzenie w Insert Mode:**
-| Skrót | Akcja |
+**Entering Insert Mode:**
+| Shortcut | Action |
 |-------|-------|
-| `i` | Insert przed kursorem |
-| `a` | Insert za kursorem |
-| `I` | Insert na początku linii |
-| `A` | Insert na końcu linii |
-| `o` | Nowa linia poniżej |
-| `O` | Nowa linia powyżej |
+| `i` | Insert before cursor |
+| `a` | Insert after cursor |
+| `I` | Insert at beginning of line |
+| `A` | Insert at end of line |
+| `o` | New line below |
+| `O` | New line above |
 
-**Usuwanie:**
-| Skrót | Akcja |
+**Deleting:**
+| Shortcut | Action |
 |-------|-------|
-| `x` | Usuń znak |
-| `dd` | Usuń linię |
-| `dw` | Usuń słowo |
-| `d$` | Usuń do końca linii |
-| `d0` | Usuń do początku linii |
-| `D` | Usuń do końca linii (jak d$) |
+| `x` | Delete character |
+| `dd` | Delete line |
+| `dw` | Delete word |
+| `d$` | Delete to end of line |
+| `d0` | Delete to beginning of line |
+| `D` | Delete to end of line (like d$) |
 
-**Kopiowanie i Wklejanie:**
-| Skrót | Akcja |
+**Copying and Pasting:**
+| Shortcut | Action |
 |-------|-------|
-| `yy` | Kopiuj linię |
-| `yw` | Kopiuj słowo |
-| `y$` | Kopiuj do końca linii |
-| `p` | Wklej za kursorem |
-| `P` | Wklej przed kursorem |
+| `yy` | Copy line |
+| `yw` | Copy word |
+| `y$` | Copy to end of line |
+| `p` | Paste after cursor |
+| `P` | Paste before cursor |
 
-**Zmiana (Change = Delete + Insert):**
-| Skrót | Akcja |
+**Change (Change = Delete + Insert):**
+| Shortcut | Action |
 |-------|-------|
-| `cc` | Zmień linię |
-| `cw` | Zmień słowo |
-| `c$` | Zmień do końca linii |
-| `C` | Zmień do końca linii (jak c$) |
+| `cc` | Change line |
+| `cw` | Change word |
+| `c$` | Change to end of line |
+| `C` | Change to end of line (like c$) |
 
-**Inne:**
-| Skrót | Akcja |
+**Other:**
+| Shortcut | Action |
 |-------|-------|
-| `u` | Cofnij (undo) |
-| `Ctrl+r` | Ponów (redo) |
-| `.` | Powtórz ostatnią akcję |
-| `~` | Zmień wielkość litery |
-| `>>` | Wcięcie w prawo |
-| `<<` | Wcięcie w lewo |
-| `==` | Auto-formatuj linię |
+| `u` | Undo |
+| `Ctrl+r` | Redo |
+| `.` | Repeat last action |
+| `~` | Toggle case |
+| `>>` | Indent right |
+| `<<` | Indent left |
+| `==` | Auto-format line |
 
 ### Visual Mode
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `v` | Visual mode (znak po znaku) |
-| `V` | Visual line mode (linia po linii) |
-| `Ctrl+v` | Visual block mode (blok) |
-| `o` | Przejdź do drugiego końca zaznaczenia |
-| `d` | Usuń zaznaczenie |
-| `y` | Kopiuj zaznaczenie |
-| `c` | Zmień zaznaczenie |
-| `>` | Wcięcie w prawo |
-| `<` | Wcięcie w lewo |
-| `=` | Auto-formatuj |
+| `v` | Visual mode (character by character) |
+| `V` | Visual line mode (line by line) |
+| `Ctrl+v` | Visual block mode (block) |
+| `o` | Go to other end of selection |
+| `d` | Delete selection |
+| `y` | Copy selection |
+| `c` | Change selection |
+| `>` | Indent right |
+| `<` | Indent left |
+| `=` | Auto-format |
 
 ## LazyVim Specific
 
 ### Leader Menu (`Space`)
 
-Po naciśnięciu `Space` pojawia się menu z podpowiedziami (which-key).
+After pressing `Space`, a menu with hints appears (which-key).
 
-### Pliki i Bufory
+### Files and Buffers
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>ff` | Find Files (telescope) |
 | `<leader>fr` | Recent Files |
-| `<leader>fg` | Grep w plikach |
+| `<leader>fg` | Grep in files |
 | `<leader>fb` | Find Buffers |
-| `<leader>fn` | Nowy plik |
+| `<leader>fn` | New file |
 | `<leader>e` | File Explorer (neo-tree) |
 | `<leader>E` | File Explorer (buffer) |
 
-### Bufory i Okna
+### Buffers and Windows
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>bd` | Delete buffer |
 | `<leader>bo` | Delete other buffers |
-| `[b` | Poprzedni bufor |
-| `]b` | Następny bufor |
-| `<leader>bb` | Przełącz na poprzedni bufor |
-| `Ctrl+h/j/k/l` | Nawigacja między oknami |
-| `<leader>w` | Menu zarządzania oknami |
-| `<leader>wd` | Zamknij okno |
+| `[b` | Previous buffer |
+| `]b` | Next buffer |
+| `<leader>bb` | Switch to previous buffer |
+| `Ctrl+h/j/k/l` | Navigate between windows |
+| `<leader>w` | Window management menu |
+| `<leader>wd` | Close window |
 | `<leader>-` | Split horizontal |
 | `<leader>\|` | Split vertical |
 
 ### Code Navigation
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `gd` | Go to Definition |
 | `gr` | Go to References |
@@ -152,15 +152,15 @@ Po naciśnięciu `Space` pojawia się menu z podpowiedziami (which-key).
 | `gy` | Go to Type Definition |
 | `K` | Hover Documentation |
 | `gK` | Signature Help |
-| `[d` | Poprzedni diagnostic |
-| `]d` | Następny diagnostic |
+| `[d` | Previous diagnostic |
+| `]d` | Next diagnostic |
 | `<leader>cd` | Line Diagnostics |
 | `<leader>ca` | Code Action |
 | `<leader>cr` | Rename |
 
 ### LSP (Language Server Protocol)
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>cl` | LSP Info |
 | `<leader>cf` | Format Document |
@@ -168,68 +168,68 @@ Po naciśnięciu `Space` pojawia się menu z podpowiedziami (which-key).
 
 ### Search / Replace
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>sg` | Grep (Live grep) |
-| `<leader>sw` | Grep słowa pod kursorem |
+| `<leader>sw` | Grep word under cursor |
 | `<leader>ss` | Buffer local search |
-| `<leader>sR` | Search & Replace w plikach |
-| `<leader>/` | Grep w otwartych buforach |
+| `<leader>sR` | Search & Replace in files |
+| `<leader>/` | Grep in open buffers |
 
 ### Git
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `<leader>gg` | Lazygit (jeśli zainstalowane) |
+| `<leader>gg` | Lazygit (if installed) |
 | `<leader>gb` | Git Blame Line |
 | `<leader>gB` | Git Browse |
-| `]h` | Następny git hunk |
-| `[h` | Poprzedni git hunk |
+| `]h` | Next git hunk |
+| `[h` | Previous git hunk |
 | `<leader>ghp` | Preview hunk |
 | `<leader>ghr` | Reset hunk |
 | `<leader>ghs` | Stage hunk |
 
 ### Terminal
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>ft` | Terminal (root dir) |
 | `<leader>fT` | Terminal (cwd) |
-| `<C-/>` | Toggle terminal (w terminalu) |
-| `<Esc><Esc>` | Wyjdź z terminal mode |
+| `<C-/>` | Toggle terminal (in terminal) |
+| `<Esc><Esc>` | Exit terminal mode |
 
 ### Tabs
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `<leader><tab>l` | Lista tabów |
-| `<leader><tab><tab>` | Nowy tab |
-| `<leader><tab>d` | Zamknij tab |
-| `<leader><tab>n` | Następny tab |
-| `<leader><tab>p` | Poprzedni tab |
+| `<leader><tab>l` | List tabs |
+| `<leader><tab><tab>` | New tab |
+| `<leader><tab>d` | Close tab |
+| `<leader><tab>n` | Next tab |
+| `<leader><tab>p` | Previous tab |
 
 ### Telescope (Fuzzy Finder)
 
-W Telescope:
-| Skrót | Akcja |
+In Telescope:
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+j/k` | Góra/Dół |
+| `Ctrl+j/k` | Up/Down |
 | `Ctrl+u/d` | Preview scroll |
-| `Enter` | Otwórz |
-| `Ctrl+x` | Otwórz w split |
-| `Ctrl+v` | Otwórz w vsplit |
-| `Ctrl+t` | Otwórz w nowym tabie |
-| `Ctrl+/` | Pomoc |
+| `Enter` | Open |
+| `Ctrl+x` | Open in split |
+| `Ctrl+v` | Open in vsplit |
+| `Ctrl+t` | Open in new tab |
+| `Ctrl+/` | Help |
 
 ### Neo-tree (File Explorer)
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>e` | Toggle explorer |
 | `<leader>E` | Explorer (current buffer) |
 
-W Neo-tree:
-| Skrót | Akcja |
+In Neo-tree:
+| Shortcut | Action |
 |-------|-------|
 | `a` | Add file/folder |
 | `d` | Delete |
@@ -239,12 +239,12 @@ W Neo-tree:
 | `p` | Paste |
 | `c` | Copy file |
 | `m` | Move file |
-| `q` | Zamknij |
-| `?` | Pomoc |
+| `q` | Close |
+| `?` | Help |
 
 ### Misc LazyVim
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `<leader>l` | Lazy (plugin manager) |
 | `<leader>xl` | Location list |
@@ -259,106 +259,106 @@ W Neo-tree:
 
 ### Comments
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `gcc` | Toggle line comment |
 | `gbc` | Toggle block comment |
-| `gc` (visual) | Toggle comment na zaznaczeniu |
+| `gc` (visual) | Toggle comment on selection |
 
 ## Tips & Tricks
 
 ### 1. Which-Key
-Naciśnij `Space` i poczekaj - pojawi się menu z wszystkimi dostępnymi skrótami!
+Press `Space` and wait - a menu with all available shortcuts will appear!
 
-### 2. Telescope dla wszystkiego
-- `<leader>ff` - szukaj plików
-- `<leader>sg` - szukaj w zawartości
+### 2. Telescope for everything
+- `<leader>ff` - find files
+- `<leader>sg` - search in content
 - `<leader>sh` - help tags
 - `<leader>sk` - keymaps
 - `<leader>sc` - commands
 
 ### 3. LSP Auto-completion
-W insert mode:
+In insert mode:
 - `Ctrl+Space` - trigger completion
-- `Ctrl+n/p` - następna/poprzednia sugestia
-- `Enter` - akceptuj
-- `Ctrl+e` - zamknij
+- `Ctrl+n/p` - next/previous suggestion
+- `Enter` - accept
+- `Ctrl+e` - close
 
 ### 4. Multi-cursor (Visual Block)
 1. `Ctrl+v` - visual block mode
-2. Zaznacz kolumnę
-3. `I` - insert na początku wszystkich linii
-4. `A` - insert na końcu wszystkich linii
+2. Select column
+3. `I` - insert at beginning of all lines
+4. `A` - insert at end of all lines
 
 ### 5. Text Objects
-Super potężne! Format: `<akcja><a/i><obiekt>`
+Super powerful! Format: `<action><a/i><object>`
 - `ciw` - change inner word
 - `ci"` - change inside quotes
 - `di(` - delete inside parentheses
 - `ya{` - yank around braces
 - `vi[` - visual inside brackets
 
-### 6. Makra
-1. `q<litera>` - zacznij nagrywać makro
-2. Wykonaj akcje
-3. `q` - zakończ nagrywanie
-4. `@<litera>` - odtwórz makro
-5. `@@` - powtórz ostatnie makro
+### 6. Macros
+1. `q<letter>` - start recording macro
+2. Perform actions
+3. `q` - stop recording
+4. `@<letter>` - play macro
+5. `@@` - repeat last macro
 
-### 7. Marks (Zakładki)
-- `m<litera>` - ustaw mark
-- `'<litera>` - skocz do marka
-- `''` - skocz do poprzedniej pozycji
+### 7. Marks (Bookmarks)
+- `m<letter>` - set mark
+- `'<letter>` - jump to mark
+- `''` - jump to previous position
 
-### 8. Registers (Schowki)
-- `"<litera>y` - kopiuj do rejestru
-- `"<litera>p` - wklej z rejestru
-- `"+y` - kopiuj do schowka systemowego
-- `"+p` - wklej ze schowka systemowego
+### 8. Registers (Clipboards)
+- `"<letter>y` - copy to register
+- `"<letter>p` - paste from register
+- `"+y` - copy to system clipboard
+- `"+p` - paste from system clipboard
 
-## Komendy (Command Mode)
+## Commands (Command Mode)
 
-Naciśnij `:` w normal mode:
+Press `:` in normal mode:
 
-| Komenda | Akcja |
+| Command | Action |
 |---------|-------|
-| `:w` | Zapisz |
-| `:q` | Wyjdź |
-| `:wq` lub `:x` | Zapisz i wyjdź |
-| `:q!` | Wyjdź bez zapisywania |
-| `:e plik` | Otwórz plik |
+| `:w` | Save |
+| `:q` | Quit |
+| `:wq` or `:x` | Save and quit |
+| `:q!` | Quit without saving |
+| `:e file` | Open file |
 | `:bn` / `:bp` | Next/Previous buffer |
 | `:bd` | Delete buffer |
-| `:%s/old/new/g` | Replace w całym pliku |
-| `:10,20s/old/new/g` | Replace w liniach 10-20 |
-| `:set nu` | Pokaż numery linii |
+| `:%s/old/new/g` | Replace in entire file |
+| `:10,20s/old/new/g` | Replace in lines 10-20 |
+| `:set nu` | Show line numbers |
 | `:set rnu` | Relative line numbers |
-| `:help <temat>` | Pomoc |
+| `:help <topic>` | Help |
 
 ## LazyVim Extras
 
-LazyVim ma wiele "extras" (dodatkowe pluginy). Sprawdź:
-- `:LazyExtras` - lista dostępnych extras
-- Wybierz co chcesz włączyć (np. support dla języków)
+LazyVim has many "extras" (additional plugins). Check:
+- `:LazyExtras` - list of available extras
+- Select what you want to enable (e.g., language support)
 
-## Najczęstsze Problemy
+## Common Issues
 
-### LSP nie działa
+### LSP not working
 ```
 :LspInfo
 ```
-Sprawdź czy language server jest zainstalowany. Zainstaluj przez:
+Check if language server is installed. Install via:
 ```
 :Mason
 ```
 
-### Plugin nie działa
+### Plugin not working
 ```
 :Lazy
 ```
-Zaktualizuj pluginy: `U`
+Update plugins: `U`
 
-### Resetuj konfigurację
+### Reset configuration
 ```bash
 # Backup
 mv ~/.config/nvim ~/.config/nvim.backup
@@ -368,26 +368,26 @@ mv ~/.local/share/nvim ~/.local/share/nvim.backup
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 ```
 
-## Zasoby
+## Resources
 
 - LazyVim Docs: https://www.lazyvim.org/
 - Vim Cheatsheet: https://vim.rtorr.com/
-- Interactive Tutorial: uruchom `vimtutor` w terminalu
+- Interactive Tutorial: run `vimtutor` in terminal
 
 ---
 
-**Szybki start:**
-1. Otwórz plik: `nvim plik.txt`
+**Quick start:**
+1. Open file: `nvim file.txt`
 2. `i` - insert mode
-3. Pisz...
+3. Type...
 4. `Esc` - normal mode
-5. `:w` - zapisz
-6. `Space` - zobacz menu LazyVim
-7. `:q` - wyjdź
+5. `:w` - save
+6. `Space` - see LazyVim menu
+7. `:q` - quit
 
-**Zapamiętaj:**
-- `Esc` - zawsze wraca do normal mode
-- `Space` - leader key, otwiera menu
+**Remember:**
+- `Esc` - always returns to normal mode
+- `Space` - leader key, opens menu
 - `u` - undo
 - `:w` - save
 - `:q` - quit

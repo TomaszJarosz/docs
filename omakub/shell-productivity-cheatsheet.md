@@ -1,163 +1,163 @@
 # Shell Productivity - Cheatsheet
 
-Zaawansowane triki i skróty dla produktywnej pracy w bash/shell.
+Advanced tricks and shortcuts for productive work in bash/shell.
 
-## Skróty Klawiszowe Bash
+## Bash Keyboard Shortcuts
 
-### Nawigacja po Linii
+### Line Navigation
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+a` | Początek linii |
-| `Ctrl+e` | Koniec linii |
-| `Alt+f` | Słowo do przodu |
-| `Alt+b` | Słowo wstecz |
-| `Ctrl+xx` | Toggle między początkiem a obecną pozycją |
+| `Ctrl+a` | Beginning of line |
+| `Ctrl+e` | End of line |
+| `Alt+f` | Word forward |
+| `Alt+b` | Word backward |
+| `Ctrl+xx` | Toggle between beginning and current position |
 
-### Edycja
+### Editing
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+k` | Wytnij do końca linii |
-| `Ctrl+u` | Wytnij do początku linii |
-| `Alt+d` | Wytnij słowo do przodu |
-| `Alt+Backspace` | Wytnij słowo wstecz |
-| `Ctrl+w` | Wytnij słowo wstecz (do spacji) |
-| `Ctrl+y` | Wklej ostatnio wycięte |
-| `Alt+t` | Zamień miejscami ostatnie 2 słowa |
-| `Ctrl+t` | Zamień miejscami ostatnie 2 znaki |
-| `Alt+u` | Uppercase słowo |
-| `Alt+l` | Lowercase słowo |
-| `Alt+c` | Capitalize słowo |
+| `Ctrl+k` | Cut to end of line |
+| `Ctrl+u` | Cut to beginning of line |
+| `Alt+d` | Cut word forward |
+| `Alt+Backspace` | Cut word backward |
+| `Ctrl+w` | Cut word backward (to space) |
+| `Ctrl+y` | Paste last cut |
+| `Alt+t` | Swap last 2 words |
+| `Ctrl+t` | Swap last 2 characters |
+| `Alt+u` | Uppercase word |
+| `Alt+l` | Lowercase word |
+| `Alt+c` | Capitalize word |
 
-### Historia Komend
+### Command History
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+r` | Szukaj w historii (fzf w Omakub!) |
-| `Ctrl+s` | Szukaj do przodu (po Ctrl+r) |
-| `Ctrl+p` | Poprzednia komenda |
-| `Ctrl+n` | Następna komenda |
-| `Alt+.` | Ostatni argument poprzedniej komendy |
-| `Alt+Shift+.` | Pierwszy argument poprzedniej komendy |
-| `!!` | Poprzednia komenda |
-| `!$` | Ostatni argument |
-| `!^` | Pierwszy argument |
-| `!*` | Wszystkie argumenty |
-| `!n` | Komenda numer n z historii |
-| `!-n` | n-ta komenda od końca |
-| `!string` | Ostatnia komenda zaczynająca się na string |
-| `!?string` | Ostatnia komenda zawierająca string |
+| `Ctrl+r` | Search history (fzf in Omakub!) |
+| `Ctrl+s` | Search forward (after Ctrl+r) |
+| `Ctrl+p` | Previous command |
+| `Ctrl+n` | Next command |
+| `Alt+.` | Last argument of previous command |
+| `Alt+Shift+.` | First argument of previous command |
+| `!!` | Previous command |
+| `!$` | Last argument |
+| `!^` | First argument |
+| `!*` | All arguments |
+| `!n` | Command number n from history |
+| `!-n` | nth command from the end |
+| `!string` | Last command starting with string |
+| `!?string` | Last command containing string |
 
-### Kontrola
+### Control
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+l` | Wyczyść ekran (jak `clear`) |
-| `Ctrl+c` | Przerwij komendę (SIGINT) |
+| `Ctrl+l` | Clear screen (like `clear`) |
+| `Ctrl+c` | Interrupt command (SIGINT) |
 | `Ctrl+d` | Exit shell / EOF |
-| `Ctrl+z` | Zawieś proces (bg aby wznowić w tle) |
-| `Ctrl+s` | Zatrzymaj output (scroll lock) |
-| `Ctrl+q` | Wznów output |
+| `Ctrl+z` | Suspend process (bg to resume in background) |
+| `Ctrl+s` | Stop output (scroll lock) |
+| `Ctrl+q` | Resume output |
 
 ### Tab Completion
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Tab` | Autocomplete |
-| `Tab Tab` | Pokaż wszystkie możliwości |
+| `Tab Tab` | Show all possibilities |
 | `Alt+/` | Complete filename |
 | `Alt+~` | Complete username |
 | `Alt+$` | Complete variable |
 | `Alt+@` | Complete hostname |
-| `Alt+*` | Insert wszystkie completion |
+| `Alt+*` | Insert all completions |
 
-## Historia Komend
+## Command History
 
-### Podstawy
+### Basics
 
 ```bash
-# Zobacz historię
+# View history
 history
 
-# Ostatnie 10 komend
+# Last 10 commands
 history 10
 
-# Szukaj w historii
+# Search in history
 history | grep keyword
 
-# Wyczyść historię
+# Clear history
 history -c
 
-# Usuń konkretny wpis
+# Delete specific entry
 history -d 123
 ```
 
-### Ekspansja Historii
+### History Expansion
 
 ```bash
-# Wykonaj ostatnią komendę
+# Execute last command
 !!
 
-# Wykonaj jako sudo
+# Execute as sudo
 sudo !!
 
-# Ostatni argument
+# Last argument
 ls /long/path/to/file
 cd !$              # cd /long/path/to/file
 
-# Wszystkie argumenty
+# All arguments
 command arg1 arg2 arg3
 another !*         # another arg1 arg2 arg3
 
-# Zmień w ostatniej komendzie
-!!:s/old/new       # Zamień old na new
-^old^new           # Krótsza forma
+# Change in last command
+!!:s/old/new       # Replace old with new
+^old^new           # Shorter form
 
-# Przykład:
+# Example:
 vim /etc/config
-^vim^cat           # Wykonuje: cat /etc/config
+^vim^cat           # Executes: cat /etc/config
 ```
 
-### Konfiguracja Historii
+### History Configuration
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 ```bash
-# Rozmiar historii
+# History size
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 
-# Ignoruj duplikaty i komendy zaczynające się od spacji
+# Ignore duplicates and commands starting with space
 export HISTCONTROL=ignoreboth:erasedups
 
-# Ignoruj konkretne komendy
+# Ignore specific commands
 export HISTIGNORE="ls:ll:cd:pwd:exit:clear"
 
-# Timestamp w historii
+# Timestamp in history
 export HISTTIMEFORMAT="%F %T "
 
-# Append zamiast overwrite
+# Append instead of overwrite
 shopt -s histappend
 
-# Zapisuj od razu (dla wielu terminali)
+# Save immediately (for multiple terminals)
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 ```
 
 ## Brace Expansion
 
 ```bash
-# Zakres
+# Range
 echo {1..10}              # 1 2 3 4 5 6 7 8 9 10
 echo {a..z}               # a b c d ... z
 echo {01..10}             # 01 02 03 ... 10
 
-# Lista
+# List
 echo {jpg,png,gif}        # jpg png gif
-mkdir {src,dist,test}     # Tworzy 3 foldery
+mkdir {src,dist,test}     # Creates 3 folders
 
-# Kombinacje
+# Combinations
 touch file{1..3}.{js,css}
-# Tworzy: file1.js file1.css file2.js file2.css file3.js file3.css
+# Creates: file1.js file1.css file2.js file2.css file3.js file3.css
 
 # Nested
 mkdir -p project/{src/{js,css},dist,test}
@@ -165,18 +165,18 @@ mkdir -p project/{src/{js,css},dist,test}
 # Backup
 cp file.txt{,.bak}        # cp file.txt file.txt.bak
 
-# Zakres z inkrementem
+# Range with increment
 echo {0..100..10}         # 0 10 20 30 ... 100
 ```
 
 ## Parameter Expansion
 
 ```bash
-# Podstawy
+# Basics
 echo $VAR
 echo ${VAR}
 
-# Długość
+# Length
 echo ${#VAR}
 
 # Substring
@@ -184,9 +184,9 @@ VAR="Hello World"
 echo ${VAR:0:5}           # Hello
 echo ${VAR:6}             # World
 
-# Zamiana
-echo ${VAR/World/Bash}    # Hello Bash (pierwsza)
-echo ${VAR//o/0}          # Hell0 W0rld (wszystkie)
+# Replacement
+echo ${VAR/World/Bash}    # Hello Bash (first)
+echo ${VAR//o/0}          # Hell0 W0rld (all)
 
 # Remove pattern
 FILE="path/to/file.txt"
@@ -213,18 +213,18 @@ echo ${VAR,}              # hello (first char lowercase)
 echo ${VAR,,}             # hello (all lowercase)
 ```
 
-## Command Substitution i Piping
+## Command Substitution and Piping
 
 ### Command Substitution
 
 ```bash
-# Modern syntax (preferowane)
+# Modern syntax (preferred)
 $(command)
 
 # Old syntax
 `command`
 
-# Przykłady:
+# Examples:
 echo "Today is $(date)"
 files=$(ls | wc -l)
 current_dir=$(pwd)
@@ -236,27 +236,27 @@ echo "Files: $(echo $(ls | wc -l))"
 ### Piping & Redirection
 
 ```bash
-# Podstawowe
+# Basic
 command1 | command2       # Pipe output
 command > file            # Redirect output (overwrite)
 command >> file           # Append output
 command < file            # Input from file
 command 2> file           # Redirect stderr
-command &> file           # Redirect stdout i stderr
+command &> file           # Redirect stdout and stderr
 command 2>&1              # Redirect stderr to stdout
 
-# Przydatne kombinacje:
-# Przekieruj stdout i stderr do różnych plików
+# Useful combinations:
+# Redirect stdout and stderr to different files
 command > stdout.log 2> stderr.log
 
-# Przekieruj stderr do stdout i pipe
+# Redirect stderr to stdout and pipe
 command 2>&1 | grep error
 
-# Ignoruj output
+# Ignore output
 command > /dev/null
 command &> /dev/null
 
-# Tee - zapisz i wyświetl
+# Tee - save and display
 command | tee file.log
 command | tee -a file.log  # Append
 
@@ -270,24 +270,24 @@ EOF
 grep "pattern" <<< "string to search"
 ```
 
-## Przydatne Komendy
+## Useful Commands
 
 ### Directory Navigation
 
 ```bash
 # cd tricks
-cd -                      # Poprzedni katalog
+cd -                      # Previous directory
 cd                        # Home directory
-cd ~user                  # Home użytkownika
-cd ../..                  # Dwa poziomy w górę
+cd ~user                  # User's home
+cd ../..                  # Two levels up
 
 # pushd/popd/dirs
-pushd /tmp               # Idź do /tmp i zapamiętaj
-pushd /var               # Idź do /var
-dirs -v                  # Pokaż stack
-popd                     # Wróć do poprzedniego
+pushd /tmp               # Go to /tmp and remember
+pushd /var               # Go to /var
+dirs -v                  # Show stack
+popd                     # Return to previous
 
-# Aliasy w ~/.bashrc:
+# Aliases in ~/.bashrc:
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -299,18 +299,18 @@ alias ....='cd ../../..'
 # find
 find . -name "*.txt"
 find . -type f -name "*.js"
-find . -mtime -7              # Modified w ostatnich 7 dniach
-find . -size +10M             # Większe niż 10MB
-find . -name "*.log" -delete  # Znajdź i usuń
+find . -mtime -7              # Modified in last 7 days
+find . -size +10M             # Larger than 10MB
+find . -name "*.log" -delete  # Find and delete
 
-# fd (nowocześniejsze, szybsze)
+# fd (more modern, faster)
 fd pattern
 fd -e txt                     # Extension
 fd -t f                       # Type file
 fd -H                         # Include hidden
 fd pattern -x rm              # Execute command
 
-# locate (szybkie, ale wymaga updatedb)
+# locate (fast, but requires updatedb)
 locate filename
 updatedb                      # Update database (sudo)
 ```
@@ -322,33 +322,33 @@ updatedb                      # Update database (sudo)
 grep pattern file
 grep -r pattern dir          # Recursive
 grep -i pattern file         # Case insensitive
-grep -v pattern file         # Invert (nie zawiera)
-grep -n pattern file         # Z numerami linii
-grep -c pattern file         # Policz dopasowania
-grep -A 3 pattern file       # 3 linie po
-grep -B 3 pattern file       # 3 linie przed
-grep -C 3 pattern file       # 3 linie przed i po
+grep -v pattern file         # Invert (doesn't contain)
+grep -n pattern file         # With line numbers
+grep -c pattern file         # Count matches
+grep -A 3 pattern file       # 3 lines after
+grep -B 3 pattern file       # 3 lines before
+grep -C 3 pattern file       # 3 lines before and after
 
-# ripgrep (rg - szybsze)
+# ripgrep (rg - faster)
 rg pattern
 rg -i pattern                # Case insensitive
-rg -t py pattern             # Tylko pliki Python
-rg -l pattern                # Tylko nazwy plików
+rg -t py pattern             # Only Python files
+rg -l pattern                # Only file names
 
 # awk
-awk '{print $1}' file        # Pierwsza kolumna
+awk '{print $1}' file        # First column
 awk -F: '{print $1}' file    # Custom delimiter
 ps aux | awk '$3 > 50'       # Filter (CPU > 50%)
 
 # sed
-sed 's/old/new/' file        # Replace (pierwsza)
-sed 's/old/new/g' file       # Replace (wszystkie)
+sed 's/old/new/' file        # Replace (first)
+sed 's/old/new/g' file       # Replace (all)
 sed -i 's/old/new/g' file    # In-place edit
-sed -n '10,20p' file         # Print linie 10-20
-sed '/pattern/d' file        # Delete linie z pattern
+sed -n '10,20p' file         # Print lines 10-20
+sed '/pattern/d' file        # Delete lines with pattern
 
 # cut
-cut -d: -f1 /etc/passwd      # Pierwsza kolumna (delimiter :)
+cut -d: -f1 /etc/passwd      # First column (delimiter :)
 echo "one,two,three" | cut -d, -f2  # two
 
 # sort & uniq
@@ -356,7 +356,7 @@ sort file
 sort -r file                 # Reverse
 sort -n file                 # Numeric
 sort -u file                 # Unique
-uniq file                    # Remove duplicates (wymaga sort)
+uniq file                    # Remove duplicates (requires sort)
 sort file | uniq -c          # Count duplicates
 ```
 
@@ -364,32 +364,32 @@ sort file | uniq -c          # Count duplicates
 
 ```bash
 # ps
-ps aux                       # Wszystkie procesy
+ps aux                       # All processes
 ps aux | grep process
 ps -ef --forest              # Tree view
 
 # top/htop
-top                          # Monitor procesów
-htop                         # Lepszy top (jeśli zainstalowane)
-btop                         # Jeszcze lepszy (jeśli zainstalowane)
+top                          # Process monitor
+htop                         # Better top (if installed)
+btop                         # Even better (if installed)
 
 # kill
 kill PID                     # SIGTERM
 kill -9 PID                  # SIGKILL (force)
 kill -15 PID                 # SIGTERM (graceful)
-killall process_name         # Kill po nazwie
-pkill pattern                # Kill po pattern
+killall process_name         # Kill by name
+pkill pattern                # Kill by pattern
 
 # jobs & bg/fg
-command &                    # Uruchom w tle
-jobs                         # Lista zadań
-fg %1                        # Przywróć zadanie 1 na pierwszy plan
-bg %1                        # Wznów zadanie 1 w tle
-Ctrl+z                       # Zawieś proces
-bg                           # Wznów w tle
+command &                    # Run in background
+jobs                         # List jobs
+fg %1                        # Bring job 1 to foreground
+bg %1                        # Resume job 1 in background
+Ctrl+z                       # Suspend process
+bg                           # Resume in background
 
 # nohup
-nohup command &              # Uruchom, przetrwa logout
+nohup command &              # Run, survives logout
 ```
 
 ### System Information
@@ -397,9 +397,9 @@ nohup command &              # Uruchom, przetrwa logout
 ```bash
 # Disk
 df -h                        # Disk space
-du -sh *                     # Rozmiar folderów
-du -h --max-depth=1          # Jeden poziom
-ncdu                         # Interactive disk usage (jeśli zainstalowane)
+du -sh *                     # Folder sizes
+du -h --max-depth=1          # One level
+ncdu                         # Interactive disk usage (if installed)
 
 # Memory
 free -h
@@ -408,16 +408,16 @@ cat /proc/meminfo
 # CPU
 lscpu
 cat /proc/cpuinfo
-nproc                        # Liczba core'ów
+nproc                        # Number of cores
 
 # System
 uname -a                     # Kernel info
 hostnamectl                  # System info
 lsb_release -a               # Distribution info
-uptime                       # Uptime i load
+uptime                       # Uptime and load
 ```
 
-## Loops w Command Line
+## Loops on Command Line
 
 ```bash
 # For loop
@@ -434,17 +434,17 @@ find . -name "*.txt" -exec echo {} \;
 ls | xargs -I {} echo "File: {}"
 ```
 
-## Przydatne Funkcje (Dodaj do ~/.bashrc)
+## Useful Functions (Add to ~/.bashrc)
 
-### 1. Directory i File Management
+### 1. Directory and File Management
 
 ```bash
-# Utwórz katalog i cd do niego
+# Create directory and cd into it
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-# Extract dowolnego archiwum
+# Extract any archive
 extract() {
     if [ -f $1 ] ; then
         case $1 in
@@ -459,19 +459,19 @@ extract() {
             *.zip)       unzip $1       ;;
             *.Z)         uncompress $1  ;;
             *.7z)        7z x $1        ;;
-            *)           echo "'$1' nie może być rozpakowane przez extract()" ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
         esac
     else
-        echo "'$1' nie jest prawidłowym plikiem"
+        echo "'$1' is not a valid file"
     fi
 }
 
-# Szybki backup
+# Quick backup
 backup() {
     cp "$1"{,.bak}
 }
 
-# Znajdź i zamień w wielu plikach
+# Find and replace in multiple files
 findreplace() {
     find . -type f -exec sed -i "s/$1/$2/g" {} +
 }
@@ -480,17 +480,17 @@ findreplace() {
 ### 2. Network
 
 ```bash
-# Mój publiczny IP
+# My public IP
 myip() {
     curl -s ifconfig.me
 }
 
-# Sprawdź port
+# Check port
 port() {
     sudo lsof -i :$1
 }
 
-# Ping uproszczony
+# Simplified ping
 p() {
     ping -c 5 $1
 }
@@ -499,43 +499,43 @@ p() {
 ### 3. Git Helpers
 
 ```bash
-# Git commit i push
+# Git commit and push
 gcp() {
     git add .
     git commit -m "$1"
     git push
 }
 
-# Git status krótko
+# Git status short
 gs() {
     git status -sb
 }
 
-# Clone i cd
+# Clone and cd
 gclone() {
     git clone "$1" && cd "$(basename "$1" .git)"
 }
 ```
 
-### 4. Produktywność
+### 4. Productivity
 
 ```bash
-# Policz pliki w katalogu
+# Count files in directory
 count() {
     find ${1:-.} -type f | wc -l
 }
 
-# Rozmiar folderu
+# Folder size
 size() {
     du -sh ${1:-.}
 }
 
-# Szybkie notatki
+# Quick notes
 note() {
     echo "$(date '+%Y-%m-%d %H:%M:%S'): $*" >> ~/notes.txt
 }
 
-# Zobacz notatki
+# View notes
 notes() {
     cat ~/notes.txt
 }
@@ -544,12 +544,12 @@ notes() {
 ### 5. Process Management
 
 ```bash
-# Znajdź proces i zabij
+# Find process and kill
 pskill() {
     ps aux | grep -v grep | grep -i -e "$1" | awk '{print $2}' | xargs kill -9
 }
 
-# Watch command co sekundę
+# Watch command every second
 watch() {
     while true; do
         clear
@@ -559,12 +559,12 @@ watch() {
 }
 ```
 
-## Przydatne Aliasy
+## Useful Aliases
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 
 ```bash
-# Nawigacja
+# Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -572,14 +572,14 @@ alias .....='cd ../../../..'
 alias ~='cd ~'
 alias -- -='cd -'
 
-# ls enhanced (z eza w Omakub)
+# ls enhanced (with eza in Omakub)
 alias ls='eza'
 alias ll='eza -lh'
 alias la='eza -lah'
 alias lt='eza --tree'
 alias l='eza -lah'
 
-# Bezpieczeństwo
+# Safety
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -596,7 +596,7 @@ alias gd='git diff'
 alias gco='git checkout'
 alias gb='git branch'
 
-# Grep z kolorami
+# Grep with colors
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -632,9 +632,9 @@ alias path='echo -e ${PATH//:/\\n}'
 alias mounted='mount | column -t'
 ```
 
-## .bashrc Produktywność Booster
+## .bashrc Productivity Booster
 
-Kompletna sekcja do dodania do `~/.bashrc`:
+Complete section to add to `~/.bashrc`:
 
 ```bash
 # ============================================
@@ -651,12 +651,12 @@ shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Better directory navigation
-shopt -s autocd          # cd wpisując samą nazwę folderu
-shopt -s cdspell         # Poprawiaj literówki w cd
-shopt -s dirspell        # Poprawiaj literówki w autocomplete
+shopt -s autocd          # cd by typing just folder name
+shopt -s cdspell         # Fix typos in cd
+shopt -s dirspell        # Fix typos in autocomplete
 
 # Globbing
-shopt -s globstar        # ** dla recursive glob
+shopt -s globstar        # ** for recursive glob
 shopt -s nocaseglob      # Case insensitive glob
 
 # Better tab completion
@@ -665,33 +665,33 @@ bind 'set show-all-if-ambiguous on'
 bind 'set colored-stats on'
 bind 'set mark-symlinked-directories on'
 
-# Custom prompt (minimalistyczny)
+# Custom prompt (minimalist)
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
-# Dodaj wszystkie funkcje i aliasy z poprzednich sekcji...
+# Add all functions and aliases from previous sections...
 ```
 
-## Zasoby
+## Resources
 
 - **Bash Manual:** `man bash`
 - **Readline Manual:** `man readline`
 - **Advanced Bash Scripting:** https://tldp.org/LDP/abs/html/
 - **Bash Cheatsheet:** https://devhints.io/bash
-- **ShellCheck:** https://www.shellcheck.net/ (sprawdź skrypty)
+- **ShellCheck:** https://www.shellcheck.net/ (check scripts)
 
-## Szybki Start
+## Quick Start
 
-**Najważniejsze skróty:**
-- `Ctrl+r` - Szukaj w historii (fzf!)
-- `Ctrl+a/e` - Początek/koniec linii
-- `Alt+.` - Ostatni argument
-- `!!` - Poprzednia komenda
-- `!$` - Ostatni argument
+**Most important shortcuts:**
+- `Ctrl+r` - Search history (fzf!)
+- `Ctrl+a/e` - Beginning/end of line
+- `Alt+.` - Last argument
+- `!!` - Previous command
+- `!$` - Last argument
 - `Ctrl+l` - Clear screen
 
-**Zapamiętaj:**
-- Wszystko można pipe'ować
-- Używaj tab completion
-- Historia to Twój przyjaciel
-- Funkcje i aliasy oszczędzają czas
-- `man` jest Twoim przyjacielem
+**Remember:**
+- Everything can be piped
+- Use tab completion
+- History is your friend
+- Functions and aliases save time
+- `man` is your friend

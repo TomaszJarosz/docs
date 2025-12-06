@@ -1,52 +1,52 @@
-# Git Console - Cheatsheet dla Programisty
+# Git Console - Developer Cheatsheet
 
-Praktyczny przewodnik po Git z konsoli dla efektywnej pracy bez GUI.
+Practical guide for Git console for efficient work without GUI.
 
-## Filozofia Pracy z Git w Konsoli
+## Philosophy of Working with Git in Console
 
-**Dlaczego konsola?**
-- Szybkość - brak klikania
-- Automatyzacja - skrypty i aliasy
-- Pełna kontrola - dostęp do wszystkich opcji
-- Universalność - działa wszędzie (SSH, CI/CD)
+**Why console?**
+- Speed - no clicking
+- Automation - scripts and aliases
+- Full control - access to all options
+- Universality - works everywhere (SSH, CI/CD)
 
-## Szybka Konfiguracja
+## Quick Configuration
 
-### Podstawowa Konfiguracja
+### Basic Configuration
 
 ```bash
-# Dane użytkownika
-git config --global user.name "Twoje Imię"
+# User data
+git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 
-# Edytor
+# Editor
 git config --global core.editor "nvim"
 
-# Kolory
+# Colors
 git config --global color.ui auto
 
-# Domyślna gałąź
+# Default branch
 git config --global init.defaultBranch main
 
-# Pull z rebase zamiast merge
+# Pull with rebase instead of merge
 git config --global pull.rebase true
 
-# Push tylko bieżącej gałęzi
+# Push only current branch
 git config --global push.default current
 
-# Automatyczne usuwanie martwych remote branches
+# Automatic removal of dead remote branches
 git config --global fetch.prune true
 
-# Lepsze pokazywanie konfliktów
+# Better conflict display
 git config --global merge.conflictstyle diff3
 
-# Zapamiętywanie rozwiązań konfliktów
+# Remember conflict resolutions
 git config --global rerere.enabled true
 ```
 
-### Użyteczne Aliasy
+### Useful Aliases
 
-Dodaj do `~/.gitconfig`:
+Add to `~/.gitconfig`:
 
 ```ini
 [alias]
@@ -81,7 +81,7 @@ Dodaj do `~/.gitconfig`:
     co = checkout
     cob = checkout -b
 
-    # Switch (nowsze komendy)
+    # Switch (newer commands)
     sw = switch
     swc = switch -c
 
@@ -106,56 +106,56 @@ Dodaj do `~/.gitconfig`:
     contributors = shortlog -sn --all --no-merges
 ```
 
-Użycie:
+Usage:
 ```bash
 git s          # git status -sb
-git lg         # piękny log
-git cm "msg"   # commit z message
+git lg         # beautiful log
+git cm "msg"   # commit with message
 ```
 
-## Codzienny Workflow
+## Daily Workflow
 
-### Rozpoczęcie Pracy
+### Starting Work
 
 ```bash
-# Sprawdź status
+# Check status
 git status
 
-# Zaktualizuj z remote
+# Update from remote
 git pull --rebase
 
-# Lub bezpieczniej (fetch + merge/rebase)
+# Or safer (fetch + merge/rebase)
 git fetch
 git rebase origin/main
 ```
 
-### Praca nad Zmianami
+### Working on Changes
 
 ```bash
-# Zobacz co się zmieniło
+# See what changed
 git status
-git diff                  # zmiany unstaged
-git diff --staged         # zmiany staged
+git diff                  # unstaged changes
+git diff --staged         # staged changes
 
-# Dodaj zmiany
-git add plik.txt          # konkretny plik
-git add .                 # wszystko w bieżącym katalogu
-git add -A                # wszystko w repo
-git add -p                # interaktywnie (po kawałku)
+# Add changes
+git add file.txt          # specific file
+git add .                 # everything in current directory
+git add -A                # everything in repo
+git add -p                # interactively (piece by piece)
 
-# Cofnij git add
-git reset HEAD plik.txt   # unstage plik
-git reset                 # unstage wszystko
+# Undo git add
+git reset HEAD file.txt   # unstage file
+git reset                 # unstage everything
 
-# Odrzuć lokalne zmiany
-git checkout -- plik.txt  # stara składnia
-git restore plik.txt      # nowa składnia
+# Discard local changes
+git checkout -- file.txt  # old syntax
+git restore file.txt      # new syntax
 ```
 
 ### Commit
 
 ```bash
-# Podstawowy commit
+# Basic commit
 git commit -m "feat: add user authentication"
 
 # Multi-line commit message
@@ -163,37 +163,37 @@ git commit -m "feat: add user authentication" -m "- Add login endpoint
 - Add JWT token generation
 - Add password hashing"
 
-# Commit wszystkich tracked files
+# Commit all tracked files
 git commit -am "fix: resolve validation bug"
 
-# Popraw ostatni commit (message)
-git commit --amend -m "nowa wiadomość"
+# Fix last commit (message)
+git commit --amend -m "new message"
 
-# Popraw ostatni commit (dodaj pliki)
+# Fix last commit (add files)
 git add forgotten-file.txt
 git commit --amend --no-edit
 
-# Commit z datą
+# Commit with date
 git commit --date="2024-01-15 10:00:00" -m "msg"
 ```
 
-### Konwencja Commit Messages
+### Commit Message Convention
 
 Format: `<type>: <subject>`
 
-**Typy:**
-- `feat` - nowa funkcjonalność
-- `fix` - poprawka błędu
-- `docs` - dokumentacja
-- `style` - formatowanie (bez zmian w logice)
-- `refactor` - refaktoryzacja
-- `perf` - optymalizacja wydajności
-- `test` - testy
+**Types:**
+- `feat` - new feature
+- `fix` - bug fix
+- `docs` - documentation
+- `style` - formatting (no logic changes)
+- `refactor` - refactoring
+- `perf` - performance optimization
+- `test` - tests
 - `chore` - maintenance, dependencies
 - `ci` - CI/CD
 - `build` - build system
 
-**Przykłady:**
+**Examples:**
 ```bash
 git commit -m "feat: add password reset functionality"
 git commit -m "fix: resolve null pointer in user service"
@@ -201,35 +201,35 @@ git commit -m "docs: update API documentation"
 git commit -m "refactor: simplify authentication logic"
 ```
 
-## Gałęzie (Branches)
+## Branches
 
-### Zarządzanie Gałęziami
+### Branch Management
 
 ```bash
-# Lista gałęzi
-git branch                # lokalne
-git branch -a             # wszystkie (remote + local)
-git branch -v             # z ostatnim commitem
-git branch -vv            # z tracking info
+# List branches
+git branch                # local
+git branch -a             # all (remote + local)
+git branch -v             # with last commit
+git branch -vv            # with tracking info
 
-# Nowa gałąź
+# New branch
 git branch feature/login
-git checkout -b feature/login         # utwórz i przełącz
-git switch -c feature/login           # nowsza składnia
+git checkout -b feature/login         # create and switch
+git switch -c feature/login           # newer syntax
 
-# Przełączanie
+# Switching
 git checkout main
 git switch main
 
-# Zmiana nazwy
-git branch -m stara-nazwa nowa-nazwa
-git branch -m nowa-nazwa              # zmień bieżącą gałąź
+# Rename
+git branch -m old-name new-name
+git branch -m new-name              # rename current branch
 
-# Usuwanie
-git branch -d feature/done            # bezpieczne (sprawdza czy merged)
+# Delete
+git branch -d feature/done            # safe (checks if merged)
 git branch -D feature/abandoned       # force
 
-# Usuń remote branch
+# Delete remote branch
 git push origin --delete feature/old
 ```
 
@@ -241,20 +241,20 @@ git checkout main
 git pull
 git checkout -b feature/new-feature
 
-# ... praca ...
+# ... work ...
 git add .
 git commit -m "feat: implement new feature"
 
-# Zaktualizuj z main przed merge
+# Update from main before merge
 git checkout main
 git pull
 git checkout feature/new-feature
-git rebase main           # lub: git merge main
+git rebase main           # or: git merge main
 
-# Wyślij do remote
+# Send to remote
 git push -u origin feature/new-feature
 
-# Po merge w GitHub/GitLab
+# After merge in GitHub/GitLab
 git checkout main
 git pull
 git branch -d feature/new-feature
@@ -262,102 +262,102 @@ git branch -d feature/new-feature
 
 ## Remote Operations
 
-### Podstawy
+### Basics
 
 ```bash
-# Lista remote
+# List remotes
 git remote -v
 
-# Dodaj remote
+# Add remote
 git remote add origin https://github.com/user/repo.git
 
-# Zmień URL
+# Change URL
 git remote set-url origin git@github.com:user/repo.git
 
-# Usuń remote
+# Remove remote
 git remote remove origin
 
-# Zmień nazwę remote
+# Rename remote
 git remote rename origin upstream
 ```
 
 ### Fetch, Pull, Push
 
 ```bash
-# Fetch - pobierz zmiany (nie merge)
+# Fetch - download changes (no merge)
 git fetch origin
 git fetch --all
-git fetch --prune         # usuń martwe remote branches
+git fetch --prune         # remove dead remote branches
 
 # Pull - fetch + merge/rebase
 git pull
-git pull --rebase         # zalecanec
+git pull --rebase         # recommended
 git pull origin main
 
 # Push
 git push
 git push origin main
-git push -u origin feature/new      # ustaw upstream
-git push --force-with-lease         # bezpieczniejszy force push
-git push --all                      # wszystkie gałęzie
+git push -u origin feature/new      # set upstream
+git push --force-with-lease         # safer force push
+git push --all                      # all branches
 
 # Push tags
 git push --tags
 ```
 
-### Praca z Fork
+### Working with Fork
 
 ```bash
-# Dodaj upstream (oryginalny projekt)
+# Add upstream (original project)
 git remote add upstream https://github.com/original/repo.git
 
-# Synchronizacja z upstream
+# Sync with upstream
 git fetch upstream
 git checkout main
 git merge upstream/main
-# lub:
+# or:
 git rebase upstream/main
 
-# Wyślij do swojego fork
+# Push to your fork
 git push origin main
 ```
 
-## Historia i Log
+## History and Log
 
-### Przeglądanie Historii
+### Browsing History
 
 ```bash
-# Podstawowy log
+# Basic log
 git log
 git log --oneline
 git log --graph --all
-git log -10                   # ostatnie 10 commitów
+git log -10                   # last 10 commits
 git log --since="2 weeks ago"
 git log --after="2024-01-01"
-git log --author="Jan Kowalski"
-git log --grep="fix"          # szukaj w messages
+git log --author="John Doe"
+git log --grep="fix"          # search in messages
 
-# Log dla pliku
-git log plik.txt
-git log -p plik.txt           # z diff
-git log --follow plik.txt     # śledź zmiany nazwy
+# Log for file
+git log file.txt
+git log -p file.txt           # with diff
+git log --follow file.txt     # track name changes
 
-# Statystyki
+# Statistics
 git log --stat
 git log --shortstat
-git shortlog -sn              # liczba commitów per autor
+git shortlog -sn              # commit count per author
 
-# Piękny format
+# Beautiful format
 git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 ```
 
 ### Show, Diff, Blame
 
 ```bash
-# Pokaż commit
+# Show commit
 git show commit-hash
 git show HEAD
-git show HEAD~2               # 2 commity wstecz
+git show HEAD~2               # 2 commits back
 
 # Diff
 git diff                      # working vs staged
@@ -365,55 +365,55 @@ git diff --staged             # staged vs last commit
 git diff HEAD                 # working vs last commit
 git diff branch1 branch2
 git diff commit1 commit2
-git diff main...feature       # od wspólnego przodka
+git diff main...feature       # from common ancestor
 
-# Blame - kto zmienił linię
-git blame plik.txt
-git blame -L 10,20 plik.txt   # tylko linie 10-20
-git blame -w plik.txt         # ignoruj whitespace
-git blame -C plik.txt         # wykryj kopiowanie kodu
+# Blame - who changed line
+git blame file.txt
+git blame -L 10,20 file.txt   # only lines 10-20
+git blame -w file.txt         # ignore whitespace
+git blame -C file.txt         # detect code copying
 ```
 
-## Cofanie Zmian
+## Undoing Changes
 
 ### Reset vs Revert
 
 ```bash
-# Reset - cofa commity (zmienia historię!)
-git reset --soft HEAD~1       # cofnij commit, zachowaj zmiany (staged)
-git reset --mixed HEAD~1      # cofnij commit, zmiany unstaged (domyślne)
-git reset --hard HEAD~1       # cofnij commit, USUŃ zmiany
+# Reset - undo commits (changes history!)
+git reset --soft HEAD~1       # undo commit, keep changes (staged)
+git reset --mixed HEAD~1      # undo commit, changes unstaged (default)
+git reset --hard HEAD~1       # undo commit, DELETE changes
 
-# Reset do konkretnego commita
+# Reset to specific commit
 git reset --hard abc123
 
-# Revert - tworzy nowy commit cofający (bezpieczne!)
+# Revert - creates new undoing commit (safe!)
 git revert HEAD
 git revert commit-hash
 git revert HEAD~3
 ```
 
-### Praktyczne Cofanie
+### Practical Undoing
 
 ```bash
-# Chcę cofnąć ostatni commit (nie pushed)
+# I want to undo last commit (not pushed)
 git reset --soft HEAD~1
 
-# Chcę cofnąć ostatni commit i zmiany
+# I want to undo last commit and changes
 git reset --hard HEAD~1
 
-# Chcę cofnąć commit który już został pushed
+# I want to undo commit that was already pushed
 git revert HEAD
 
-# Chcę usunąć uncommitted zmiany
-git restore plik.txt
+# I want to remove uncommitted changes
+git restore file.txt
 git restore .
 
-# Chcę usunąć wszystkie lokalne zmiany
+# I want to remove all local changes
 git reset --hard HEAD
-git clean -fd                 # usuń untracked files
+git clean -fd                 # remove untracked files
 
-# Zapisałem się w niewłaściwej gałęzi
+# I committed to wrong branch
 git reset --soft HEAD~1
 git stash
 git checkout correct-branch
@@ -421,122 +421,122 @@ git stash pop
 git commit
 ```
 
-## Stash - Schowek
+## Stash
 
-### Podstawy
+### Basics
 
 ```bash
-# Schowaj zmiany
+# Stash changes
 git stash
 git stash save "work in progress"
 git stash push -m "WIP: feature X"
 
-# Lista stash
+# List stash
 git stash list
 
-# Przywróć
+# Restore
 git stash pop                 # apply + drop
-git stash apply               # apply (zachowaj w stash)
-git stash apply stash@{2}     # konkretny stash
+git stash apply               # apply (keep in stash)
+git stash apply stash@{2}     # specific stash
 
-# Usuń
+# Remove
 git stash drop stash@{0}
-git stash clear               # usuń wszystkie
+git stash clear               # remove all
 
-# Zobacz co jest w stash
+# See what's in stash
 git stash show
-git stash show -p             # z diff
+git stash show -p             # with diff
 ```
 
-### Zaawansowany Stash
+### Advanced Stash
 
 ```bash
-# Stash tylko unstaged
+# Stash only unstaged
 git stash --keep-index
 
-# Stash z untracked files
+# Stash with untracked files
 git stash -u
 
-# Stash konkretnych plików
-git stash push plik1.txt plik2.txt
+# Stash specific files
+git stash push file1.txt file2.txt
 
-# Utwórz branch ze stash
+# Create branch from stash
 git stash branch feature/new-branch
 ```
 
-## Rebase - Przepisywanie Historii
+## Rebase - Rewriting History
 
-### Podstawowy Rebase
+### Basic Rebase
 
 ```bash
-# Rebase na inną gałąź
+# Rebase onto another branch
 git checkout feature
 git rebase main
 
-# Lub krócej
+# Or shorter
 git rebase main feature
 
-# Kontynuuj po rozwiązaniu konfliktów
+# Continue after resolving conflicts
 git add resolved-file.txt
 git rebase --continue
 
-# Pomiń commit
+# Skip commit
 git rebase --skip
 
-# Anuluj rebase
+# Cancel rebase
 git rebase --abort
 ```
 
 ### Interactive Rebase
 
 ```bash
-# Edytuj ostatnie N commitów
+# Edit last N commits
 git rebase -i HEAD~3
 
-# W edytorze:
+# In editor:
 pick abc123 First commit
 pick def456 Second commit
 pick ghi789 Third commit
 
-# Możliwe akcje:
-# pick   = użyj commit
-# reword = użyj commit, ale zmień message
-# edit   = zatrzymaj się do edycji
-# squash = połącz z poprzednim (zachowaj message)
-# fixup  = połącz z poprzednim (usuń message)
-# drop   = usuń commit
+# Possible actions:
+# pick   = use commit
+# reword = use commit, but change message
+# edit   = stop for editing
+# squash = merge with previous (keep message)
+# fixup  = merge with previous (discard message)
+# drop   = remove commit
 ```
 
-### Praktyczne Przykłady
+### Practical Examples
 
 ```bash
-# Połącz ostatnie 3 commity w jeden
+# Merge last 3 commits into one
 git rebase -i HEAD~3
-# Zmień: pick, squash, squash
+# Change: pick, squash, squash
 
-# Zmień message ostatniego commita
+# Change message of last commit
 git commit --amend -m "new message"
 
-# Zmień message starszego commita
+# Change message of older commit
 git rebase -i HEAD~5
-# Zmień pick na reword dla wybranego commita
+# Change pick to reword for selected commit
 
-# Usuń commit z historii
+# Remove commit from history
 git rebase -i HEAD~10
-# Zmień pick na drop (lub usuń linię)
+# Change pick to drop (or delete line)
 
-# Zmień kolejność commitów
+# Change commit order
 git rebase -i HEAD~5
-# Po prostu zmień kolejność linii
+# Simply change line order
 
-# Podziel commit na kilka
+# Split commit into several
 git rebase -i HEAD~3
-# Zmień pick na edit
-# Po zatrzymaniu:
+# Change pick to edit
+# After stopping:
 git reset HEAD^
-git add plik1.txt
+git add file1.txt
 git commit -m "first part"
-git add plik2.txt
+git add file2.txt
 git commit -m "second part"
 git rebase --continue
 ```
@@ -544,153 +544,153 @@ git rebase --continue
 ## Cherry-pick
 
 ```bash
-# Zastosuj konkretny commit z innej gałęzi
+# Apply specific commit from another branch
 git cherry-pick commit-hash
 
-# Wiele commitów
+# Multiple commits
 git cherry-pick abc123 def456 ghi789
 
-# Cherry-pick bez commit (tylko dodaj zmiany)
+# Cherry-pick without commit (only add changes)
 git cherry-pick -n commit-hash
 
-# Kontynuuj po rozwiązaniu konfliktów
+# Continue after resolving conflicts
 git cherry-pick --continue
 
-# Anuluj
+# Cancel
 git cherry-pick --abort
 ```
 
-## Tagi
+## Tags
 
 ```bash
-# Lista tagów
+# List tags
 git tag
 git tag -l "v1.*"
 
-# Utwórz tag
+# Create tag
 git tag v1.0.0                              # lightweight
 git tag -a v1.0.0 -m "Release version 1.0"  # annotated
 
-# Tag dla starego commita
+# Tag for old commit
 git tag -a v0.9.0 commit-hash -m "message"
 
-# Pokaż tag
+# Show tag
 git show v1.0.0
 
-# Push tagów
+# Push tags
 git push origin v1.0.0
-git push origin --tags                      # wszystkie
+git push origin --tags                      # all
 
-# Usuń tag
-git tag -d v1.0.0                          # lokalnie
+# Delete tag
+git tag -d v1.0.0                          # locally
 git push origin --delete v1.0.0            # remote
 ```
 
-## Zaawansowane Operacje
+## Advanced Operations
 
-### Bisect - Znajdź Bug
+### Bisect - Find Bug
 
 ```bash
-# Rozpocznij bisect
+# Start bisect
 git bisect start
-git bisect bad                    # obecny commit jest zły
-git bisect good v1.0.0            # ten commit był dobry
+git bisect bad                    # current commit is bad
+git bisect good v1.0.0            # this commit was good
 
-# Git automatycznie checkoutuje środkowy commit
-# Testuj aplikację i oznacz:
-git bisect good                   # działa
-# lub
-git bisect bad                    # nie działa
+# Git automatically checkouts middle commit
+# Test application and mark:
+git bisect good                   # works
+# or
+git bisect bad                    # doesn't work
 
-# Git checkoutuje kolejny commit do testu
-# Powtarzaj aż znajdziesz zły commit
+# Git checkouts next commit to test
+# Repeat until you find bad commit
 
-# Zakończ
+# Finish
 git bisect reset
 ```
 
-### Reflog - Historia HEAD
+### Reflog - HEAD History
 
 ```bash
-# Pokaż historię HEAD (wszystkie zmiany)
+# Show HEAD history (all changes)
 git reflog
 
-# Przywróć usunięty commit
+# Restore deleted commit
 git reflog
-# Znajdź hash usuniętego commita
+# Find hash of deleted commit
 git checkout commit-hash
 git checkout -b recovery-branch
 
-# Cofnij zły reset
+# Undo bad reset
 git reflog
 git reset --hard HEAD@{2}
 ```
 
-### Worktree - Wiele Katalogów
+### Worktree - Multiple Directories
 
 ```bash
-# Dodaj dodatkowy katalog roboczy
+# Add additional working directory
 git worktree add ../feature-branch feature/new-feature
 
-# Lista worktrees
+# List worktrees
 git worktree list
 
-# Usuń worktree
+# Remove worktree
 git worktree remove ../feature-branch
 
-# Użycie:
+# Usage:
 cd ../feature-branch
-# Pracujesz w osobnym katalogu, ale tym samym repo!
+# You work in separate directory, but same repo!
 ```
 
-### Submoduły
+### Submodules
 
 ```bash
-# Dodaj submodule
+# Add submodule
 git submodule add https://github.com/user/repo.git libs/repo
 
-# Klonuj repo z submodułami
+# Clone repo with submodules
 git clone --recursive https://github.com/user/main-repo.git
 
-# Zaktualizuj submoduły
+# Update submodules
 git submodule update --init --recursive
 git submodule update --remote
 
-# Usuń submodule
+# Remove submodule
 git submodule deinit libs/repo
 git rm libs/repo
 ```
 
-## Praktyczne Workflow
+## Practical Workflows
 
 ### Feature Branch Workflow
 
 ```bash
-# 1. Zacznij nową feature
+# 1. Start new feature
 git checkout main
 git pull
 git checkout -b feature/user-auth
 
-# 2. Pracuj
-# ... kod ...
+# 2. Work
+# ... code ...
 git add .
 git commit -m "feat: implement user authentication"
 
-# 3. Push do remote
+# 3. Push to remote
 git push -u origin feature/user-auth
 
-# 4. Przed merge: zaktualizuj z main
+# 4. Before merge: update from main
 git fetch origin
 git rebase origin/main
 
-# 5. Rozwiąż konflikty jeśli są
+# 5. Resolve conflicts if any
 git add resolved-files
 git rebase --continue
 
-# 6. Force push (bezpiecznie)
+# 6. Force push (safely)
 git push --force-with-lease
 
-# 7. Po merge przez PR/MR
+# 7. After merge through PR/MR
 git checkout main
 git pull
 git branch -d feature/user-auth
@@ -700,20 +700,20 @@ git remote prune origin
 ### Hotfix Workflow
 
 ```bash
-# 1. Pilna poprawka
+# 1. Urgent fix
 git checkout main
 git pull
 git checkout -b hotfix/critical-bug
 
-# 2. Popraw
+# 2. Fix
 # ... fix ...
 git add .
 git commit -m "fix: resolve critical security issue"
 
-# 3. Push i merge ASAP
+# 3. Push and merge ASAP
 git push -u origin hotfix/critical-bug
 
-# 4. Po merge
+# 4. After merge
 git checkout main
 git pull
 git branch -d hotfix/critical-bug
@@ -722,77 +722,77 @@ git branch -d hotfix/critical-bug
 ### Release Workflow
 
 ```bash
-# 1. Utwórz release branch
+# 1. Create release branch
 git checkout -b release/v1.2.0 develop
 
-# 2. Przygotuj release
-# ... testy, dokumentacja ...
+# 2. Prepare release
+# ... tests, documentation ...
 git commit -am "chore: prepare v1.2.0 release"
 
-# 3. Merge do main i tag
+# 3. Merge to main and tag
 git checkout main
 git merge --no-ff release/v1.2.0
 git tag -a v1.2.0 -m "Version 1.2.0"
 
-# 4. Merge z powrotem do develop
+# 4. Merge back to develop
 git checkout develop
 git merge --no-ff release/v1.2.0
 
-# 5. Usuń release branch
+# 5. Delete release branch
 git branch -d release/v1.2.0
 
-# 6. Push wszystko
+# 6. Push everything
 git push origin main develop --tags
 ```
 
-## Rozwiązywanie Konfliktów
+## Resolving Conflicts
 
-### Proces
+### Process
 
 ```bash
-# 1. Konflikt podczas merge/rebase
-git status                    # zobacz skonfliktowane pliki
+# 1. Conflict during merge/rebase
+git status                    # see conflicted files
 
-# 2. Otwórz plik - zobaczysz markery:
+# 2. Open file - you'll see markers:
 <<<<<<< HEAD
-Twoja wersja
+Your version
 =======
-Ich wersja
+Their version
 >>>>>>> branch-name
 
-# 3. Edytuj ręcznie lub użyj narzędzi
+# 3. Edit manually or use tools
 git mergetool
 
-# 4. Po rozwiązaniu
+# 4. After resolving
 git add resolved-file.txt
 
-# 5. Kontynuuj operację
-git rebase --continue         # dla rebase
-git merge --continue          # dla merge
-git commit                    # dla merge (jeśli trzeba)
+# 5. Continue operation
+git rebase --continue         # for rebase
+git merge --continue          # for merge
+git commit                    # for merge (if needed)
 
-# Lub anuluj
+# Or cancel
 git rebase --abort
 git merge --abort
 ```
 
-### Strategie Merge
+### Merge Strategies
 
 ```bash
-# Merge z konfliktami - wybierz strategię
+# Merge with conflicts - choose strategy
 git merge --strategy-option theirs feature
 git merge --strategy-option ours feature
 
-# Akceptuj wszystko z ich strony
-git checkout --theirs plik.txt
+# Accept everything from their side
+git checkout --theirs file.txt
 
-# Akceptuj wszystko z naszej strony
-git checkout --ours plik.txt
+# Accept everything from our side
+git checkout --ours file.txt
 ```
 
-## Bash Aliasy dla Git
+## Bash Aliases for Git
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 
 ```bash
 # Git shortcuts
@@ -845,20 +845,20 @@ function gclean() {
     git branch --merged | grep -v "\*" | grep -v "main\|master\|develop" | xargs -n 1 git branch -d
 }
 
-# Użycie:
+# Usage:
 # gac "feat: add feature"
 # gacp "fix: resolve bug"
 # gnb "feature/new-branch"
-# gclean  # usuń zmergowane branche
+# gclean  # delete merged branches
 ```
 
-## Skróty Klawiszowe w Shell
+## Shell Keyboard Shortcuts
 
 ```bash
-# fzf dla git (jeśli zainstalowane)
-# Dodaj do ~/.bashrc:
+# fzf for git (if installed)
+# Add to ~/.bashrc:
 
-# Interaktywny checkout branch
+# Interactive checkout branch
 gcof() {
     local branches branch
     branches=$(git branch -a) &&
@@ -866,7 +866,7 @@ gcof() {
     git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-# Interaktywny git log
+# Interactive git log
 glf() {
     git log --oneline --graph --color=always --all |
     fzf --ansi --no-sort --reverse --tiebreak=index --preview \
@@ -877,37 +877,37 @@ glf() {
 
 ## Best Practices
 
-### Commity
+### Commits
 
-1. **Małe, atomowe commity** - jeden commit = jedna logiczna zmiana
-2. **Dobry commit message** - jasno opisuj CO i DLACZEGO
-3. **Commituj często** - łatwiej wrócić do poprzedniego stanu
-4. **Testuj przed commitem** - nie commituj broken code
+1. **Small, atomic commits** - one commit = one logical change
+2. **Good commit message** - clearly describe WHAT and WHY
+3. **Commit often** - easier to return to previous state
+4. **Test before commit** - don't commit broken code
 
-### Gałęzie
+### Branches
 
-1. **Krótkie życie feature branches** - merguj często
-2. **Nazywaj konsekwentnie** - `feature/`, `bugfix/`, `hotfix/`
-3. **Usuwaj zmergowane gałęzie** - utrzymuj porządek
-4. **Jeden branch = jedna funkcjonalność**
+1. **Short-lived feature branches** - merge often
+2. **Name consistently** - `feature/`, `bugfix/`, `hotfix/`
+3. **Delete merged branches** - maintain order
+4. **One branch = one feature**
 
 ### Remote
 
-1. **Pull przed push** - zawsze aktualizuj lokalnie
-2. **Rebase zamiast merge** - czystsza historia
-3. **Force push ostrożnie** - używaj `--force-with-lease`
-4. **Nie rebase public branches** - tylko lokalne/feature branches
+1. **Pull before push** - always update locally
+2. **Rebase instead of merge** - cleaner history
+3. **Force push carefully** - use `--force-with-lease`
+4. **Don't rebase public branches** - only local/feature branches
 
-### Historia
+### History
 
-1. **Czysta historia** - używaj rebase i squash
-2. **Sensowne messages** - nie "WIP", "fix", "update"
-3. **Interactive rebase przed PR** - uporządkuj commity
-4. **Nie zmieniaj historii po push** - chyba że feature branch
+1. **Clean history** - use rebase and squash
+2. **Sensible messages** - not "WIP", "fix", "update"
+3. **Interactive rebase before PR** - organize commits
+4. **Don't change history after push** - unless feature branch
 
 ## Troubleshooting
 
-### Przypadkowo usunąłem commit
+### Accidentally deleted commit
 
 ```bash
 git reflog
@@ -915,91 +915,91 @@ git checkout commit-hash
 git checkout -b recovery
 ```
 
-### Mam konflikty przy rebase
+### I have conflicts during rebase
 
 ```bash
-# Rozwiąż konflikty w plikach
+# Resolve conflicts in files
 git add resolved-files
 git rebase --continue
 
-# Lub pomiń ten commit
+# Or skip this commit
 git rebase --skip
 
-# Lub anuluj cały rebase
+# Or cancel entire rebase
 git rebase --abort
 ```
 
-### Chcę cofnąć git push
+### I want to undo git push
 
 ```bash
-# Jeśli nikt jeszcze nie pulled
+# If nobody pulled yet
 git reset --hard HEAD~1
 git push --force-with-lease
 
-# Jeśli inni już pulled - użyj revert
+# If others already pulled - use revert
 git revert HEAD
 git push
 ```
 
-### Zapisałem wrażliwe dane w commicie
+### I committed sensitive data
 
 ```bash
-# Usuń plik i przepisz historię
+# Remove file and rewrite history
 git rm --cached secrets.txt
 echo "secrets.txt" >> .gitignore
 git commit --amend --no-edit
 
-# Lub dla starszych commitów
+# Or for older commits
 git filter-branch --tree-filter 'rm -f secrets.txt' HEAD
 
-# Lub użyj git-filter-repo (zalecane)
+# Or use git-filter-repo (recommended)
 git-filter-repo --path secrets.txt --invert-paths
 ```
 
-## Zasoby
+## Resources
 
-- `git help <command>` - dokumentacja komendy
-- `man git` - pełna dokumentacja
-- https://git-scm.com/docs - oficjalna dokumentacja
-- https://learngitbranching.js.org/ - interaktywna nauka
+- `git help <command>` - command documentation
+- `man git` - full documentation
+- https://git-scm.com/docs - official documentation
+- https://learngitbranching.js.org/ - interactive learning
 
 ---
 
 ## Quick Reference Card
 
 ```bash
-# Podstawy
-git init                    # nowe repo
-git clone <url>             # klonuj repo
+# Basics
+git init                    # new repo
+git clone <url>             # clone repo
 git status                  # status
 git add <file>              # stage
 git commit -m "msg"         # commit
-git push                    # wyślij do remote
-git pull                    # pobierz z remote
+git push                    # send to remote
+git pull                    # fetch from remote
 
 # Branches
-git branch                  # lista
-git checkout -b <name>      # nowa gałąź
+git branch                  # list
+git checkout -b <name>      # new branch
 git merge <branch>          # merge
-git branch -d <name>        # usuń
+git branch -d <name>        # delete
 
-# Historia
-git log                     # historia
-git log --oneline          # skrócona historia
-git diff                    # zmiany
-git show <commit>          # pokaż commit
+# History
+git log                     # history
+git log --oneline          # short history
+git diff                    # changes
+git show <commit>          # show commit
 
-# Cofanie
-git reset --soft HEAD~1     # cofnij commit
-git restore <file>          # cofnij zmiany
+# Undoing
+git reset --soft HEAD~1     # undo commit
+git restore <file>          # undo changes
 git revert <commit>         # revert commit
 
 # Stash
-git stash                   # schowaj
-git stash pop              # przywróć
+git stash                   # stash
+git stash pop              # restore
 
 # Remote
-git remote -v              # lista remote
-git fetch                  # pobierz zmiany
-git push -u origin main    # push z tracking
+git remote -v              # list remotes
+git fetch                  # fetch changes
+git push -u origin main    # push with tracking
 ```

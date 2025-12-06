@@ -1,132 +1,132 @@
 # Omakub Cheatsheet
 
-Omakub to kompletny setup dla Ubuntu od Basecamp - zestaw narzędzi i konfiguracji dla produktywnej pracy.
+Omakub is a complete Ubuntu setup from Basecamp - a curated collection of tools and configurations for productive work.
 
-**Oficjalna strona:** https://omakub.org/
+**Official website:** https://omakub.org/
 
-## Komponenty Omakub
+## Omakub Components
 
-- 🖥️ **Terminal:** Zellij (multiplexer)
-- ✏️ **Edytor:** Neovim z LazyVim
-- 🚀 **Launcher:** Ulauncher
-- 🐚 **Shell:** Bash z konfiguracją
-- 🔧 **Narzędzia:** fzf, ripgrep, eza, bat, lazygit i więcej
+- **Terminal:** Zellij (multiplexer)
+- **Editor:** Neovim with LazyVim
+- **Launcher:** Ulauncher
+- **Shell:** Bash with configuration
+- **Tools:** fzf, ripgrep, eza, bat, lazygit and more
 
 ## Launcher - Ulauncher
 
-**Główny skrót:** `Super+Space` (Windows key + Space)
+**Main shortcut:** `Super+Space` (Windows key + Space)
 
-### Podstawowe Użycie
-| Akcja | Jak |
-|-------|-----|
-| Otwórz launcher | `Super+Space` |
-| Uruchom aplikację | Wpisz nazwę → `Enter` |
-| Wyszukaj w Google | `g query` |
-| Kalkulator | Wpisz wyrażenie np. `2+2` |
+### Basic Usage
+| Action | How |
+|--------|-----|
+| Open launcher | `Super+Space` |
+| Launch application | Type name → `Enter` |
+| Search Google | `g query` |
+| Calculator | Type expression e.g. `2+2` |
 
-### Dostępne Skróty w Launcherze
+### Available Shortcuts in Launcher
 - `g <query>` - Google search
-- `gh <repo>` - Otwórz repo na GitHub
+- `gh <repo>` - Open repo on GitHub
 - `so <query>` - Stack Overflow search
 - `wiki <query>` - Wikipedia search
 
-### Konfiguracja Ulauncher
+### Ulauncher Configuration
 ```bash
-# Otwórz ustawienia
+# Open settings
 ulauncher-toggle
-# Potem: ikona w tray → Preferences
+# Then: tray icon → Preferences
 ```
 
 ## Terminal - Zellij
 
-**Uruchomienie:**
+**Launch:**
 ```bash
 zellij
 ```
 
-### Najważniejsze Skróty
-| Skrót | Akcja |
-|-------|-------|
-| `Alt+h/j/k/l` | Nawigacja między panelami |
-| `Alt+n` | Nowy panel |
-| `Alt+f` | Floating panel |
-| `Alt++/-` | Resize panelu |
+### Essential Shortcuts
+| Shortcut | Action |
+|----------|--------|
+| `Alt+h/j/k/l` | Navigate between panes |
+| `Alt+n` | New pane |
+| `Alt+f` | Floating pane |
+| `Alt++/-` | Resize pane |
 | `Ctrl+g` | Unlock (normal mode) |
 
-**Zobacz szczegóły:** `~/docs/zellij-cheatsheet.md`
+**See details:** `~/docs/zellij-cheatsheet.md`
 
-## Edytor - Neovim (LazyVim)
+## Editor - Neovim (LazyVim)
 
-**Uruchomienie:**
+**Launch:**
 ```bash
-nvim plik.txt
-# lub
-e plik.txt  # alias w Omakub
+nvim file.txt
+# or
+e file.txt  # alias in Omakub
 ```
 
-### Najważniejsze Skróty
-| Skrót | Akcja |
-|-------|-------|
+### Essential Shortcuts
+| Shortcut | Action |
+|----------|--------|
 | `Space` | Leader menu (which-key) |
 | `Space+ff` | Find files |
 | `Space+sg` | Search in files (grep) |
 | `Space+e` | File explorer |
 | `Esc` | Normal mode |
 
-**Zobacz szczegóły:** `~/docs/neovim-lazyvim-cheatsheet.md`
+**See details:** `~/docs/neovim-lazyvim-cheatsheet.md`
 
 ## CLI Tools (Omakub Defaults)
 
-### eza (lepszy ls)
+### eza (better ls)
 
-Omakub ustawia aliasy dla `ls`:
+Omakub sets up aliases for `ls`:
 ```bash
-ls          # eza z kolorami
-ll          # eza -lh (długa lista)
-la          # eza -lah (wszystkie pliki)
-lt          # eza --tree (drzewo)
+ls          # eza with colors
+ll          # eza -lh (long list)
+la          # eza -lah (all files)
+lt          # eza --tree (tree view)
 ```
 
-### bat (lepszy cat)
+### bat (better cat)
 
 ```bash
-bat plik.txt          # Podświetlanie składni
-bat plik1 plik2       # Wiele plików
-bat --style=plain     # Bez dekoracji
+bat file.txt          # Syntax highlighting
+bat file1 file2       # Multiple files
+bat --style=plain     # No decorations
 ```
 
 ### fzf (fuzzy finder)
 
 ```bash
-# Interaktywne wyszukiwanie plików
+# Interactive file search
 Ctrl+T
 
-# Interaktywna historia komend
+# Interactive command history
 Ctrl+R
 
-# Zmiana katalogu
-Alt+C   # lub cd **<Tab>
+# Change directory
+Alt+C   # or cd **<Tab>
 ```
 
-### ripgrep (rg - szybkie grep)
+### ripgrep (rg - fast grep)
 
 ```bash
-rg "pattern"              # Szukaj w plikach
-rg "pattern" --type py    # Tylko pliki Python
+rg "pattern"              # Search in files
+rg "pattern" --type py    # Only Python files
 rg "pattern" -i           # Case insensitive
-rg "pattern" -l           # Tylko nazwy plików
+rg "pattern" -l           # Only file names
 ```
 
-### lazygit (Git GUI w terminalu)
+### lazygit (Git GUI in terminal)
 
 ```bash
 lazygit
 ```
 
-**W lazygit:**
-| Skrót | Akcja |
-|-------|-------|
-| `1-5` | Przełącz między panelami |
+**In lazygit:**
+| Shortcut | Action |
+|----------|--------|
+| `1-5` | Switch between panels |
 | `Space` | Stage/unstage |
 | `c` | Commit |
 | `P` | Push |
@@ -137,16 +137,16 @@ lazygit
 | `d` | Delete |
 | `q` | Quit |
 
-## Aliasy Bash (Omakub)
+## Bash Aliases (Omakub)
 
-Sprawdź dostępne aliasy:
+Check available aliases:
 ```bash
 alias
 ```
 
-### Najczęściej Używane
+### Most Common
 ```bash
-# Nawigacja
+# Navigation
 ..          # cd ..
 ...         # cd ../..
 ....        # cd ../../..
@@ -161,7 +161,7 @@ gl          # git pull
 gd          # git diff
 glog        # git log --oneline --graph
 
-# Edytor
+# Editor
 e           # nvim
 vim         # nvim
 
@@ -170,79 +170,79 @@ update      # sudo apt update && sudo apt upgrade
 ports       # netstat -tulanp
 myip        # curl ifconfig.me
 
-# Docker (jeśli zainstalowane)
+# Docker (if installed)
 dc          # docker-compose
 ```
 
-## Skróty Klawiszowe (Desktop)
+## Keyboard Shortcuts (Desktop)
 
-### Zarządzanie Oknami
-| Skrót | Akcja |
-|-------|-------|
+### Window Management
+| Shortcut | Action |
+|----------|--------|
 | `Super+Space` | Ulauncher |
 | `Super+Enter` | Terminal |
-| `Super+Q` | Zamknij okno |
+| `Super+Q` | Close window |
 | `Super+F` | Fullscreen |
 | `Super+H/L` | Tile left/right |
 | `Super+↑/↓` | Maximize/Restore |
-| `Alt+Tab` | Przełącz okna |
-| `Super+Tab` | Przełącz aplikacje |
+| `Alt+Tab` | Switch windows |
+| `Super+Tab` | Switch applications |
 
-### Workspaces (Obszary robocze)
-| Skrót | Akcja |
-|-------|-------|
-| `Super+PgUp/PgDn` | Przełącz workspace |
-| `Super+Shift+PgUp/PgDn` | Przenieś okno do workspace |
+### Workspaces
+| Shortcut | Action |
+|----------|--------|
+| `Super+PgUp/PgDn` | Switch workspace |
+| `Super+Shift+PgUp/PgDn` | Move window to workspace |
 
-**Uwaga:** Skróty mogą się różnić w zależności od DE (GNOME, KDE, etc.)
+**Note:** Shortcuts may vary depending on DE (GNOME, KDE, etc.)
 
-## Zarządzanie Pakietami
+## Package Management
 
 ### apt (system packages)
 ```bash
-sudo apt update              # Aktualizuj listę pakietów
-sudo apt upgrade             # Zainstaluj aktualizacje
-sudo apt install pakiet      # Zainstaluj pakiet
-sudo apt remove pakiet       # Usuń pakiet
-sudo apt autoremove          # Usuń niepotrzebne zależności
+sudo apt update              # Update package list
+sudo apt upgrade             # Install updates
+sudo apt install package     # Install package
+sudo apt remove package      # Remove package
+sudo apt autoremove          # Remove unused dependencies
 ```
 
 ### snap
 ```bash
-snap list                    # Lista zainstalowanych
-snap install pakiet          # Zainstaluj
-snap remove pakiet           # Usuń
+snap list                    # List installed
+snap install package         # Install
+snap remove package          # Remove
 ```
 
-### Języki programowania
+### Programming Languages
 
 **Ruby (rbenv):**
 ```bash
-rbenv versions               # Lista wersji
-rbenv install 3.2.0          # Zainstaluj wersję
-rbenv global 3.2.0           # Ustaw globalnie
-rbenv local 3.2.0            # Ustaw dla projektu
+rbenv versions               # List versions
+rbenv install 3.2.0          # Install version
+rbenv global 3.2.0           # Set globally
+rbenv local 3.2.0            # Set for project
 ```
 
-**Node.js (nvm - jeśli zainstalowane):**
+**Node.js (nvm - if installed):**
 ```bash
-nvm list                     # Lista wersji
-nvm install 20               # Zainstaluj Node 20
-nvm use 20                   # Użyj Node 20
-nvm alias default 20         # Ustaw domyślnie
+nvm list                     # List versions
+nvm install 20               # Install Node 20
+nvm use 20                   # Use Node 20
+nvm alias default 20         # Set as default
 ```
 
 **Python:**
 ```bash
 python3 --version
-pip3 install pakiet
+pip3 install package
 python3 -m venv venv         # Virtual environment
 source venv/bin/activate
 ```
 
-## Konfiguracja Omakub
+## Omakub Configuration
 
-### Pliki Konfiguracyjne
+### Configuration Files
 
 ```bash
 ~/.bashrc                    # Bash config
@@ -252,57 +252,57 @@ source venv/bin/activate
 ~/.local/share/omakub/       # Omakub defaults
 ```
 
-### Dostosowanie Bash
+### Customizing Bash
 ```bash
-# Edytuj ~/.bashrc
+# Edit ~/.bashrc
 nvim ~/.bashrc
 
-# Przeładuj
+# Reload
 source ~/.bashrc
 ```
 
-### Zmiana Motywu
+### Changing Theme
 
-Omakub ma predefiniowane motywy dla terminala i edytora.
+Omakub has predefined themes for terminal and editor.
 
 **Terminal theme:**
 ```bash
-# Sprawdź dostępne
+# Check available
 ls ~/.local/share/omakub/themes/
 
-# Edytuj konfigurację terminala (zależy od terminala)
+# Edit terminal config (depends on terminal)
 ```
 
 **Neovim theme:**
 ```bash
-# W Neovim
+# In Neovim
 :Lazy
-# Znajdź colorscheme i zmień
+# Find colorscheme and change
 ```
 
 ## Workflow Tips
 
 ### 1. Terminal Workflow
 ```bash
-# Uruchom Zellij z named session
-zellij -s projekt
+# Launch Zellij with named session
+zellij -s project
 
-# W Zellij:
-Alt+n              # Nowy panel
-Alt+h/j/k/l        # Nawiguj
+# In Zellij:
+Alt+n              # New pane
+Alt+h/j/k/l        # Navigate
 Ctrl+g → o → d     # Detach
 
-# Wróć później
-zellij attach projekt
+# Return later
+zellij attach project
 ```
 
-### 2. Edycja z Neovim
+### 2. Editing with Neovim
 ```bash
-# Otwórz projekt
-cd ~/projekt
-e .                # Otwórz nvim w katalogu
+# Open project
+cd ~/project
+e .                # Open nvim in directory
 
-# W Neovim:
+# In Neovim:
 Space+e            # File explorer
 Space+ff           # Find file
 Space+sg           # Search in files
@@ -310,132 +310,132 @@ Space+sg           # Search in files
 
 ### 3. Git Workflow
 ```bash
-# W katalogu projektu
-lazygit            # Otwórz lazygit
+# In project directory
+lazygit            # Open lazygit
 
-# Lub tradycyjnie:
+# Or traditionally:
 gs                 # git status
 ga .               # git add .
 gc -m "message"    # git commit
 gp                 # git push
 ```
 
-### 4. Szybkie Wyszukiwanie
+### 4. Quick Search
 ```bash
-# Znajdź plik
+# Find file
 Ctrl+T             # fzf file search
 
-# Szukaj w historii
+# Search history
 Ctrl+R             # fzf command history
 
-# Szukaj w plikach
+# Search in files
 rg "pattern"       # ripgrep
 ```
 
-### 5. Multi-projekty z Zellij
+### 5. Multi-project with Zellij
 ```bash
-# Projekt 1
+# Project 1
 zellij -s backend
 
-# Projekt 2 (nowa sesja terminala)
+# Project 2 (new terminal session)
 zellij -s frontend
 
-# Lista sesji
+# List sessions
 zellij list-sessions
 
-# Przełącz się
-Ctrl+g → o → w     # Session manager w Zellij
+# Switch
+Ctrl+g → o → w     # Session manager in Zellij
 ```
 
-## Dostosowanie Omakub
+## Customizing Omakub
 
-### Dodaj Własne Aliasy
+### Add Custom Aliases
 ```bash
-# Edytuj ~/.bashrc
+# Edit ~/.bashrc
 nvim ~/.bashrc
 
-# Dodaj na końcu:
+# Add at the end:
 alias myalias='command'
 
-# Przeładuj
+# Reload
 source ~/.bashrc
 ```
 
-### Dodaj Własne Funkcje
+### Add Custom Functions
 ```bash
-# W ~/.bashrc
+# In ~/.bashrc
 function mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-# Użycie:
-mkcd nowy-folder
+# Usage:
+mkcd new-folder
 ```
 
-### Instalacja Dodatkowych Narzędzi
+### Install Additional Tools
 ```bash
-# Przykład: tldr (simplified man pages)
+# Example: tldr (simplified man pages)
 sudo apt install tldr
 tldr ls
 
-# Przykład: httpie (HTTP client)
+# Example: httpie (HTTP client)
 sudo apt install httpie
 http GET https://api.github.com
 ```
 
 ## System Maintenance
 
-### Aktualizacja Systemu
+### System Update
 ```bash
-# Pełna aktualizacja
+# Full update
 sudo apt update && sudo apt upgrade -y
 
-# Czyszczenie
+# Cleanup
 sudo apt autoremove
 sudo apt autoclean
 ```
 
-### Sprawdzanie Miejsca na Dysku
+### Checking Disk Space
 ```bash
-df -h              # Partycje
-du -sh *           # Rozmiar folderów
-ncdu               # Interaktywnie (jeśli zainstalowane)
+df -h              # Partitions
+du -sh *           # Folder sizes
+ncdu               # Interactive (if installed)
 ```
 
-### Monitorowanie Systemu
+### System Monitoring
 ```bash
-htop               # Monitor procesów
-btop               # Nowoczesny htop (jeśli zainstalowane)
-free -h            # Pamięć
+htop               # Process monitor
+btop               # Modern htop (if installed)
+free -h            # Memory
 ```
 
 ## Troubleshooting
 
-### Terminal nie otwiera się
+### Terminal not opening
 ```bash
-# Sprawdź domyślny shell
+# Check default shell
 echo $SHELL
 
-# Reset terminala
-Ctrl+C lub Ctrl+D
+# Reset terminal
+Ctrl+C or Ctrl+D
 ```
 
-### Zellij się zawiesił
+### Zellij frozen
 ```bash
-# Zabij wszystkie sesje
+# Kill all sessions
 zellij delete-all-sessions
 
-# Wyczyść cache
+# Clear cache
 rm -rf ~/.cache/zellij
 ```
 
-### Neovim działa wolno
+### Neovim running slow
 ```bash
-# W Neovim
+# In Neovim
 :Lazy
-# Zaktualizuj pluginy: U
+# Update plugins: U
 
-# Sprawdź LSP
+# Check LSP
 :LspInfo
 
 # Restart Neovim
@@ -443,40 +443,40 @@ rm -rf ~/.cache/zellij
 nvim
 ```
 
-### Ulauncher nie działa
+### Ulauncher not working
 ```bash
 # Restart Ulauncher
 ulauncher-toggle
 
-# Sprawdź proces
+# Check process
 ps aux | grep ulauncher
 
-# Uruchom ponownie
+# Start again
 ulauncher &
 ```
 
-### F11 wymaga Fn (Problem z fullscreen)
+### F11 requires Fn key (Fullscreen issue)
 
-Jeśli musisz wciskać `Fn+F11` zamiast samego `F11`:
+If you need to press `Fn+F11` instead of just `F11`:
 
-**Opcja 1: Zmień w BIOS (zalecane)**
-1. Restart → wejdź do BIOS (F2/F10/Del podczas startu)
-2. Znajdź opcję "Function Key Behavior" lub "Action Keys Mode"
-3. Zmień na "Function Keys" (zamiast "Multimedia Keys")
-4. Zapisz i wyjdź
+**Option 1: Change in BIOS (recommended)**
+1. Restart → enter BIOS (F2/F10/Del during startup)
+2. Find "Function Key Behavior" or "Action Keys Mode"
+3. Change to "Function Keys" (instead of "Multimedia Keys")
+4. Save and exit
 
-**Opcja 2: Używaj alternatywnych skrótów**
-- `Super+↑` - maximize okno
-- `Super+F` - fullscreen (w niektórych DE)
+**Option 2: Use alternative shortcuts**
+- `Super+↑` - maximize window
+- `Super+F` - fullscreen (in some DEs)
 
-**Opcja 3: Zmień skrót w terminalu**
-- Otwórz ustawienia terminala
+**Option 3: Change shortcut in terminal**
+- Open terminal settings
 - Keyboard shortcuts
-- Zmień fullscreen na inny skrót (np. `Ctrl+Shift+F`)
+- Change fullscreen to another shortcut (e.g. `Ctrl+Shift+F`)
 
-## Skróty Produktywności
+## Productivity Shortcuts
 
-### 1. Szybkie Edytowanie Konfiguracji
+### 1. Quick Config Editing
 ```bash
 # Bash config
 e ~/.bashrc
@@ -488,14 +488,14 @@ e ~/.config/zellij/config.kdl
 e ~/.gitconfig
 ```
 
-### 2. Szybka Nawigacja
+### 2. Quick Navigation
 ```bash
 # Jump to directories (z)
-z projekt          # Skocz do ~/projekty/projekt
-                   # (wymaga zainstalowania 'z' lub 'zoxide')
+z project          # Jump to ~/projects/project
+                   # (requires 'z' or 'zoxide' installed)
 
 # Marks (bookmarks)
-# Dodaj do ~/.bashrc:
+# Add to ~/.bashrc:
 export MARKPATH=$HOME/.marks
 function jump { cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"; }
 function mark { mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"; }
@@ -505,20 +505,20 @@ function marks { ls -l "$MARKPATH" | tail -n +2 | cut -d' ' -f9- ; }
 
 ### 3. Clipboard Magic
 ```bash
-# Kopiuj output do schowka
+# Copy output to clipboard
 command | xclip -selection clipboard
 
-# Lub (jeśli zainstalowane)
+# Or (if installed)
 command | pbcopy   # macOS style
 
-# Alias w ~/.bashrc:
+# Alias in ~/.bashrc:
 alias c='xclip -selection clipboard'
 
-# Użycie:
+# Usage:
 cat file.txt | c
 ```
 
-## Zasoby
+## Resources
 
 - **Omakub Docs:** https://omakub.org/
 - **Omakub GitHub:** https://github.com/basecamp/omakub
@@ -528,11 +528,11 @@ cat file.txt | c
 
 ---
 
-## Szybki Start
+## Quick Start
 
-**Pierwszy dzień z Omakub:**
+**First day with Omakub:**
 
-1. **Uruchom terminal:**
+1. **Launch terminal:**
    ```bash
    Super+Enter
    ```
@@ -542,15 +542,15 @@ cat file.txt | c
    zellij -s work
    ```
 
-3. **Podziel panel:**
+3. **Split pane:**
    ```bash
-   Alt+n           # Nowy panel
-   Alt+h/j/k/l     # Poruszaj się
+   Alt+n           # New pane
+   Alt+h/j/k/l     # Move around
    ```
 
-4. **Otwórz projekt:**
+4. **Open project:**
    ```bash
-   cd ~/projekt
+   cd ~/project
    e .             # Neovim
    ```
 
@@ -564,11 +564,11 @@ cat file.txt | c
    lazygit
    ```
 
-**Zapamiętaj:**
-- `Super+Space` - uruchom co chcesz (Ulauncher)
-- `Alt+...` - steruj Zellij
-- `Space` - leader w Neovim
-- `Ctrl+R` - historia komend
-- `Ctrl+T` - znajdź plik
+**Remember:**
+- `Super+Space` - launch anything (Ulauncher)
+- `Alt+...` - control Zellij
+- `Space` - leader in Neovim
+- `Ctrl+R` - command history
+- `Ctrl+T` - find file
 
-**Have fun! 🚀**
+**Have fun!**

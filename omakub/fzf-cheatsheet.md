@@ -1,173 +1,173 @@
 # fzf - Fuzzy Finder Cheatsheet
 
-fzf to potężny fuzzy finder dla command line - pozwala szybko wyszukiwać pliki, komendy, procesy i wiele więcej.
+fzf is a powerful fuzzy finder for the command line - it allows you to quickly search for files, commands, processes and much more.
 
-## Podstawy
+## Basics
 
-### Instalacja i Konfiguracja (Omakub)
+### Installation and Configuration (Omakub)
 
-W Omakub fzf jest już zainstalowany i skonfigurowany!
+In Omakub fzf is already installed and configured!
 
-**Sprawdź wersję:**
+**Check version:**
 ```bash
 fzf --version
 ```
 
-**Konfiguracja (opcjonalna):**
-Dodaj do `~/.bashrc`:
+**Configuration (optional):**
+Add to `~/.bashrc`:
 ```bash
 # fzf theme
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --inline-info"
 
-# Używaj ripgrep zamiast find
+# Use ripgrep instead of find
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# Dla Ctrl+T
+# For Ctrl+T
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Dla Alt+C
+# For Alt+C
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 ```
 
-## Wbudowane Skróty Klawiszowe
+## Built-in Keyboard Shortcuts
 
-Omakub konfiguruje te skróty automatycznie:
+Omakub configures these shortcuts automatically:
 
 ### Ctrl+T - Fuzzy File Search
 
 ```bash
-# Naciśnij Ctrl+T w command line
+# Press Ctrl+T in command line
 vim <Ctrl+T>
-# Pojawi się interaktywny finder
-# Wybierz plik(i) i naciśnij Enter
-# Ścieżka zostanie wklejona do command line
+# Interactive finder will appear
+# Select file(s) and press Enter
+# Path will be pasted into command line
 ```
 
-**Przykłady:**
+**Examples:**
 ```bash
-vim <Ctrl+T>              # Otwórz plik w vim
-cat <Ctrl+T>              # Wyświetl plik
-code <Ctrl+T>             # Otwórz w VSCode
-rm <Ctrl+T>               # Usuń plik (ostrożnie!)
+vim <Ctrl+T>              # Open file in vim
+cat <Ctrl+T>              # Display file
+code <Ctrl+T>             # Open in VSCode
+rm <Ctrl+T>               # Delete file (careful!)
 ```
 
 ### Ctrl+R - Command History Search
 
 ```bash
-# Naciśnij Ctrl+R
-# Wpisz część komendy
-# Fuzzy search w historii
-# Enter aby wykonać lub Tab aby edytować
+# Press Ctrl+R
+# Type part of a command
+# Fuzzy search in history
+# Enter to execute or Tab to edit
 ```
 
-Znacznie lepsze niż domyślne Ctrl+R w bash!
+Much better than the default Ctrl+R in bash!
 
 ### Alt+C - Directory Jump
 
 ```bash
-# Naciśnij Alt+C
-# Fuzzy search katalogów
-# Enter aby CD do wybranego
+# Press Alt+C
+# Fuzzy search directories
+# Enter to CD to selected
 ```
 
-**Tip:** Połącz z `z` lub `zoxide` dla super szybkiej nawigacji!
+**Tip:** Combine with `z` or `zoxide` for super fast navigation!
 
-## Nawigacja w fzf
+## Navigation in fzf
 
-Kiedy fzf jest otwarty:
+When fzf is open:
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `↑/↓` lub `Ctrl+k/j` | Góra/dół |
+| `↑/↓` or `Ctrl+k/j` | Up/down |
 | `Ctrl+u/d` | Page up/down |
-| `Tab` | Zaznacz/odznacz (multi-select) |
-| `Shift+Tab` | Odznacz/zaznacz |
-| `Ctrl+a` | Zaznacz wszystko |
-| `Ctrl+d` | Odznacz wszystko |
-| `Enter` | Akceptuj wybór |
-| `Esc` lub `Ctrl+c` | Anuluj |
+| `Tab` | Select/deselect (multi-select) |
+| `Shift+Tab` | Deselect/select |
+| `Ctrl+a` | Select all |
+| `Ctrl+d` | Deselect all |
+| `Enter` | Accept selection |
+| `Esc` or `Ctrl+c` | Cancel |
 | `Ctrl+/` | Toggle preview window |
 | `Shift+↑/↓` | Scroll preview |
 | `?` | Toggle preview |
 
-## Podstawowe Użycie w CLI
+## Basic CLI Usage
 
-### 1. Prosty Fuzzy Find
+### 1. Simple Fuzzy Find
 
 ```bash
-# Znajdź i wypisz plik
+# Find and list file
 find * -type f | fzf
 
-# Z ripgrep (szybsze)
+# With ripgrep (faster)
 rg --files | fzf
 
-# Z fd (nowocześniejsze)
+# With fd (more modern)
 fd | fzf
 ```
 
-### 2. Interaktywny Wybór
+### 2. Interactive Selection
 
 ```bash
-# Wybierz plik i otwórz w vim
+# Select file and open in vim
 vim $(fzf)
 
-# Wybierz katalog i cd
+# Select directory and cd
 cd $(find . -type d | fzf)
 
-# Lepiej z fd:
+# Better with fd:
 cd $(fd -t d | fzf)
 ```
 
 ### 3. Preview Window
 
 ```bash
-# Preview plików z bat
+# Preview files with bat
 fzf --preview 'bat --color=always {}'
 
-# Preview z numerami linii
+# Preview with line numbers
 fzf --preview 'bat -n --color=always {}'
 
-# Preview katalogów
+# Preview directories
 fzf --preview 'ls -la {}'
 
-# Preview z tree
+# Preview with tree
 fzf --preview 'tree -C {}'
 ```
 
 ### 4. Multi-Select
 
 ```bash
-# Zaznacz wiele plików (Tab)
+# Select multiple files (Tab)
 vim $(fzf -m)
 
-# Usuń wiele plików
+# Delete multiple files
 rm $(fzf -m)
 
-# Dodaj do git
+# Add to git
 git add $(fzf -m)
 ```
 
-## Zaawansowane Użycie
+## Advanced Usage
 
-### Filtrowanie i Opcje
+### Filtering and Options
 
 ```bash
-# Dokładne dopasowanie (prefix ')
+# Exact match (prefix ')
 fzf -q "'exact"
 
-# Dokładny suffix match ($)
+# Exact suffix match ($)
 fzf -q "txt$"
 
 # Prefix match (^)
 fzf -q "^src"
 
-# Negacja (!)
+# Negation (!)
 fzf -q "!test"
 
 # OR (|)
 fzf -q "jpg$ | png$"
 
-# AND (spacja)
+# AND (space)
 fzf -q "src test"
 ```
 
@@ -175,24 +175,24 @@ fzf -q "src test"
 - `'exact` - exact match
 - `^prefix` - prefix match
 - `suffix$` - suffix match
-- `!not` - negacja
+- `!not` - negation
 - `term1 term2` - AND
 - `term1 | term2` - OR
 
-### Layout i Appearance
+### Layout and Appearance
 
 ```bash
-# Reverse layout (wyniki na górze)
+# Reverse layout (results on top)
 fzf --reverse
 
-# Z ramką
+# With border
 fzf --border
 
-# Wysokość
+# Height
 fzf --height 40%
 fzf --height 100%
 
-# Pozycja
+# Position
 fzf --layout=reverse
 fzf --layout=default
 
@@ -207,14 +207,14 @@ fzf -m
 fzf --multi
 ```
 
-## Przydatne Funkcje Bash
+## Useful Bash Functions
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 
-### 1. Szybkie Otwieranie Plików
+### 1. Quick File Opening
 
 ```bash
-# fe - Fuzzy Edit (otwórz w edytorze)
+# fe - Fuzzy Edit (open in editor)
 fe() {
     local file
     file=$(fzf --preview 'bat --color=always {}') && nvim "$file"
@@ -244,7 +244,7 @@ fgb() {
     xargs git checkout
 }
 
-# fgs - Fuzzy Git Show (zobacz commit)
+# fgs - Fuzzy Git Show (view commit)
 fgs() {
     git log --oneline --color=always | \
     fzf --ansi --preview 'git show --color=always {1}' | \
@@ -277,13 +277,13 @@ fkill() {
     fi
 }
 
-# Usage: fkill lub fkill 15 (SIGTERM)
+# Usage: fkill or fkill 15 (SIGTERM)
 ```
 
 ### 4. History Search Enhanced
 
 ```bash
-# fh - Fuzzy History (lepsze niż Ctrl+R)
+# fh - Fuzzy History (better than Ctrl+R)
 fh() {
     eval $(history | fzf --tac --no-sort | sed 's/ *[0-9]* *//')
 }
@@ -313,10 +313,10 @@ fdsh() {
 }
 ```
 
-### 6. Znajdź i Edytuj (Ripgrep Integration)
+### 6. Find and Edit (Ripgrep Integration)
 
 ```bash
-# frg - Fuzzy Ripgrep (szukaj w zawartości plików)
+# frg - Fuzzy Ripgrep (search in file contents)
 frg() {
     rg --color=always --line-number --no-heading --smart-case "${*:-}" |
     fzf --ansi \
@@ -352,65 +352,65 @@ fssh() {
 }
 ```
 
-## Integracja z Innymi Narzędziami
+## Integration with Other Tools
 
-### Z Vim/Neovim
+### With Vim/Neovim
 
 **Plugin: fzf.vim**
 ```vim
-" W ~/.config/nvim/init.vim lub init.lua
+" In ~/.config/nvim/init.vim or init.lua
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Skróty:
+" Shortcuts:
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 ```
 
-### Z Zellij/tmux
+### With Zellij/tmux
 
 ```bash
-# W Zellij - fuzzy session switch
+# In Zellij - fuzzy session switch
 zellij list-sessions | fzf | xargs zellij attach
 
 # Alias:
 alias zs='zellij list-sessions | fzf | xargs zellij attach'
 ```
 
-### Z bat (Better Cat)
+### With bat (Better Cat)
 
 ```bash
-# Preview z bat (syntax highlighting)
+# Preview with bat (syntax highlighting)
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
 ```
 
-### Z fd (Better Find)
+### With fd (Better Find)
 
 ```bash
-# Użyj fd zamiast find
+# Use fd instead of find
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 ```
 
-## Przykładowe Workflow
+## Example Workflows
 
-### 1. Deweloperski Workflow
+### 1. Developer Workflow
 
 ```bash
-# Szybko otwórz projekt
+# Quickly open project
 cd ~/projects
 cd $(fd -t d | fzf)
 
-# Znajdź i edytuj plik
+# Find and edit file
 vim $(fzf --preview 'bat --color=always {}')
 
-# Szukaj w kodzie i edytuj
-frg "function name"  # Otwiera nvim na właściwej linii
+# Search in code and edit
+frg "function name"  # Opens nvim at the correct line
 
-# Git commit z fzf
+# Git commit with fzf
 fga  # Fuzzy add files
 gc "commit message"
 ```
@@ -418,32 +418,32 @@ gc "commit message"
 ### 2. System Administration
 
 ```bash
-# Sprawdź procesy i zabij
+# Check processes and kill
 fkill
 
-# Zobacz logi
+# View logs
 journalctl | fzf
 
-# SSH do serwera
+# SSH to server
 fssh
 ```
 
 ### 3. File Management
 
 ```bash
-# Znajdź i usuń
+# Find and delete
 rm $(fzf -m)
 
-# Znajdź i skopiuj
+# Find and copy
 cp $(fzf -m) /destination/
 
-# Znajdź i przenieś
+# Find and move
 mv $(fzf -m) /destination/
 ```
 
-## Konfiguracja Kolorów
+## Color Configuration
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 
 ```bash
 # fzf color scheme (Tokyo Night)
@@ -453,14 +453,14 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
   --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 
-# Lub Catppuccin:
+# Or Catppuccin:
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
   --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
 ```
 
-## Kompletny ~/.bashrc Setup
+## Complete ~/.bashrc Setup
 
 ```bash
 # fzf configuration
@@ -476,7 +476,7 @@ export FZF_DEFAULT_OPTS="
   --bind 'ctrl-d:preview-page-down'
 "
 
-# Używaj ripgrep
+# Use ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
@@ -485,11 +485,11 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
 
-# Funkcje (dodaj wszystkie z sekcji "Przydatne Funkcje Bash" powyżej)
+# Functions (add all from "Useful Bash Functions" section above)
 fe() { ... }
 fcd() { ... }
 fgb() { ... }
-# itd.
+# etc.
 ```
 
 ## Tips & Tricks
@@ -497,12 +497,12 @@ fgb() { ... }
 ### 1. Exclude Patterns
 
 ```bash
-# Ignoruj node_modules, .git, etc
+# Ignore node_modules, .git, etc
 rg --files --hidden --follow \
   -g '!{.git,node_modules,target,dist,build}/*' | fzf
 ```
 
-### 2. Szybkie Aliasy
+### 2. Quick Aliases
 
 ```bash
 alias f='fzf'
@@ -510,10 +510,10 @@ alias ff='fzf --preview "bat --color=always {}"'
 alias v='vim $(fzf)'
 ```
 
-### 3. Pipe do fzf
+### 3. Pipe to fzf
 
 ```bash
-# Wszystko można pipe'ować do fzf!
+# Everything can be piped to fzf!
 ls | fzf
 history | fzf
 docker ps | fzf
@@ -523,7 +523,7 @@ kubectl get pods | fzf
 ### 4. Custom Key Bindings
 
 ```bash
-# W fzf możesz definiować własne akcje
+# In fzf you can define custom actions
 fzf --bind 'ctrl-e:execute(nvim {})'
 fzf --bind 'ctrl-y:execute-silent(echo {} | xclip)'
 ```
@@ -531,81 +531,81 @@ fzf --bind 'ctrl-y:execute-silent(echo {} | xclip)'
 ### 5. Multi-Stage Pipeline
 
 ```bash
-# Wybierz katalog, potem plik w nim
+# Select directory, then file in it
 cd $(fd -t d | fzf) && vim $(fzf)
 ```
 
 ## Performance Tips
 
-1. **Użyj ripgrep/fd zamiast find** - znacznie szybsze
-2. **Ogranicz głębokość** - `fd --max-depth 3`
-3. **Exclude duże katalogi** - node_modules, .git, target
-4. **Cache file list** dla dużych projektów:
+1. **Use ripgrep/fd instead of find** - much faster
+2. **Limit depth** - `fd --max-depth 3`
+3. **Exclude large directories** - node_modules, .git, target
+4. **Cache file list** for large projects:
 ```bash
-# Generuj listę plików raz
+# Generate file list once
 fd > /tmp/files.txt
 cat /tmp/files.txt | fzf
 ```
 
 ## Troubleshooting
 
-### fzf nie znajduje plików
+### fzf not finding files
 
 ```bash
-# Sprawdź FZF_DEFAULT_COMMAND
+# Check FZF_DEFAULT_COMMAND
 echo $FZF_DEFAULT_COMMAND
 
-# Reset do domyślnego
+# Reset to default
 unset FZF_DEFAULT_COMMAND
 ```
 
-### Skróty nie działają
+### Shortcuts not working
 
 ```bash
-# Upewnij się że fzf key bindings są załadowane
-# Powinno być w ~/.bashrc:
+# Make sure fzf key bindings are loaded
+# Should be in ~/.bashrc:
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ```
 
-### Preview nie działa
+### Preview not working
 
 ```bash
-# Zainstaluj bat
+# Install bat
 sudo apt install bat
-# lub
+# or
 cargo install bat
 
-# Zainstaluj tree
+# Install tree
 sudo apt install tree
 ```
 
-## Zasoby
+## Resources
 
 - **fzf GitHub:** https://github.com/junegunn/fzf
 - **fzf Wiki:** https://github.com/junegunn/fzf/wiki
 - **Advanced Examples:** https://github.com/junegunn/fzf/wiki/examples
-- `man fzf` - Dokumentacja
-- **Interactive Tutorial:** po prostu zacznij używać Ctrl+T/Ctrl+R!
+- `man fzf` - Documentation
+- **Interactive Tutorial:** just start using Ctrl+T/Ctrl+R!
 
-## Szybki Start
+## Quick Start
 
 ```bash
-# Wypróbuj wbudowane:
+# Try built-in:
 Ctrl+T     # Fuzzy file search
 Ctrl+R     # Fuzzy command history
 Alt+C      # Fuzzy directory jump
 
-# Podstawowe użycie:
+# Basic usage:
 vim $(fzf)
 cd $(fd -t d | fzf)
 kill $(ps -ef | fzf | awk '{print $2}')
 
-# Z preview:
+# With preview:
 fzf --preview 'bat --color=always {}'
 ```
 
-**Zapamiętaj:**
-- Wszystko może być input dla fzf (pipe)
+**Remember:**
+- Everything can be input for fzf (pipe)
 - Tab = multi-select
 - ? = toggle preview
 - fzf + bat + ripgrep + fd = super combo!

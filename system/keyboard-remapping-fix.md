@@ -1,23 +1,23 @@
-# Naprawa mapowania klawiszy modyfikujących
+# Modifier Key Remapping Fix
 
 ## Problem
-Mapowanie klawiszy nie działało automatycznie po uruchomieniu systemu, mimo że była skonfigurowana konfiguracja xmodmap i autostart.
+Key remapping was not working automatically after system startup, despite having xmodmap configuration and autostart configured.
 
-## Cel mapowania
-- **Lewy Alt** → Lewy Control
-- **Lewy Windows (Super)** → Lewy Alt
-- **Lewy Control** → Lewy Windows (Super)
+## Mapping Goals
+- **Left Alt** → Left Control
+- **Left Windows (Super)** → Left Alt
+- **Left Control** → Left Windows (Super)
 
-## Diagnoza
-- System: Ubuntu z Omakub, X11
-- Pliki konfiguracyjne były poprawne:
-  - `~/.Xmodmap` - zawierał prawidłową konfigurację remapowania
-  - `~/.config/autostart/xmodmap-keys.desktop` - plik autostartu istniał
-- Problem: GNOME resetował ustawienia xmodmap zanim zostały w pełni zastosowane
+## Diagnosis
+- System: Ubuntu with Omakub, X11
+- Configuration files were correct:
+  - `~/.Xmodmap` - contained valid remapping configuration
+  - `~/.config/autostart/xmodmap-keys.desktop` - autostart file existed
+- Problem: GNOME was resetting xmodmap settings before they were fully applied
 
-## Rozwiązanie
+## Solution
 
-### Plik konfiguracyjny: `~/.Xmodmap`
+### Configuration file: `~/.Xmodmap`
 ```
 ! Remapping left modifier keys:
 ! Left Alt -> Left Control
@@ -40,7 +40,7 @@ add mod1 = Alt_L Meta_L
 add mod4 = Super_L Super_R
 ```
 
-### Poprawiony autostart: `~/.config/autostart/xmodmap-keys.desktop`
+### Fixed autostart: `~/.config/autostart/xmodmap-keys.desktop`
 ```
 [Desktop Entry]
 Type=Application
@@ -52,47 +52,47 @@ StartupNotify=false
 X-GNOME-Autostart-enabled=true
 ```
 
-**Kluczowa zmiana:** Dodano `sleep 3` aby dać GNOME czas na pełną inicjalizację przed zastosowaniem xmodmap.
+**Key change:** Added `sleep 3` to give GNOME time to fully initialize before applying xmodmap.
 
-## Ręczne zastosowanie mapowania
+## Manual Mapping Application
 
-### Szybki sposób (alias)
+### Quick way (alias)
 ```bash
 fixkeys
 ```
 
-### Pełna komenda
+### Full command
 ```bash
 xmodmap ~/.Xmodmap
 ```
 
-**Alias `fixkeys`** jest zdefiniowany w `~/.bashrc` i jest najszybszym sposobem na przywrócenie mapowania po odblokowaniu ekranu.
+**The `fixkeys` alias** is defined in `~/.bashrc` and is the fastest way to restore the mapping after screen unlock.
 
-## Weryfikacja
-Sprawdź aktualne mapowanie:
+## Verification
+Check current mapping:
 ```bash
 xmodmap -pke | grep -E "keycode (37|64|133) ="
 ```
 
-Powinno pokazać:
+Should display:
 - `keycode 37 = Super_L NoSymbol Super_L`
 - `keycode 64 = Control_L NoSymbol Control_L`
 - `keycode 133 = Alt_L Meta_L Alt_L Meta_L`
 
-## Jeśli nadal nie działa
-Jeśli po restarcie mapowanie nadal nie działa:
+## If it still doesn't work
+If mapping still doesn't work after restart:
 
-1. **Zwiększ opóźnienie** w pliku autostartu do 5-7 sekund:
+1. **Increase the delay** in the autostart file to 5-7 seconds:
    ```
    Exec=sh -c "sleep 7 && xmodmap /home/tomasz/.Xmodmap"
    ```
 
-2. **Sprawdź logi systemowe** aby zobaczyć czy autostart się uruchamia:
+2. **Check system logs** to see if autostart is running:
    ```bash
    journalctl --user -b | grep -i xmodmap
    ```
 
-3. **Alternatywnie** dodaj mapowanie do `~/.profile` lub `~/.bashrc` (choć będzie działać tylko w terminalach)
+3. **Alternatively** add mapping to `~/.profile` or `~/.bashrc` (though it will only work in terminals)
 
 ---
-Data naprawy: 2025-11-15
+Fix date: 2025-11-15

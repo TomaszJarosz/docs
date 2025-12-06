@@ -2,17 +2,17 @@
 
 ## Git - Command Line
 
-### Podstawowa Konfiguracja
+### Basic Configuration
 
 ```bash
-# Ustaw dane użytkownika
-git config --global user.name "Twoje Imię"
+# Set user data
+git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 
-# Edytor
+# Editor
 git config --global core.editor "nvim"
 
-# Aliasy (przydatne!)
+# Aliases (useful!)
 git config --global alias.st status
 git config --global alias.co checkout
 git config --global alias.br branch
@@ -21,305 +21,305 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-# Zobacz konfigurację
+# View configuration
 git config --list
 git config --global --edit
 ```
 
-### Podstawowe Komendy
+### Basic Commands
 
-**Inicjalizacja i Klonowanie:**
+**Initialization and Cloning:**
 ```bash
-git init                          # Nowe repo
-git clone url                     # Klonuj repo
-git clone url folder             # Klonuj do folderu
-git clone --depth 1 url          # Shallow clone (szybszy)
+git init                          # New repo
+git clone url                     # Clone repo
+git clone url folder             # Clone to folder
+git clone --depth 1 url          # Shallow clone (faster)
 ```
 
-**Status i Informacje:**
+**Status and Information:**
 ```bash
-git status                        # Status repozytorium
-git status -s                     # Skrócony status
-git diff                          # Zmiany (unstaged)
-git diff --staged                 # Zmiany (staged)
-git diff HEAD                     # Wszystkie zmiany
-git diff branch1 branch2          # Różnice między gałęziami
-git log                           # Historia commitów
-git log --oneline                 # Skrócona historia
-git log --graph --all             # Graficzna historia
-git show commit_hash              # Pokaż commit
+git status                        # Repository status
+git status -s                     # Short status
+git diff                          # Changes (unstaged)
+git diff --staged                 # Changes (staged)
+git diff HEAD                     # All changes
+git diff branch1 branch2          # Differences between branches
+git log                           # Commit history
+git log --oneline                 # Short history
+git log --graph --all             # Graphical history
+git show commit_hash              # Show commit
 ```
 
-**Staging i Commits:**
+**Staging and Commits:**
 ```bash
-git add plik.txt                  # Dodaj plik
-git add .                         # Dodaj wszystkie
-git add -p                        # Interaktywne dodawanie (po kawałku)
-git reset plik.txt                # Unstage plik
-git reset                         # Unstage wszystko
+git add file.txt                  # Add file
+git add .                         # Add all
+git add -p                        # Interactive adding (by hunk)
+git reset file.txt                # Unstage file
+git reset                         # Unstage everything
 
 git commit -m "message"           # Commit
-git commit -am "message"          # Add + commit (tylko tracked files)
-git commit --amend                # Popraw ostatni commit
-git commit --amend --no-edit      # Popraw bez zmiany message
+git commit -am "message"          # Add + commit (tracked files only)
+git commit --amend                # Amend last commit
+git commit --amend --no-edit      # Amend without changing message
 ```
 
-**Gałęzie (Branches):**
+**Branches:**
 ```bash
-git branch                        # Lista gałęzi
-git branch nazwa                  # Nowa gałąź
-git branch -d nazwa               # Usuń gałąź (safe)
-git branch -D nazwa               # Usuń gałąź (force)
-git checkout nazwa                # Przełącz na gałąź
-git checkout -b nazwa             # Utwórz i przełącz
-git switch nazwa                  # Przełącz (nowsza komenda)
-git switch -c nazwa               # Utwórz i przełącz (nowsza)
-git merge nazwa                   # Merge gałęzi
-git rebase main                   # Rebase na main
+git branch                        # List branches
+git branch name                   # New branch
+git branch -d name                # Delete branch (safe)
+git branch -D name                # Delete branch (force)
+git checkout name                 # Switch to branch
+git checkout -b name              # Create and switch
+git switch name                   # Switch (newer command)
+git switch -c name                # Create and switch (newer)
+git merge name                    # Merge branch
+git rebase main                   # Rebase on main
 ```
 
-**Remote (Zdalne Repo):**
+**Remote (Remote Repo):**
 ```bash
-git remote                        # Lista remote
-git remote -v                     # Lista z URL
-git remote add origin url         # Dodaj remote
-git remote remove origin          # Usuń remote
-git remote rename old new         # Zmień nazwę
+git remote                        # List remote
+git remote -v                     # List with URL
+git remote add origin url         # Add remote
+git remote remove origin          # Remove remote
+git remote rename old new         # Rename
 
-git fetch                         # Pobierz zmiany
-git fetch origin                  # Pobierz z origin
+git fetch                         # Fetch changes
+git fetch origin                  # Fetch from origin
 git pull                          # Fetch + merge
 git pull --rebase                 # Fetch + rebase
-git push                          # Wyślij zmiany
-git push origin branch            # Wyślij do gałęzi
-git push -u origin branch         # Wyślij i ustaw upstream
-git push --force                  # Force push (OSTROŻNIE!)
-git push --force-with-lease       # Bezpieczniejszy force push
+git push                          # Push changes
+git push origin branch            # Push to branch
+git push -u origin branch         # Push and set upstream
+git push --force                  # Force push (CAREFUL!)
+git push --force-with-lease       # Safer force push
 ```
 
-**Cofanie Zmian:**
+**Undoing Changes:**
 ```bash
-# Unstage (cofnij git add)
-git reset plik.txt
-git reset HEAD plik.txt
+# Unstage (undo git add)
+git reset file.txt
+git reset HEAD file.txt
 
-# Odrzuć zmiany w pliku (working directory)
-git checkout -- plik.txt
-git restore plik.txt              # Nowsza komenda
+# Discard changes in file (working directory)
+git checkout -- file.txt
+git restore file.txt              # Newer command
 
-# Cofnij commit (zachowaj zmiany)
+# Undo commit (keep changes)
 git reset --soft HEAD~1
 
-# Cofnij commit (odrzuć zmiany)
+# Undo commit (discard changes)
 git reset --hard HEAD~1
 
-# Cofnij commit (stwórz nowy commit cofający)
+# Undo commit (create new reverting commit)
 git revert commit_hash
 
-# Wyczyść working directory
+# Clean working directory
 git clean -n                      # Dry run
-git clean -f                      # Usuń untracked files
-git clean -fd                     # Usuń untracked files i foldery
+git clean -f                      # Remove untracked files
+git clean -fd                     # Remove untracked files and folders
 ```
 
-**Stash (Schowek):**
+**Stash:**
 ```bash
-git stash                         # Schowaj zmiany
-git stash save "opis"             # Schowaj z opisem
-git stash list                    # Lista stash
-git stash pop                     # Przywróć i usuń stash
-git stash apply                   # Przywróć (zachowaj stash)
-git stash drop                    # Usuń stash
-git stash clear                   # Wyczyść wszystkie stash
-git stash show -p                 # Pokaż zawartość stash
+git stash                         # Stash changes
+git stash save "description"      # Stash with description
+git stash list                    # List stash
+git stash pop                     # Restore and remove stash
+git stash apply                   # Restore (keep stash)
+git stash drop                    # Remove stash
+git stash clear                   # Clear all stash
+git stash show -p                 # Show stash contents
 ```
 
-**Tagi:**
+**Tags:**
 ```bash
-git tag                           # Lista tagów
+git tag                           # List tags
 git tag v1.0.0                    # Lightweight tag
 git tag -a v1.0.0 -m "Release"   # Annotated tag
-git tag -d v1.0.0                 # Usuń tag lokalnie
-git push origin v1.0.0            # Wyślij tag
-git push origin --tags            # Wyślij wszystkie tagi
-git push origin :refs/tags/v1.0.0 # Usuń tag ze zdalnego
+git tag -d v1.0.0                 # Delete tag locally
+git push origin v1.0.0            # Push tag
+git push origin --tags            # Push all tags
+git push origin :refs/tags/v1.0.0 # Delete tag from remote
 ```
 
-### Zaawansowane
+### Advanced
 
-**Interaktywne Rebase:**
+**Interactive Rebase:**
 ```bash
-git rebase -i HEAD~3              # Edytuj ostatnie 3 commity
-# W edytorze:
-# pick = zachowaj commit
-# reword = zmień message
-# edit = zatrzymaj i edytuj
-# squash = połącz z poprzednim
-# fixup = squash bez message
-# drop = usuń commit
+git rebase -i HEAD~3              # Edit last 3 commits
+# In editor:
+# pick = keep commit
+# reword = change message
+# edit = stop and edit
+# squash = combine with previous
+# fixup = squash without message
+# drop = delete commit
 ```
 
 **Cherry-pick:**
 ```bash
-git cherry-pick commit_hash       # Zastosuj commit z innej gałęzi
-git cherry-pick A B C             # Wiele commitów
-git cherry-pick --abort           # Anuluj
+git cherry-pick commit_hash       # Apply commit from another branch
+git cherry-pick A B C             # Multiple commits
+git cherry-pick --abort           # Cancel
 ```
 
-**Blame i Historia:**
+**Blame and History:**
 ```bash
-git blame plik.txt                # Kto zmienił każdą linię
-git log -p plik.txt               # Historia zmian pliku
-git log --follow plik.txt         # Historia z zmianami nazwy
-git log --grep="pattern"          # Szukaj w commitach
-git log --author="name"           # Commity autora
-git log --since="2 weeks ago"     # Ostatnie 2 tygodnie
+git blame file.txt                # Who changed each line
+git log -p file.txt               # File change history
+git log --follow file.txt         # History with renames
+git log --grep="pattern"          # Search in commits
+git log --author="name"           # Author's commits
+git log --since="2 weeks ago"     # Last 2 weeks
 ```
 
-**Bisect (Znajdź Bug):**
+**Bisect (Find Bug):**
 ```bash
-git bisect start                  # Rozpocznij
-git bisect bad                    # Oznacz jako złe
-git bisect good commit_hash       # Oznacz dobry commit
-# Git automatycznie testuje commity
-git bisect good/bad               # Oznaczaj kolejne
-git bisect reset                  # Zakończ
+git bisect start                  # Start
+git bisect bad                    # Mark as bad
+git bisect good commit_hash       # Mark good commit
+# Git automatically tests commits
+git bisect good/bad               # Mark subsequent ones
+git bisect reset                  # Finish
 ```
 
-**Submoduły:**
+**Submodules:**
 ```bash
-git submodule add url path        # Dodaj submodule
-git submodule init                # Inicjalizuj
-git submodule update              # Zaktualizuj
-git clone --recursive url         # Klonuj z submodułami
+git submodule add url path        # Add submodule
+git submodule init                # Initialize
+git submodule update              # Update
+git clone --recursive url         # Clone with submodules
 ```
 
-**Worktree (Wiele Katalogów Roboczych):**
+**Worktree (Multiple Working Directories):**
 ```bash
 git worktree add ../feature feature-branch
 git worktree list
 git worktree remove ../feature
 ```
 
-## Lazygit - Terminal UI dla Git
+## Lazygit - Terminal UI for Git
 
-**Uruchomienie:**
+**Launch:**
 ```bash
 lazygit
-# lub alias w Omakub:
+# or alias in Omakub:
 lg
 ```
 
-### Główne Panele
+### Main Panels
 
-Lazygit ma 5 głównych paneli:
-1. **Status** - Stan repozytorium
-2. **Files** - Pliki (changes)
-3. **Branches** - Gałęzie
-4. **Commits** - Historia commitów
-5. **Stash** - Schowane zmiany
+Lazygit has 5 main panels:
+1. **Status** - Repository status
+2. **Files** - Files (changes)
+3. **Branches** - Branches
+4. **Commits** - Commit history
+5. **Stash** - Stashed changes
 
-### Nawigacja w Lazygit
+### Navigation in Lazygit
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `1-5` | Przełącz między panelami (Status, Files, Branches, Commits, Stash) |
-| `h/l` lub `←/→` | Przełącz między panelami |
-| `j/k` lub `↑/↓` | Poruszaj się w panelu |
-| `[/]` | Poprzedni/następny panel |
-| `</>` | Scroll w panelu głównym |
-| `Ctrl+u/d` | Scroll w górę/dół (pół strony) |
-| `q` | Quit / Wróć |
-| `Esc` | Anuluj / Wróć |
-| `?` | Pomoc (zobacz wszystkie skróty!) |
+| `1-5` | Switch between panels (Status, Files, Branches, Commits, Stash) |
+| `h/l` or `←/→` | Switch between panels |
+| `j/k` or `↑/↓` | Navigate in panel |
+| `[/]` | Previous/next panel |
+| `</>` | Scroll in main panel |
+| `Ctrl+u/d` | Scroll up/down (half page) |
+| `q` | Quit / Go back |
+| `Esc` | Cancel / Go back |
+| `?` | Help (see all shortcuts!) |
 
-### Panel Files (Pliki)
+### Files Panel
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Space` | Stage/unstage plik lub hunk |
-| `a` | Stage/unstage wszystko |
-| `d` | Discard changes (usuń zmiany) |
-| `e` | Edytuj plik |
-| `o` | Otwórz plik |
+| `Space` | Stage/unstage file or hunk |
+| `a` | Stage/unstage all |
+| `d` | Discard changes |
+| `e` | Edit file |
+| `o` | Open file |
 | `i` | Add to .gitignore |
-| `r` | Odśwież pliki |
-| `s` | Stash wszystkie zmiany |
+| `r` | Refresh files |
+| `s` | Stash all changes |
 | `S` | Stash options (menu) |
-| `M` | Commit (otwórz edytor message) |
+| `M` | Commit (open message editor) |
 | `c` | Commit (inline message) |
 | `A` | Amend last commit |
-| `Enter` | Stage pojedynczych linii (stage hunks) |
+| `Enter` | Stage individual lines (stage hunks) |
 
-**W widoku hunków (Enter na pliku):**
-| Skrót | Akcja |
+**In hunk view (Enter on file):**
+| Shortcut | Action |
 |-------|-------|
 | `Space` | Stage/unstage hunk |
-| `a` | Stage/unstage plik |
+| `a` | Stage/unstage file |
 | `e` | Edit hunk |
-| `Esc` | Wróć do listy plików |
+| `Esc` | Return to file list |
 
-### Panel Commits
+### Commits Panel
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Space` | Checkout commit |
 | `c` | Checkout commit (detached) |
-| `r` | Reword commit (zmień message) |
+| `r` | Reword commit (change message) |
 | `R` | Reword with editor |
 | `g` | Reset to commit (mixed) |
-| `s` | Squash down (połącz z poprzednim) |
+| `s` | Squash down (combine with previous) |
 | `f` | Fixup commit |
 | `d` | Delete commit (drop) |
 | `e` | Edit commit |
 | `p` | Pick commit (cherry-pick) |
 | `C` | Copy commit (sha) |
 | `A` | Amend commit |
-| `Enter` | Zobacz pliki w commit |
+| `Enter` | View files in commit |
 | `v` | Paste (commits) |
 | `t` | Revert commit |
 | `T` | Tag commit |
 
-**Rebase interaktywne:**
-| Skrót | Akcja |
+**Interactive rebase:**
+| Shortcut | Action |
 |-------|-------|
 | `i` | Start interactive rebase |
-| `e` | Edit (w trybie rebase) |
+| `e` | Edit (in rebase mode) |
 | `m` | Move commit down |
 | `M` | Move commit up |
 
-### Panel Branches
+### Branches Panel
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Space` | Checkout branch |
-| `n` | Nowa gałąź |
-| `o` | Utwórz pull request |
+| `n` | New branch |
+| `o` | Create pull request |
 | `c` | Checkout by name |
 | `r` | Rebase branch |
-| `M` | Merge do obecnej gałęzi |
+| `M` | Merge to current branch |
 | `i` | Show git-flow options |
 | `d` | Delete branch |
 | `D` | Force delete |
 | `F` | Fast-forward |
-| `g` | Reset (z menu opcji) |
+| `g` | Reset (from options menu) |
 | `R` | Rename branch |
-| `Enter` | Zobacz commits |
+| `Enter` | View commits |
 | `w` | View merge/rebase options |
 
-### Panel Stash
+### Stash Panel
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `Space` | Apply stash |
 | `g` | Pop stash |
 | `d` | Drop stash |
-| `n` | Nowy stash |
+| `n` | New stash |
 | `r` | Rename stash |
 
 ### Remote Operations (Push/Pull)
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
 | `p` | Pull |
 | `P` | Push |
@@ -327,127 +327,127 @@ Lazygit ma 5 głównych paneli:
 | `f` | Fetch |
 | `F` | Force fetch |
 
-### Ogólne
+### General
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `x` | Otwórz menu opcji |
-| `!` | Otwórz command log |
-| `@` | Otwórz command log menu |
-| `z` | Undo (cofnij) |
+| `x` | Open options menu |
+| `!` | Open command log |
+| `@` | Open command log menu |
+| `z` | Undo |
 | `Ctrl+z` | Redo |
 | `:` | Execute custom command |
 | `+` | Next screen mode |
 | `_` | Previous screen mode |
-| `Ctrl+r` | Ostatnio używane repo (switch) |
+| `Ctrl+r` | Recently used repo (switch) |
 | `Ctrl+e` | Open lazygit config |
 
-### Wyszukiwanie i Filtrowanie
+### Search and Filtering
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `/` | Start search (filtruj) |
+| `/` | Start search (filter) |
 | `Ctrl+s` | View filter-by-path options |
 | `Ctrl+/` | Regex toggle |
 
 ## Workflow Tips
 
-### 1. Podstawowy Workflow z Lazygit
+### 1. Basic Workflow with Lazygit
 
 ```bash
-# Uruchom lazygit
+# Launch lazygit
 lazygit
 
-# W lazygit:
-1. Panel Files (2)
-2. Space - stage pliki
-3. c - commit z message
+# In lazygit:
+1. Files panel (2)
+2. Space - stage files
+3. c - commit with message
 4. P - push
 ```
 
-### 2. Interaktywne Staging (Hunks)
+### 2. Interactive Staging (Hunks)
 
-W lazygit:
-1. Panel Files
-2. `Enter` na pliku - zobacz hunks
-3. `Space` - stage wybrane hunki
-4. `Esc` - wróć
+In lazygit:
+1. Files panel
+2. `Enter` on file - view hunks
+3. `Space` - stage selected hunks
+4. `Esc` - go back
 5. `c` - commit
 
 ### 3. Amending Commits
 
-**Dodaj zmiany do ostatniego commita:**
+**Add changes to last commit:**
 ```bash
-# W lazygit:
-1. Zmień plik
-2. Panel Files
+# In lazygit:
+1. Change file
+2. Files panel
 3. Space - stage
 4. A - amend last commit
 ```
 
-**Zmień message ostatniego commita:**
+**Change message of last commit:**
 ```bash
-# W lazygit:
-1. Panel Commits
-2. r na ostatnim commicie
+# In lazygit:
+1. Commits panel
+2. r on last commit
 ```
 
-### 4. Rebase Interactive
+### 4. Interactive Rebase
 
 ```bash
-# W lazygit:
-1. Panel Commits
+# In lazygit:
+1. Commits panel
 2. i - start interactive rebase
-3. Używaj s/f/d do squash/fixup/drop
-4. m/M - przenoś commity
-5. Ctrl+o - kontynuuj rebase
+3. Use s/f/d for squash/fixup/drop
+4. m/M - move commits
+5. Ctrl+o - continue rebase
 ```
 
 ### 5. Branch Workflow
 
 ```bash
-# Nowa feature branch:
-1. Panel Branches
+# New feature branch:
+1. Branches panel
 2. n - new branch
-3. Wpisz nazwę
+3. Enter name
 
-# Merge do main:
-1. Checkout main (Space na main)
-2. Panel Branches
-3. M na feature branch - merge
+# Merge to main:
+1. Checkout main (Space on main)
+2. Branches panel
+3. M on feature branch - merge
 ```
 
 ### 6. Stash Workflow
 
 ```bash
-# Schowaj zmiany:
-1. Panel Files
+# Stash changes:
+1. Files panel
 2. s - stash all
 
-# Przywróć:
-1. Panel Stash
-2. Space - apply (lub g - pop)
+# Restore:
+1. Stash panel
+2. Space - apply (or g - pop)
 ```
 
 ### 7. Cherry-pick
 
 ```bash
-1. Panel Commits (inna gałąź)
-2. p na commicie - cherry-pick
-3. Przełącz na docelową gałąź
+1. Commits panel (other branch)
+2. p on commit - cherry-pick
+3. Switch to target branch
 4. v - paste (apply cherry-pick)
 ```
 
-### 8. Rozwiązywanie Konfliktów
+### 8. Resolving Conflicts
 
 ```bash
-# Po merge/rebase z konfliktami:
-1. Panel Files - pliki z konfliktami oznaczone
-2. e - edytuj plik (otwiera w nvim)
-3. Rozwiąż konflikty
-4. :wq - zapisz i wyjdź
-5. Space - stage rozwiązany plik
-6. c - commit (lub kontynuuj rebase)
+# After merge/rebase with conflicts:
+1. Files panel - files with conflicts marked
+2. e - edit file (opens in nvim)
+3. Resolve conflicts
+4. :wq - save and exit
+5. Space - stage resolved file
+6. c - commit (or continue rebase)
 ```
 
 ## Git Best Practices
@@ -456,30 +456,30 @@ W lazygit:
 
 **Format:**
 ```
-typ: krótki opis (max 50 znaków)
+type: short description (max 50 characters)
 
-Dłuższy opis jeśli potrzebny (wrap at 72 chars)
-- Punkt 1
-- Punkt 2
+Longer description if needed (wrap at 72 chars)
+- Point 1
+- Point 2
 
 Fixes #123
 ```
 
-**Typy:**
-- `feat:` - nowa funkcjonalność
-- `fix:` - poprawka błędu
-- `docs:` - dokumentacja
-- `style:` - formatowanie (nie wpływa na kod)
-- `refactor:` - refaktoryzacja
-- `test:` - testy
+**Types:**
+- `feat:` - new feature
+- `fix:` - bug fix
+- `docs:` - documentation
+- `style:` - formatting (doesn't affect code)
+- `refactor:` - refactoring
+- `test:` - tests
 - `chore:` - maintenance
 
 ### Branch Naming
 
 ```bash
-feature/nazwa-funkcji
-bugfix/nazwa-buga
-hotfix/pilna-poprawka
+feature/feature-name
+bugfix/bug-name
+hotfix/urgent-fix
 release/v1.2.3
 ```
 
@@ -488,11 +488,11 @@ release/v1.2.3
 **1. Feature Branch Workflow:**
 ```bash
 git checkout -b feature/new-feature
-# Praca...
+# Work...
 git add .
 git commit -m "feat: add new feature"
 git push -u origin feature/new-feature
-# Pull request/merge do main
+# Pull request/merge to main
 ```
 
 **2. Git Flow:**
@@ -502,7 +502,7 @@ git push -u origin feature/new-feature
 
 git checkout -b develop
 git checkout -b feature/feature-name
-# Praca...
+# Work...
 git checkout develop
 git merge feature/feature-name
 ```
@@ -510,18 +510,18 @@ git merge feature/feature-name
 **3. Rebase Before Merge:**
 ```bash
 git checkout feature
-git rebase main           # Zaktualizuj z main
+git rebase main           # Update from main
 git push --force-with-lease
-# Potem merge do main
+# Then merge to main
 ```
 
-### Przydatne .gitconfig Snippets
+### Useful .gitconfig Snippets
 
 ```ini
 [core]
     editor = nvim
     autocrlf = input
-    pager = delta           # Lepszy diff (jeśli zainstalowane)
+    pager = delta           # Better diff (if installed)
 
 [alias]
     st = status -sb
@@ -535,23 +535,23 @@ git push --force-with-lease
     amend = commit --amend --no-edit
 
 [pull]
-    rebase = true           # Domyślnie pull --rebase
+    rebase = true           # Default to pull --rebase
 
 [push]
-    default = current       # Push do gałęzi o tej samej nazwie
-    followTags = true       # Automatycznie push tagów
+    default = current       # Push to branch with same name
+    followTags = true       # Automatically push tags
 
 [fetch]
-    prune = true            # Usuń stare remote branches
+    prune = true            # Remove old remote branches
 
 [diff]
-    colorMoved = zebra      # Lepsze pokazywanie przeniesionych linii
+    colorMoved = zebra      # Better display of moved lines
 
 [merge]
-    conflictstyle = diff3   # Lepsze pokazywanie konfliktów
+    conflictstyle = diff3   # Better conflict display
 
 [rerere]
-    enabled = true          # Zapamiętaj jak rozwiązałeś konflikty
+    enabled = true          # Remember how you resolved conflicts
 ```
 
 ## .gitignore Patterns
@@ -602,9 +602,9 @@ credentials.json
 *.pem
 ```
 
-## Przydatne Git Aliasy (Bash)
+## Useful Git Aliases (Bash)
 
-Dodaj do `~/.bashrc`:
+Add to `~/.bashrc`:
 ```bash
 alias g='git'
 alias gs='git status'
@@ -618,7 +618,7 @@ alias gb='git branch'
 alias glog='git log --oneline --graph --decorate'
 alias lg='lazygit'
 
-# Funkcje
+# Functions
 gac() {
     git add .
     git commit -m "$1"
@@ -630,21 +630,21 @@ gacp() {
     git push
 }
 
-# Użycie:
+# Usage:
 # gac "fix: update readme"
 # gacp "feat: add new feature"
 ```
 
-## Zasoby
+## Resources
 
 - **Git Docs:** https://git-scm.com/doc
 - **Lazygit:** https://github.com/jesseduffield/lazygit
 - **Interactive Tutorial:** https://learngitbranching.js.org/
 - **Git Cheatsheet:** https://education.github.com/git-cheat-sheet-education.pdf
-- `man git` - Dokumentacja
-- `git help <command>` - Pomoc dla komendy
+- `man git` - Documentation
+- `git help <command>` - Help for command
 
-## Szybki Start
+## Quick Start
 
 **Git:**
 ```bash
@@ -664,9 +664,9 @@ lazygit
 # P - Push
 ```
 
-**Zapamiętaj:**
-- Commituj często, małymi porcjami
-- Używaj dobrych commit messages
-- Rebase przed merge (czysta historia)
-- Nigdy force push do współdzielonej gałęzi
-- Lazygit = szybki workflow wizualny
+**Remember:**
+- Commit often, in small chunks
+- Use good commit messages
+- Rebase before merge (clean history)
+- Never force push to shared branch
+- Lazygit = fast visual workflow

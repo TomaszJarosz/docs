@@ -1,103 +1,103 @@
 # Alacritty - Cheatsheet
 
-## Podstawowe Informacje
+## Basic Information
 
-Alacritty to szybki, minimalistyczny emulator terminala napisany w Rust. Charakteryzuje się:
-- Akceleracja GPU dla maksymalnej wydajności
-- Minimalistyczny design (brak wbudowanych tabów/paneli)
-- Konfiguracja przez plik YAML
+Alacritty is a fast, minimalist terminal emulator written in Rust. It features:
+- GPU acceleration for maximum performance
+- Minimalist design (no built-in tabs/panels)
+- YAML file configuration
 - Cross-platform (Linux, macOS, Windows)
 
-## Zarządzanie Oknami
+## Window Management
 
-### Podstawowe Operacje
-- `Ctrl + Shift + N` - Nowe okno Alacritty
-- `Ctrl + Shift + Enter` - Nowe okno (alternatywnie, zależy od konfiguracji)
-- `Ctrl + Shift + Q` - Zamknij okno
-- `Ctrl + D` - Zamknij terminal (exit shell)
-- Z terminala: `alacritty` - Otwórz nowe okno
-- `alacritty --working-directory /ścieżka` - Otwórz w konkretnym katalogu
-- `alacritty -e vim plik.txt` - Otwórz i wykonaj komendę
+### Basic Operations
+- `Ctrl + Shift + N` - New Alacritty window
+- `Ctrl + Shift + Enter` - New window (alternative, depends on configuration)
+- `Ctrl + Shift + Q` - Close window
+- `Ctrl + D` - Close terminal (exit shell)
+- From terminal: `alacritty` - Open new window
+- `alacritty --working-directory /path` - Open in specific directory
+- `alacritty -e vim file.txt` - Open and execute command
 
-### Tryb Fullscreen
-- `F11` - Przełącz tryb pełnoekranowy (zależy od konfiguracji)
-- Można skonfigurować w `~/.config/alacritty/alacritty.yml`
+### Fullscreen Mode
+- `F11` - Toggle fullscreen mode (depends on configuration)
+- Can be configured in `~/.config/alacritty/alacritty.yml`
 
-## Scrollowanie i Nawigacja
+## Scrolling and Navigation
 
-### Tryb Vi (Scrollowanie/Kopiowanie)
-- `Ctrl + Shift + Space` - Wejdź w tryb vi
+### Vi Mode (Scrolling/Copying)
+- `Ctrl + Shift + Space` - Enter vi mode
 
-**W trybie vi:**
-- `k` lub `↑` - Scroll w górę (linia)
-- `j` lub `↓` - Scroll w dół (linia)
-- `Ctrl + U` - Scroll w górę (pół strony)
-- `Ctrl + D` - Scroll w dół (pół strony)
-- `Ctrl + B` - Scroll w górę (pełna strona)
-- `Ctrl + F` - Scroll w dół (pełna strona)
-- `g` - Skok na początek historii
-- `G` - Skok na koniec (latest output)
-- `h/l` - Lewo/prawo
-- `w/b` - Następne/poprzednie słowo
-- `0/$` - Początek/koniec linii
+**In vi mode:**
+- `k` or `↑` - Scroll up (line)
+- `j` or `↓` - Scroll down (line)
+- `Ctrl + U` - Scroll up (half page)
+- `Ctrl + D` - Scroll down (half page)
+- `Ctrl + B` - Scroll up (full page)
+- `Ctrl + F` - Scroll down (full page)
+- `g` - Jump to beginning of history
+- `G` - Jump to end (latest output)
+- `h/l` - Left/right
+- `w/b` - Next/previous word
+- `0/$` - Beginning/end of line
 
-**Zaznaczanie i kopiowanie:**
-- `v` - Zaznaczanie (visual mode, character)
-- `V` - Zaznaczanie linii (visual line mode)
-- `Ctrl + V` - Zaznaczanie blokowe (visual block)
-- `y` - Kopiuj zaznaczenie do schowka
-- `/` - Szukaj do przodu
-- `?` - Szukaj do tyłu
-- `n/N` - Następne/poprzednie dopasowanie
-- `Esc` lub `q` - Wyjście z trybu vi
+**Selection and copying:**
+- `v` - Selection (visual mode, character)
+- `V` - Line selection (visual line mode)
+- `Ctrl + V` - Block selection (visual block)
+- `y` - Copy selection to clipboard
+- `/` - Search forward
+- `?` - Search backward
+- `n/N` - Next/previous match
+- `Esc` or `q` - Exit vi mode
 
-### Wyszukiwanie
-- `Ctrl + Shift + F` - Otwórz pasek wyszukiwania
-- `Enter` - Następne dopasowanie
-- `Shift + Enter` - Poprzednie dopasowanie
-- `Esc` - Zamknij wyszukiwanie
+### Search
+- `Ctrl + Shift + F` - Open search bar
+- `Enter` - Next match
+- `Shift + Enter` - Previous match
+- `Esc` - Close search
 
-### Schowek
-- `Ctrl + Shift + C` - Kopiuj zaznaczenie do schowka
-- `Ctrl + Shift + V` - Wklej ze schowka
-- `Shift + Insert` - Wklej ze schowka (alternatywnie)
-- Zaznaczenie myszką automatycznie kopiuje (opcjonalne, zależy od konfiguracji)
+### Clipboard
+- `Ctrl + Shift + C` - Copy selection to clipboard
+- `Ctrl + Shift + V` - Paste from clipboard
+- `Shift + Insert` - Paste from clipboard (alternative)
+- Mouse selection automatically copies (optional, depends on configuration)
 
-## Czcionka i Wygląd
+## Font and Appearance
 
-### Rozmiar Czcionki
-- `Ctrl + =` lub `Ctrl + +` - Powiększ czcionkę
-- `Ctrl + -` - Zmniejsz czcionkę
-- `Ctrl + 0` - Resetuj rozmiar czcionki do domyślnego
+### Font Size
+- `Ctrl + =` or `Ctrl + +` - Increase font size
+- `Ctrl + -` - Decrease font size
+- `Ctrl + 0` - Reset font size to default
 
-## Interakcja z URL i Ścieżkami
+## URL and Path Interaction
 
-- `Ctrl + Shift + B` - Otwórz URL pod kursorem w domyślnej przeglądarce
-- `Ctrl + Click` - Otwórz URL (zależy od konfiguracji)
-- Hints mode (wymaga konfiguracji):
-  - Wyświetla numery przy URL/ścieżkach
-  - Wpisz numer aby otworzyć
+- `Ctrl + Shift + B` - Open URL under cursor in default browser
+- `Ctrl + Click` - Open URL (depends on configuration)
+- Hints mode (requires configuration):
+  - Displays numbers next to URLs/paths
+  - Type number to open
 
-## Konfiguracja
+## Configuration
 
-### Lokalizacja Pliku Konfiguracyjnego
+### Configuration File Location
 ```bash
 ~/.config/alacritty/alacritty.yml
-# lub
-~/.config/alacritty/alacritty.toml  # nowsze wersje
+# or
+~/.config/alacritty/alacritty.toml  # newer versions
 ```
 
-### Przeładowanie Konfiguracji
-- Alacritty automatycznie przeładowuje konfigurację po zapisie
-- Nie trzeba restartować terminala
-- W razie problemów: zamknij i otwórz ponownie
+### Configuration Reload
+- Alacritty automatically reloads configuration after saving
+- No need to restart terminal
+- If problems occur: close and reopen
 
-### Podstawowa Konfiguracja
+### Basic Configuration
 
 ```yaml
 # ~/.config/alacritty/alacritty.yml
 
-# Okno
+# Window
 window:
   opacity: 0.95
   padding:
@@ -106,7 +106,7 @@ window:
   decorations: full  # full, none, transparent, buttonless
   startup_mode: Windowed  # Windowed, Maximized, Fullscreen
 
-# Czcionka
+# Font
 font:
   normal:
     family: "JetBrainsMono Nerd Font"
@@ -119,7 +119,7 @@ font:
     style: Italic
   size: 12.0
 
-# Kolory (Tokyo Night przykład)
+# Colors (Tokyo Night example)
 colors:
   primary:
     background: '#1a1b26'
@@ -139,7 +139,7 @@ scrolling:
   history: 10000
   multiplier: 3
 
-# Kursor
+# Cursor
 cursor:
   style:
     shape: Block  # Block, Underline, Beam
@@ -153,46 +153,46 @@ key_bindings:
   - { key: F11, action: ToggleFullscreen }
 ```
 
-## Dobre Praktyki
+## Best Practices
 
-### Workflow z Alacritty
+### Workflow with Alacritty
 
-**1. Alacritty + tmux (Rekomendowane)**
+**1. Alacritty + tmux (Recommended)**
 ```bash
-# Jedno okno Alacritty, wiele sesji tmux
+# One Alacritty window, multiple tmux sessions
 alacritty -e tmux new-session -A -s main
 ```
-- Alacritty do zarządzania oknami systemowymi
-- tmux do zarządzania sesjami/panelami wewnątrz
+- Alacritty for system window management
+- tmux for session/panel management inside
 
-**2. Wiele Okien Alacritty**
+**2. Multiple Alacritty Windows**
 ```bash
-# Różne okna dla różnych zadań
-alacritty --working-directory ~/projekty/frontend &
-alacritty --working-directory ~/projekty/backend &
+# Different windows for different tasks
+alacritty --working-directory ~/projects/frontend &
+alacritty --working-directory ~/projects/backend &
 alacritty -e htop &
 ```
 
-**3. Alacritty na Różnych Workspaces**
-- Workspace 1: Alacritty z edytorem (vim/nvim)
-- Workspace 2: Alacritty z serwerami deweloperskimi
-- Workspace 3: Alacritty z monitoringiem (htop, logs)
+**3. Alacritty on Different Workspaces**
+- Workspace 1: Alacritty with editor (vim/nvim)
+- Workspace 2: Alacritty with development servers
+- Workspace 3: Alacritty with monitoring (htop, logs)
 
-### Optymalizacja Wydajności
+### Performance Optimization
 
 1. **GPU Rendering**
-   - Alacritty używa GPU domyślnie
-   - Sprawdź: `alacritty --print-events`
+   - Alacritty uses GPU by default
+   - Check: `alacritty --print-events`
 
 2. **Font Rendering**
-   - Używaj czcionek Nerd Font dla ikon
-   - Wyłącz ligatury jeśli nie są potrzebne
+   - Use Nerd Font fonts for icons
+   - Disable ligatures if not needed
 
-3. **Historia Scrollback**
-   - Ogranicz `scrolling.history` jeśli używasz dużo outputu
-   - 10000 linii to dobry balans
+3. **Scrollback History**
+   - Limit `scrolling.history` if you use lots of output
+   - 10000 lines is a good balance
 
-### Integracja z Systemem
+### System Integration
 
 **Desktop Entry (Launcher)**
 ```bash
@@ -200,23 +200,23 @@ alacritty -e htop &
 [Desktop Entry]
 Type=Application
 Name=Alacritty (Project)
-Exec=alacritty --working-directory ~/projekty
+Exec=alacritty --working-directory ~/projects
 Icon=Alacritty
 Categories=System;TerminalEmulator;
 ```
 
-**Skrypty Pomocnicze**
+**Helper Scripts**
 ```bash
 # ~/bin/alacritty-here
 #!/bin/bash
-# Otwórz Alacritty w bieżącym katalogu
+# Open Alacritty in current directory
 alacritty --working-directory "$(pwd)" &
 
-# Dodaj do ~/.bashrc:
+# Add to ~/.bashrc:
 # alias ah='~/bin/alacritty-here'
 ```
 
-## Porównanie z Innymi Emulatorami
+## Comparison with Other Emulators
 
 | Feature | Alacritty | GNOME Terminal | Kitty | Terminator |
 |---------|-----------|----------------|-------|------------|
@@ -224,93 +224,93 @@ alacritty --working-directory "$(pwd)" &
 | Tabs | ✗ | ✓ | ✓ | ✗ |
 | Panels | ✗ | ✗ | ✓ | ✓ |
 | Config | YAML | GUI | Conf | GUI |
-| Speed | Najszybszy | Średni | Szybki | Średni |
-| Memory | Niskie | Średnie | Średnie | Wyższe |
+| Speed | Fastest | Medium | Fast | Medium |
+| Memory | Low | Medium | Medium | Higher |
 
-**Dlaczego Alacritty?**
-- Maksymalna prędkość (GPU rendering)
-- Minimalizm (brak bloat)
-- Stabilność i przewidywalność
-- Doskonała integracja z tmux
+**Why Alacritty?**
+- Maximum speed (GPU rendering)
+- Minimalism (no bloat)
+- Stability and predictability
+- Excellent integration with tmux
 
-**Kiedy NIE używać Alacritty?**
-- Potrzebujesz wbudowanych tabów (użyj Kitty)
-- Chcesz GUI do konfiguracji (użyj GNOME Terminal)
-- Potrzebujesz wbudowanych paneli (użyj Terminator lub Kitty)
+**When NOT to use Alacritty?**
+- You need built-in tabs (use Kitty)
+- You want GUI for configuration (use GNOME Terminal)
+- You need built-in panels (use Terminator or Kitty)
 
-## Rozwiązywanie Problemów
+## Troubleshooting
 
-### Brak Kolorów w Programach
+### No Colors in Programs
 ```bash
-# Sprawdź TERM
-echo $TERM  # powinno być: alacritty lub xterm-256color
+# Check TERM
+echo $TERM  # should be: alacritty or xterm-256color
 
-# Jeśli problemy, w ~/.bashrc:
+# If problems, in ~/.bashrc:
 export TERM=xterm-256color
 ```
 
-### Problemy z Czcionką
+### Font Problems
 ```bash
-# Lista dostępnych czcionek
-fc-list | grep -i "nazwa czcionki"
+# List available fonts
+fc-list | grep -i "font name"
 
-# Zainstaluj Nerd Fonts
+# Install Nerd Fonts
 # https://www.nerdfonts.com/
 ```
 
-### Alacritty Się Nie Uruchamia
+### Alacritty Won't Start
 ```bash
-# Sprawdź logi
+# Check logs
 alacritty -v  # verbose mode
 
-# Testuj konfigurację
+# Test configuration
 alacritty --config-file ~/.config/alacritty/alacritty.yml
 ```
 
-### Skróty Klawiszowe Nie Działają
-- Sprawdź konflikty z systemem (GNOME shortcuts)
-- Zdefiniuj własne w `key_bindings` w config
-- Użyj `alacritty --print-events` aby zobaczyć przechwytywane zdarzenia
+### Keyboard Shortcuts Not Working
+- Check conflicts with system (GNOME shortcuts)
+- Define your own in `key_bindings` in config
+- Use `alacritty --print-events` to see captured events
 
-## Przydatne Komendy
+## Useful Commands
 
 ```bash
-# Informacje o wersji
+# Version information
 alacritty --version
 
-# Sprawdź wszystkie opcje
+# Check all options
 alacritty --help
 
-# Otwórz w trybie debug
+# Open in debug mode
 alacritty -vvv
 
-# Testuj konfigurację bez wpływu na działające instancje
+# Test configuration without affecting running instances
 alacritty --config-file /tmp/test-config.yml
 
-# Wypisz domyślną konfigurację
-alacritty migrate  # migruje starą konfigurację do nowej
+# Print default configuration
+alacritty migrate  # migrates old configuration to new
 ```
 
-## Zasoby
+## Resources
 
-- [Oficjalna dokumentacja](https://github.com/alacritty/alacritty)
-- [Przykłady konfiguracji](https://github.com/alacritty/alacritty/blob/master/alacritty.yml)
+- [Official documentation](https://github.com/alacritty/alacritty)
+- [Configuration examples](https://github.com/alacritty/alacritty/blob/master/alacritty.yml)
 - [Color schemes](https://github.com/alacritty/alacritty-theme)
 - [Nerd Fonts](https://www.nerdfonts.com/)
 - `man alacritty` - Manual page
 - `man alacritty-msg` - IPC messaging
 
-## Skróty - Quick Reference
+## Shortcuts - Quick Reference
 
-| Akcja | Skrót |
+| Action | Shortcut |
 |-------|-------|
-| Nowe okno | `Ctrl + Shift + N` |
-| Zamknij | `Ctrl + Shift + Q` |
-| Tryb Vi | `Ctrl + Shift + Space` |
-| Szukaj | `Ctrl + Shift + F` |
-| Kopiuj | `Ctrl + Shift + C` |
-| Wklej | `Ctrl + Shift + V` |
+| New window | `Ctrl + Shift + N` |
+| Close | `Ctrl + Shift + Q` |
+| Vi mode | `Ctrl + Shift + Space` |
+| Search | `Ctrl + Shift + F` |
+| Copy | `Ctrl + Shift + C` |
+| Paste | `Ctrl + Shift + V` |
 | Zoom in | `Ctrl + =` |
 | Zoom out | `Ctrl + -` |
 | Reset zoom | `Ctrl + 0` |
-| Otwórz URL | `Ctrl + Shift + B` |
+| Open URL | `Ctrl + Shift + B` |

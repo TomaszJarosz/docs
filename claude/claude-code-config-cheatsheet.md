@@ -1,86 +1,86 @@
-# Claude Code - Konfiguracja i Cheatsheet
+# Claude Code - Configuration and Cheatsheet
 
-Kompletny przewodnik po konfigurowaniu i używaniu Claude Code.
+Complete guide to configuring and using Claude Code.
 
-## Podstawowe Informacje
+## Basic Information
 
-**Claude Code** to oficjalny CLI tool od Anthropic dla interakcji z Claude w terminalu.
+**Claude Code** is the official CLI tool from Anthropic for interacting with Claude in the terminal.
 
-- 🌐 **Oficjalna strona:** https://code.claude.com/
-- 📚 **Dokumentacja:** https://code.claude.com/docs
+- 🌐 **Official website:** https://code.claude.com/
+- 📚 **Documentation:** https://code.claude.com/docs
 - 🐙 **GitHub:** https://github.com/anthropics/claude-code
 
-## Instalacja i Pierwsze Kroki
+## Installation and Getting Started
 
-### Instalacja
+### Installation
 
 ```bash
-# Instalacja (zazwyczaj przez npm)
+# Installation (usually via npm)
 npm install -g claude-code
 
-# Lub przez oficjalny installer
+# Or via official installer
 curl -fsSL https://code.claude.com/install.sh | sh
 
-# Sprawdź wersję
+# Check version
 claude --version
 ```
 
-### Pierwsze Uruchomienie
+### First Launch
 
 ```bash
-# Uruchom Claude Code
+# Launch Claude Code
 claude
 
-# Lub w konkretnym katalogu
-cd ~/projekt
+# Or in a specific directory
+cd ~/project
 claude
 
-# Z konkretnym plikiem
+# With a specific file
 claude file.py
 ```
 
-### Konfiguracja API Key
+### API Key Configuration
 
 ```bash
-# Claude Code automatycznie poprosi o API key przy pierwszym uruchomieniu
-# Lub ustaw ręcznie:
+# Claude Code will automatically ask for API key on first launch
+# Or set manually:
 export ANTHROPIC_API_KEY="your-api-key-here"
 
-# Dodaj do ~/.bashrc lub ~/.zshrc:
+# Add to ~/.bashrc or ~/.zshrc:
 echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 ```
 
-## Struktura Konfiguracji
+## Configuration Structure
 
-### Lokalizacje Plików
+### File Locations
 
 ```
-~/.config/claude-code/          # Główny folder konfiguracji
-├── settings.json               # Ustawienia globalne
-├── .env                        # Zmienne środowiskowe
+~/.config/claude-code/          # Main configuration folder
+├── settings.json               # Global settings
+├── .env                        # Environment variables
 └── cache/                      # Cache
 
-.claude/                        # Folder projektu (w repo)
+.claude/                        # Project folder (in repo)
 ├── commands/                   # Slash commands
 │   ├── command1.md
 │   └── command2.md
-├── settings.json               # Ustawienia projektu
-└── prompts/                    # Własne prompty
+├── settings.json               # Project settings
+└── prompts/                    # Custom prompts
 ```
 
-## settings.json - Konfiguracja
+## settings.json - Configuration
 
-### Lokalizacja
+### Location
 
 ```bash
-# Globalna konfiguracja
+# Global configuration
 ~/.config/claude-code/settings.json
 
-# Konfiguracja projektu (w repo)
+# Project configuration (in repo)
 .claude/settings.json
 ```
 
-### Przykładowa Konfiguracja Globalna
+### Example Global Configuration
 
 ```json
 {
@@ -108,7 +108,7 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
     }
   },
 
-  "customInstructions": "Zawsze odpowiadaj po polsku. Używaj konkretnych przykładów.",
+  "customInstructions": "Always respond in English. Use specific examples.",
 
   "theme": "dark",
 
@@ -136,11 +136,11 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 }
 ```
 
-### Przykładowa Konfiguracja Projektu
+### Example Project Configuration
 
 ```json
 {
-  "customInstructions": "To jest projekt React. Używaj TypeScript i functional components.",
+  "customInstructions": "This is a React project. Use TypeScript and functional components.",
 
   "autoApproveTools": {
     "Read": ["//**/*.ts", "//**/*.tsx", "//**/*.json"],
@@ -158,21 +158,21 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 }
 ```
 
-## Uprawnienia (autoApproveTools)
+## Permissions (autoApproveTools)
 
-### Dozwolone Ścieżki dla Read/Grep/Glob
+### Allowed Paths for Read/Grep/Glob
 
 ```json
 {
   "autoApproveTools": {
     "Read": [
-      "//home/tomasz/**",           // Cały home directory
-      "//**/src/**",                 // Wszystkie foldery src
-      "//**/*.{js,ts,py}",          // Konkretne rozszerzenia
-      "//home/tomasz/projekt/**"    // Konkretny projekt
+      "//home/tomasz/**",           // Entire home directory
+      "//**/src/**",                 // All src folders
+      "//**/*.{js,ts,py}",          // Specific extensions
+      "//home/tomasz/project/**"    // Specific project
     ],
     "Grep": [
-      "//home/tomasz/projekty/**"
+      "//home/tomasz/projects/**"
     ],
     "Glob": [
       "//home/tomasz/**"
@@ -183,23 +183,23 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 
 **Pattern syntax:**
 - `//` - absolute path
-- `*` - dowolne znaki (nie /)
-- `**` - dowolne znaki (including /)
-- `{js,ts}` - alternatywy
+- `*` - any characters (not /)
+- `**` - any characters (including /)
+- `{js,ts}` - alternatives
 - `[0-9]` - character class
 
-### Dozwolone Komendy Bash
+### Allowed Bash Commands
 
 ```json
 {
   "autoApproveTools": {
     "Bash": {
-      // Proste komendy
+      // Simple commands
       "ls": true,
       "pwd": true,
       "date": true,
 
-      // Z argumentami (wildcard)
+      // With arguments (wildcard)
       "git status": true,
       "git diff*": true,
       "npm *": true,
@@ -216,9 +216,9 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 }
 ```
 
-**Uwaga:** Bądź ostrożny z wildcardami! `"rm*": true` byłoby niebezpieczne.
+**Warning:** Be careful with wildcards! `"rm*": true` would be dangerous.
 
-### Zalecane Ustawienia Bezpieczeństwa
+### Recommended Security Settings
 
 ```json
 {
@@ -227,7 +227,7 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
     "Grep": ["//home/tomasz/**"],
     "Glob": ["//home/tomasz/**"],
     "Bash": {
-      // Bezpieczne komendy tylko do odczytu
+      // Safe read-only commands
       "ls*": true,
       "cat*": true,
       "head*": true,
@@ -240,7 +240,7 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
       "whoami": true,
       "uname*": true,
 
-      // Build tools (zazwyczaj bezpieczne)
+      // Build tools (usually safe)
       "npm test": true,
       "npm run build": true,
       "cargo build": true,
@@ -250,138 +250,138 @@ echo 'export ANTHROPIC_API_KEY="your-key"' >> ~/.bashrc
 }
 ```
 
-**NIE dodawaj:**
-- `rm*` - usuwanie plików
-- `sudo*` - komendy z sudo
-- `dd*` - niebezpieczne operacje na dysku
-- `mkfs*` - formatowanie
-- Dowolne destructive commands
+**DO NOT add:**
+- `rm*` - file deletion
+- `sudo*` - commands with sudo
+- `dd*` - dangerous disk operations
+- `mkfs*` - formatting
+- Any destructive commands
 
-## Slash Commands (Własne Komendy)
+## Slash Commands (Custom Commands)
 
-### Tworzenie Slash Command
+### Creating Slash Commands
 
 ```bash
-# Utwórz folder dla komend
+# Create folder for commands
 mkdir -p .claude/commands
 
-# Utwórz komendę
+# Create command
 nvim .claude/commands/review.md
 ```
 
-**Przykład: `.claude/commands/review.md`**
+**Example: `.claude/commands/review.md`**
 ```markdown
 ---
-description: Code review tego pliku
+description: Code review this file
 ---
 
-Przejrzyj ten plik i znajdź:
-1. Potencjalne bugi
-2. Problemy z wydajnością
-3. Naruszenia best practices
-4. Sugestie ulepszeń
+Review this file and find:
+1. Potential bugs
+2. Performance issues
+3. Best practice violations
+4. Improvement suggestions
 
-Sformatuj jako:
-- 🐛 Bug: opis
-- ⚡ Performance: opis
-- 📖 Best Practice: opis
-- 💡 Suggestion: opis
+Format as:
+- 🐛 Bug: description
+- ⚡ Performance: description
+- 📖 Best Practice: description
+- 💡 Suggestion: description
 ```
 
-### Użycie
+### Usage
 
 ```bash
-# W Claude Code:
+# In Claude Code:
 /review path/to/file.js
 ```
 
-### Przykładowe Slash Commands
+### Example Slash Commands
 
 **`.claude/commands/test.md`**
 ```markdown
 ---
-description: Napisz testy dla tego kodu
+description: Write tests for this code
 ---
 
-Napisz kompletne unit testy dla {{file}}.
-Użyj frameworka testowego odpowiedniego dla języka.
-Pokryj edge cases i error handling.
+Write complete unit tests for {{file}}.
+Use the appropriate testing framework for the language.
+Cover edge cases and error handling.
 ```
 
 **`.claude/commands/doc.md`**
 ```markdown
 ---
-description: Generuj dokumentację
+description: Generate documentation
 ---
 
-Wygeneruj pełną dokumentację dla {{file}}:
-- Opis funkcji/klas
-- Parametry i zwracane wartości
-- Przykłady użycia
+Generate complete documentation for {{file}}:
+- Function/class descriptions
+- Parameters and return values
+- Usage examples
 - Edge cases
 
-Format: JSDoc / docstrings / rustdoc (zależnie od języka)
+Format: JSDoc / docstrings / rustdoc (depending on language)
 ```
 
 **`.claude/commands/optimize.md`**
 ```markdown
 ---
-description: Optymalizuj kod
+description: Optimize code
 ---
 
-Zoptymalizuj ten kod pod kątem:
-1. Wydajności
-2. Czytelności
+Optimize this code for:
+1. Performance
+2. Readability
 3. Memory usage
 4. Best practices
 
-Wyjaśnij każdą zmianę.
+Explain each change.
 ```
 
 **`.claude/commands/translate.md`**
 ```markdown
 ---
-description: Przetłumacz kod na inny język
+description: Translate code to another language
 ---
 
-Przetłumacz {{file}} na {{language}}.
-Zachowaj:
-- Funkcjonalność
-- Strukturę
-- Komentarze
+Translate {{file}} to {{language}}.
+Preserve:
+- Functionality
+- Structure
+- Comments
 - Error handling
 
-Dodaj komentarze o różnicach między językami.
+Add comments about differences between languages.
 ```
 
-### Parametry w Slash Commands
+### Parameters in Slash Commands
 
 ```markdown
-<!-- Użycie zmiennych -->
-{{file}}        - aktualny plik
-{{language}}    - przekazany parametr
-{{selection}}   - zaznaczony tekst
+<!-- Using variables -->
+{{file}}        - current file
+{{language}}    - passed parameter
+{{selection}}   - selected text
 {{arg1}}        - argument 1
 {{arg2}}        - argument 2
 
-<!-- Przykład użycia: -->
+<!-- Usage example: -->
 /translate rust
 
-<!-- W markdown: -->
-Przetłumacz na {{language}}.
+<!-- In markdown: -->
+Translate to {{language}}.
 ```
 
-## Hooks - Automatyzacja
+## Hooks - Automation
 
-Hooks pozwalają uruchamiać skrypty w odpowiedzi na eventy.
+Hooks allow running scripts in response to events.
 
-### Typy Hooków
+### Hook Types
 
-1. **userPromptSubmit** - przed wysłaniem promptu
-2. **preToolCall** - przed użyciem narzędzia
-3. **postToolCall** - po użyciu narzędzia
+1. **userPromptSubmit** - before sending prompt
+2. **preToolCall** - before using a tool
+3. **postToolCall** - after using a tool
 
-### Konfiguracja w settings.json
+### Configuration in settings.json
 
 ```json
 {
@@ -393,29 +393,29 @@ Hooks pozwalają uruchamiać skrypty w odpowiedzi na eventy.
 }
 ```
 
-### Przykładowy Hook: Pre-Commit Check
+### Example Hook: Pre-Commit Check
 
 **`~/.claude/hooks/pre-tool.sh`**
 ```bash
 #!/bin/bash
 
-# Jeśli Claude chce użyć git commit, najpierw uruchom testy
+# If Claude wants to use git commit, run tests first
 if [[ "$TOOL_NAME" == "Bash" ]] && [[ "$TOOL_ARGS" == *"git commit"* ]]; then
-    echo "🧪 Uruchamiam testy przed commitem..."
+    echo "🧪 Running tests before commit..."
     npm test || exit 1
 fi
 
-# Jeśli wszystko OK, pozwól
+# If everything OK, allow it
 exit 0
 ```
 
-### Przykładowy Hook: Auto-format
+### Example Hook: Auto-format
 
 **`~/.claude/hooks/post-tool.sh`**
 ```bash
 #!/bin/bash
 
-# Po edycji pliku, auto-format
+# After editing a file, auto-format
 if [[ "$TOOL_NAME" == "Edit" ]] || [[ "$TOOL_NAME" == "Write" ]]; then
     FILE="$TOOL_RESULT_FILE"
 
@@ -429,29 +429,29 @@ if [[ "$TOOL_NAME" == "Edit" ]] || [[ "$TOOL_NAME" == "Write" ]]; then
 fi
 ```
 
-### Przykładowy Hook: Linting
+### Example Hook: Linting
 
 **`~/.claude/hooks/pre-submit.sh`**
 ```bash
 #!/bin/bash
 
-# Przed każdym promptem, sprawdź czy repo jest clean
+# Before each prompt, check if repo is clean
 if git status --porcelain | grep -q .; then
-    echo "⚠️  Masz niezacommitowane zmiany!"
+    echo "⚠️  You have uncommitted changes!"
 fi
 ```
 
-**Pamiętaj:**
+**Remember:**
 ```bash
-# Zrób hooki wykonywalne
+# Make hooks executable
 chmod +x ~/.claude/hooks/*.sh
 ```
 
 ## MCP Servers (Model Context Protocol)
 
-MCP pozwala Claude Code na integrację z zewnętrznymi narzędziami.
+MCP allows Claude Code to integrate with external tools.
 
-### Konfiguracja MCP
+### MCP Configuration
 
 **`~/.config/claude-code/mcp-servers.json`**
 ```json
@@ -459,7 +459,7 @@ MCP pozwala Claude Code na integrację z zewnętrznymi narzędziami.
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/tomasz/projekty"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/tomasz/projects"]
     },
     "github": {
       "command": "npx",
@@ -479,7 +479,7 @@ MCP pozwala Claude Code na integrację z zewnętrznymi narzędziami.
 }
 ```
 
-### Dostępne MCP Servers
+### Available MCP Servers
 
 ```bash
 # Filesystem access
@@ -500,11 +500,11 @@ MCP pozwala Claude Code na integrację z zewnętrznymi narzędziami.
 # Brave Search
 @modelcontextprotocol/server-brave-search
 
-# Memory (długoterminowa pamięć)
+# Memory (long-term memory)
 @modelcontextprotocol/server-memory
 ```
 
-### Własny MCP Server
+### Custom MCP Server
 
 **`my-mcp-server.js`**
 ```javascript
@@ -522,12 +522,12 @@ const server = new Server({
   },
 });
 
-// Definicja narzędzia
+// Tool definition
 server.setRequestHandler('tools/list', async () => {
   return {
     tools: [{
       name: 'get_weather',
-      description: 'Pobierz pogodę dla miasta',
+      description: 'Get weather for a city',
       inputSchema: {
         type: 'object',
         properties: {
@@ -541,7 +541,7 @@ server.setRequestHandler('tools/list', async () => {
 
 server.setRequestHandler('tools/call', async (request) => {
   if (request.params.name === 'get_weather') {
-    // Implementacja
+    // Implementation
     return { content: [{ type: 'text', text: 'Sunny, 20°C' }] };
   }
 });
@@ -550,14 +550,14 @@ const transport = new StdioServerTransport();
 server.connect(transport);
 ```
 
-## Custom Instructions (Systeminstrukcje)
+## Custom Instructions (System Instructions)
 
-### Globalne Custom Instructions
+### Global Custom Instructions
 
 **`~/.config/claude-code/settings.json`**
 ```json
 {
-  "customInstructions": "1. Zawsze odpowiadaj po polsku\n2. Używaj konkretnych przykładów\n3. Dla kodu Python używaj type hints\n4. Commituj małe, atomowe zmiany"
+  "customInstructions": "1. Always respond in English\n2. Use specific examples\n3. For Python code use type hints\n4. Commit small, atomic changes"
 }
 ```
 
@@ -566,7 +566,7 @@ server.connect(transport);
 **`.claude/settings.json`**
 ```json
 {
-  "customInstructions": "To jest projekt e-commerce w Django.\n\nGuidelines:\n- Używaj Class-Based Views\n- Wszystkie API endpoints przez DRF\n- Testy w pytest\n- Dokumentacja w docstrings (Google style)\n- Pre-commit hooks: black, flake8, mypy"
+  "customInstructions": "This is an e-commerce project in Django.\n\nGuidelines:\n- Use Class-Based Views\n- All API endpoints through DRF\n- Tests in pytest\n- Documentation in docstrings (Google style)\n- Pre-commit hooks: black, flake8, mypy"
 }
 ```
 
@@ -574,78 +574,78 @@ server.connect(transport);
 
 ```json
 {
-  "customInstructions": "# Role\nJesteś ekspertem od Rust i performance.\n\n# Code Style\n- Używaj idiomatic Rust\n- Zawsze wykorzystuj type system\n- Error handling przez Result<T, E>\n- Dokumentacja z przykładami\n\n# Testing\n- Unit testy dla każdej funkcji\n- Integration testy dla modułów\n- Benchmarki dla performance-critical code\n\n# Commit Messages\nFormat: <type>(<scope>): <subject>\nTypes: feat, fix, docs, refactor, test, chore"
+  "customInstructions": "# Role\nYou are an expert in Rust and performance.\n\n# Code Style\n- Use idiomatic Rust\n- Always leverage the type system\n- Error handling through Result<T, E>\n- Documentation with examples\n\n# Testing\n- Unit tests for every function\n- Integration tests for modules\n- Benchmarks for performance-critical code\n\n# Commit Messages\nFormat: <type>(<scope>): <subject>\nTypes: feat, fix, docs, refactor, test, chore"
 }
 ```
 
-## .gitignore dla Claude Code
+## .gitignore for Claude Code
 
-Dodaj do `.gitignore`:
+Add to `.gitignore`:
 
 ```gitignore
 # Claude Code cache
 .claude/cache/
 .claude/.cache/
 
-# Nie ignoruj konfiguracji i komend
+# Don't ignore configuration and commands
 !.claude/settings.json
 !.claude/commands/
 !.claude/prompts/
 
-# Ignoruj logi
+# Ignore logs
 .claude/*.log
 
-# API keys (jeśli przypadkowo w projekcie)
+# API keys (if accidentally in project)
 .claude/.env
 ```
 
-## Przydatne Komendy CLI
+## Useful CLI Commands
 
 ```bash
-# Uruchom Claude w projekcie
+# Run Claude in project
 claude
 
-# Z konkretnym modelem
+# With specific model
 claude --model claude-opus-4
 
-# Zobacz wersję
+# See version
 claude --version
 
-# Pomoc
+# Help
 claude --help
 
 # Reset cache
 rm -rf ~/.config/claude-code/cache/
 
-# Zobacz aktualną konfigurację
+# See current configuration
 cat ~/.config/claude-code/settings.json
 
 # Test slash command
-# W Claude Code:
+# In Claude Code:
 /command-name arg1 arg2
 ```
 
-## Skróty Klawiszowe w Claude Code
+## Keyboard Shortcuts in Claude Code
 
-| Skrót | Akcja |
+| Shortcut | Action |
 |-------|-------|
-| `Ctrl+C` | Przerwij generowanie odpowiedzi |
-| `Ctrl+D` | Wyjdź z Claude Code |
-| `↑/↓` | Historia promptów |
+| `Ctrl+C` | Stop generating response |
+| `Ctrl+D` | Exit Claude Code |
+| `↑/↓` | Prompt history |
 | `Tab` | Autocomplete (slash commands) |
-| `/help` | Lista dostępnych slash commands |
-| `/clear` | Wyczyść konwersację |
+| `/help` | List available slash commands |
+| `/clear` | Clear conversation |
 
 ## Workflow Tips
 
-### 1. Projekt Setup
+### 1. Project Setup
 
 ```bash
-# W nowym projekcie:
+# In new project:
 mkdir -p .claude/commands
 cat > .claude/settings.json << 'EOF'
 {
-  "customInstructions": "Opis projektu...",
+  "customInstructions": "Project description...",
   "autoApproveTools": {
     "Read": ["//**"],
     "Bash": {
@@ -656,13 +656,13 @@ cat > .claude/settings.json << 'EOF'
 }
 EOF
 
-# Dodaj podstawowe komendy
-echo "---\ndescription: Code review\n---\nPrzejrzyj kod..." > .claude/commands/review.md
+# Add basic commands
+echo "---\ndescription: Code review\n---\nReview code..." > .claude/commands/review.md
 ```
 
 ### 2. Team Configuration
 
-Udostępnij `.claude/` w repo:
+Share `.claude/` in repo:
 
 ```bash
 git add .claude/
@@ -670,20 +670,20 @@ git commit -m "Add Claude Code configuration"
 git push
 ```
 
-Zespół ma teraz te same:
+Team now has the same:
 - Slash commands
 - Custom instructions
-- Auto-approve rules (jeśli bezpieczne)
+- Auto-approve rules (if safe)
 
 ### 3. Multi-Project Workflow
 
 ```bash
-# Globalna konfiguracja dla wszystkich projektów
+# Global configuration for all projects
 ~/.config/claude-code/settings.json
 
 # + per-project overrides
-~/projekt1/.claude/settings.json
-~/projekt2/.claude/settings.json
+~/project1/.claude/settings.json
+~/project2/.claude/settings.json
 ```
 
 ### 4. Environment Variables
@@ -695,7 +695,7 @@ GITHUB_TOKEN=ghp_...
 DATABASE_URL=postgresql://...
 ```
 
-**Użycie w settings.json:**
+**Usage in settings.json:**
 ```json
 {
   "apiKey": "${ANTHROPIC_API_KEY}"
@@ -704,16 +704,16 @@ DATABASE_URL=postgresql://...
 
 ## Troubleshooting
 
-### Claude nie widzi plików
+### Claude doesn't see files
 
 ```bash
-# Sprawdź uprawnienia
+# Check permissions
 ls -la .claude/
 
-# Sprawdź settings.json
+# Check settings.json
 cat .claude/settings.json
 
-# Dodaj do autoApproveTools
+# Add to autoApproveTools
 {
   "autoApproveTools": {
     "Read": ["//home/tomasz/**"]
@@ -721,60 +721,60 @@ cat .claude/settings.json
 }
 ```
 
-### Slash command nie działa
+### Slash command not working
 
 ```bash
-# Sprawdź czy plik istnieje
+# Check if file exists
 ls .claude/commands/
 
-# Sprawdź format pliku (musi być .md)
-# Sprawdź header:
+# Check file format (must be .md)
+# Check header:
 ---
-description: Opis
+description: Description
 ---
 ```
 
-### Hook nie wykonuje się
+### Hook not executing
 
 ```bash
-# Sprawdź permissions
+# Check permissions
 chmod +x ~/.claude/hooks/*.sh
 
-# Sprawdź czy ścieżka w settings.json jest poprawna
+# Check if path in settings.json is correct
 cat ~/.config/claude-code/settings.json | grep hooks
 
 # Debug hook
 bash -x ~/.claude/hooks/pre-tool.sh
 ```
 
-### MCP server nie działa
+### MCP server not working
 
 ```bash
-# Sprawdź czy server jest zainstalowany
+# Check if server is installed
 npx @modelcontextprotocol/server-filesystem --version
 
-# Sprawdź logi
+# Check logs
 ~/.config/claude-code/logs/mcp-*.log
 
-# Test ręcznie
+# Test manually
 npx @modelcontextprotocol/server-filesystem /path/to/dir
 ```
 
 ## Best Practices
 
-### 1. Bezpieczeństwo
+### 1. Security
 
 ```json
 {
   "autoApproveTools": {
-    // ✅ Dobre - tylko odczyt
-    "Read": ["//home/tomasz/projekty/**"],
-    "Grep": ["//home/tomasz/projekty/**"],
+    // ✅ Good - read-only
+    "Read": ["//home/tomasz/projects/**"],
+    "Grep": ["//home/tomasz/projects/**"],
 
-    // ❌ Złe - zbyt szerokie uprawnienia
+    // ❌ Bad - too broad permissions
     "Bash": { "*": true },
 
-    // ✅ Dobre - konkretne komendy
+    // ✅ Good - specific commands
     "Bash": {
       "git status": true,
       "npm test": true
@@ -787,43 +787,43 @@ npx @modelcontextprotocol/server-filesystem /path/to/dir
 
 ```
 .claude/
-├── settings.json              # Konfiguracja projektu
+├── settings.json              # Project configuration
 ├── commands/                  # Slash commands
 │   ├── review.md
 │   ├── test.md
 │   └── doc.md
 ├── prompts/                   # Reusable prompts
 │   └── code-style.md
-└── .env                       # Secrets (w .gitignore!)
+└── .env                       # Secrets (in .gitignore!)
 ```
 
 ### 3. Documentation
 
-Dokumentuj custom commands:
+Document custom commands:
 
 **`README.md`**
 ```markdown
 ## Claude Code Commands
 
-- `/review` - Code review pliku
-- `/test` - Generuj testy
-- `/doc` - Generuj dokumentację
-- `/optimize` - Optymalizuj kod
+- `/review` - Code review of file
+- `/test` - Generate tests
+- `/doc` - Generate documentation
+- `/optimize` - Optimize code
 ```
 
 ### 4. Team Sharing
 
 ```bash
-# Commituj tylko bezpieczne rzeczy
+# Commit only safe things
 git add .claude/settings.json
 git add .claude/commands/
 
-# NIE commituj
+# DO NOT commit
 .claude/.env          # Secrets
 .claude/cache/        # Cache
 ```
 
-## Przykładowe Complete Setup
+## Example Complete Setup
 
 ### ~/.config/claude-code/settings.json
 
@@ -847,7 +847,7 @@ git add .claude/commands/
     }
   },
 
-  "customInstructions": "Zawsze odpowiadaj po polsku. Używaj przykładów. Commituj małe zmiany.",
+  "customInstructions": "Always respond in English. Use examples. Commit small changes.",
 
   "statusLine": {
     "enabled": true
@@ -859,11 +859,11 @@ git add .claude/commands/
 }
 ```
 
-### .claude/settings.json (w projekcie)
+### .claude/settings.json (in project)
 
 ```json
 {
-  "customInstructions": "Projekt React + TypeScript + Tailwind.\n\nGuidelines:\n- Functional components + hooks\n- TypeScript strict mode\n- Tailwind dla stylów\n- React Query dla data fetching\n- Vitest dla testów",
+  "customInstructions": "React + TypeScript + Tailwind project.\n\nGuidelines:\n- Functional components + hooks\n- TypeScript strict mode\n- Tailwind for styles\n- React Query for data fetching\n- Vitest for tests",
 
   "autoApproveTools": {
     "Read": ["//**/*.{ts,tsx,json,md}"],
@@ -875,9 +875,9 @@ git add .claude/commands/
 }
 ```
 
-## Zasoby
+## Resources
 
-- **Dokumentacja:** https://code.claude.com/docs
+- **Documentation:** https://code.claude.com/docs
 - **GitHub:** https://github.com/anthropics/claude-code
 - **MCP Docs:** https://modelcontextprotocol.io/
 - **Community:** https://github.com/anthropics/claude-code/discussions
@@ -885,7 +885,7 @@ git add .claude/commands/
 ## Quick Reference
 
 ```bash
-# Setup projektu
+# Project setup
 mkdir -p .claude/commands
 nvim .claude/settings.json
 
@@ -898,7 +898,7 @@ nvim .claude/settings.json
 # Clear conversation
 /clear
 
-# Uprawnienia w settings.json
+# Permissions in settings.json
 {
   "autoApproveTools": {
     "Read": ["//path/**"],
@@ -913,9 +913,9 @@ chmod +x ~/.claude/hooks/*.sh
 npx @modelcontextprotocol/server-name
 ```
 
-**Zapamiętaj:**
-- Bezpieczeństwo > wygoda
-- Dokumentuj custom commands
-- Testuj hooks przed użyciem
-- Nie commituj secrets (.env)
-- `.claude/` w repo = team consistency
+**Remember:**
+- Security > convenience
+- Document custom commands
+- Test hooks before using
+- Don't commit secrets (.env)
+- `.claude/` in repo = team consistency
