@@ -341,6 +341,244 @@ LazyVim has many "extras" (additional plugins). Check:
 - `:LazyExtras` - list of available extras
 - Select what you want to enable (e.g., language support)
 
+## Popular Plugins in LazyVim
+
+### Core Plugins (Pre-installed)
+
+| Plugin | Description | Key Bindings |
+|--------|-------------|--------------|
+| **Telescope** | Fuzzy finder | `<leader>ff`, `<leader>fg`, `<leader>fb` |
+| **Neo-tree** | File explorer | `<leader>e` |
+| **Which-key** | Keybinding hints | `<leader>` (wait) |
+| **nvim-treesitter** | Syntax highlighting | Automatic |
+| **nvim-lspconfig** | LSP support | `gd`, `gr`, `K` |
+| **Mason** | LSP/DAP installer | `:Mason` |
+| **nvim-cmp** | Autocompletion | `<C-Space>` |
+| **LuaSnip** | Snippets | `<Tab>` to expand |
+| **Gitsigns** | Git integration | `]h`, `[h` |
+| **mini.surround** | Surround text | `gsa`, `gsd`, `gsr` |
+| **flash.nvim** | Jump anywhere | `s` |
+| **bufferline** | Buffer tabs | `[b`, `]b` |
+
+### Language-Specific Extras
+
+Enable via `:LazyExtras`:
+
+```lua
+-- In ~/.config/nvim/lua/plugins/extras.lua
+return {
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.python" },
+  { import = "lazyvim.plugins.extras.lang.go" },
+  { import = "lazyvim.plugins.extras.lang.rust" },
+  { import = "lazyvim.plugins.extras.lang.docker" },
+  { import = "lazyvim.plugins.extras.lang.yaml" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+}
+```
+
+### Recommended Additional Plugins
+
+#### Copilot (AI Completion)
+
+```lua
+-- ~/.config/nvim/lua/plugins/copilot.lua
+return {
+  { import = "lazyvim.plugins.extras.coding.copilot" },
+}
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `<Tab>` | Accept suggestion |
+| `<M-]>` | Next suggestion |
+| `<M-[>` | Previous suggestion |
+| `<C-]>` | Dismiss |
+
+#### Trouble (Better Diagnostics)
+
+Already included in LazyVim:
+
+| Shortcut | Action |
+|----------|--------|
+| `<leader>xx` | Toggle Trouble |
+| `<leader>xw` | Workspace diagnostics |
+| `<leader>xd` | Document diagnostics |
+| `<leader>xq` | Quickfix list |
+| `<leader>xl` | Location list |
+
+#### Noice (Better UI)
+
+Already included - enhances command line, messages, and popups.
+
+| Shortcut | Action |
+|----------|--------|
+| `<leader>sna` | All notifications |
+| `<leader>snd` | Dismiss notifications |
+| `<leader>snl` | Last notification |
+| `<leader>snh` | Notification history |
+
+#### Spectre (Search & Replace)
+
+```lua
+{ import = "lazyvim.plugins.extras.editor.spectre" }
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `<leader>sr` | Search & Replace in files |
+
+#### Leap/Flash (Fast Navigation)
+
+Flash is already included:
+
+| Shortcut | Action |
+|----------|--------|
+| `s` | Flash jump |
+| `S` | Flash treesitter |
+| `r` | Remote flash (operator) |
+
+#### DAP (Debugging)
+
+```lua
+{ import = "lazyvim.plugins.extras.dap.core" }
+-- Plus language-specific:
+{ import = "lazyvim.plugins.extras.dap.nlua" }  -- Lua
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `<leader>db` | Toggle breakpoint |
+| `<leader>dB` | Breakpoint condition |
+| `<leader>dc` | Continue |
+| `<leader>dC` | Run to cursor |
+| `<leader>di` | Step into |
+| `<leader>do` | Step over |
+| `<leader>dO` | Step out |
+| `<leader>dr` | Toggle REPL |
+| `<leader>ds` | Session |
+| `<leader>dt` | Terminate |
+| `<leader>dw` | Widgets |
+
+#### Harpoon (Quick File Switching)
+
+Add manually:
+
+```lua
+-- ~/.config/nvim/lua/plugins/harpoon.lua
+return {
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    local harpoon = require("harpoon")
+    harpoon:setup()
+
+    vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
+    vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+    vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+    vim.keymap.set("n", "<C-j>", function() harpoon:list():select(2) end)
+    vim.keymap.set("n", "<C-k>", function() harpoon:list():select(3) end)
+    vim.keymap.set("n", "<C-l>", function() harpoon:list():select(4) end)
+  end,
+}
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `<leader>a` | Add file to harpoon |
+| `<C-e>` | Toggle harpoon menu |
+| `<C-h/j/k/l>` | Jump to file 1/2/3/4 |
+
+#### Oil.nvim (File Manager)
+
+Alternative to Neo-tree - edit filesystem like a buffer:
+
+```lua
+-- ~/.config/nvim/lua/plugins/oil.lua
+return {
+  "stevearc/oil.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("oil").setup()
+    vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+  end,
+}
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `-` | Open parent dir |
+| `<CR>` | Open file/dir |
+| `-` (in oil) | Go up |
+| `g?` | Help |
+
+#### Undotree (Undo History)
+
+```lua
+-- ~/.config/nvim/lua/plugins/undotree.lua
+return {
+  "mbbill/undotree",
+  keys = {
+    { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" },
+  },
+}
+```
+
+### Plugin Configuration Location
+
+```
+~/.config/nvim/
+├── lua/
+│   ├── config/
+│   │   ├── autocmds.lua    # Auto commands
+│   │   ├── keymaps.lua     # Key mappings
+│   │   ├── lazy.lua        # Lazy.nvim setup
+│   │   └── options.lua     # Vim options
+│   └── plugins/
+│       ├── extras.lua      # LazyVim extras
+│       ├── copilot.lua     # Copilot config
+│       ├── harpoon.lua     # Harpoon config
+│       └── ...             # Other plugins
+└── init.lua                 # Entry point
+```
+
+### Adding Custom Plugins
+
+```lua
+-- ~/.config/nvim/lua/plugins/custom.lua
+return {
+  -- Simple plugin
+  { "folke/zen-mode.nvim" },
+
+  -- Plugin with config
+  {
+    "folke/twilight.nvim",
+    opts = {
+      dimming = { alpha = 0.25 },
+    },
+  },
+
+  -- Plugin with lazy loading
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+}
+```
+
+### Updating Plugins
+
+| Command | Action |
+|---------|--------|
+| `:Lazy` | Open Lazy plugin manager |
+| `:Lazy update` | Update all plugins |
+| `:Lazy sync` | Sync plugins |
+| `:Lazy clean` | Remove unused plugins |
+| `:Lazy profile` | View startup time |
+
 ## Common Issues
 
 ### LSP not working

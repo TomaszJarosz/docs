@@ -590,6 +590,8 @@ git push origin --delete v1.0.0            # remote
 
 ### Bisect - Find Bug
 
+Git bisect uses binary search to find the commit that introduced a bug.
+
 ```bash
 # Start bisect
 git bisect start
@@ -609,6 +611,61 @@ git bisect bad                    # doesn't work
 git bisect reset
 ```
 
+#### Automated Bisect
+
+```bash
+# Automatic bisect with test script
+git bisect start
+git bisect bad HEAD
+git bisect good v1.0.0
+
+# Run script for each commit (exit 0 = good, exit 1 = bad)
+git bisect run npm test
+# or
+git bisect run ./test-script.sh
+
+# Git will automatically find the bad commit!
+git bisect reset
+```
+
+#### Bisect with Specific Path
+
+```bash
+# Only consider commits that touched specific files
+git bisect start -- src/auth/
+git bisect bad
+git bisect good v1.0.0
+```
+
+#### Bisect Skip
+
+```bash
+# If you can't test current commit (broken build, etc.)
+git bisect skip
+
+# Skip range of commits
+git bisect skip v1.0.1..v1.0.5
+```
+
+#### Visualize Bisect Progress
+
+```bash
+# See remaining commits to test
+git bisect visualize
+# or
+git bisect view
+```
+
+#### Bisect Log
+
+```bash
+# Save bisect session
+git bisect log > bisect.log
+
+# Replay bisect session
+git bisect replay bisect.log
+```
+
 ### Reflog - HEAD History
 
 ```bash
@@ -626,22 +683,123 @@ git reflog
 git reset --hard HEAD@{2}
 ```
 
-### Worktree - Multiple Directories
+### Worktree - Multiple Working Directories
+
+Git worktree allows you to have multiple working directories for the same repository. This is incredibly useful for:
+- Working on multiple features simultaneously
+- Testing one branch while developing on another
+- Building/running code from different branches at the same time
+- Quick hotfixes without stashing
 
 ```bash
-# Add additional working directory
+# Add worktree for existing branch
 git worktree add ../feature-branch feature/new-feature
 
-# List worktrees
+# Add worktree with new branch
+git worktree add -b hotfix/urgent ../hotfix main
+
+# List all worktrees
 git worktree list
 
-# Remove worktree
+# Remove worktree (clean)
 git worktree remove ../feature-branch
 
-# Usage:
-cd ../feature-branch
-# You work in separate directory, but same repo!
+# Force remove (if directory has changes)
+git worktree remove --force ../feature-branch
+
+# Remove worktrees for deleted branches
+git worktree prune
 ```
+
+#### Worktree Workflow Examples
+
+**Scenario 1: Urgent hotfix while working on feature**
+
+```bash
+# You're in ~/projects/myapp working on feature-x
+# Urgent bug report comes in!
+
+# Create hotfix worktree from main
+git worktree add -b hotfix/critical-bug ../myapp-hotfix main
+
+# Work on hotfix in separate directory
+cd ../myapp-hotfix
+# ... fix bug ...
+git commit -am "fix: resolve critical issue"
+git push -u origin hotfix/critical-bug
+
+# Create PR, merge, then clean up
+cd ../myapp
+git worktree remove ../myapp-hotfix
+
+# Continue working on your feature
+```
+
+**Scenario 2: Compare behavior between branches**
+
+```bash
+# Create worktree for main branch
+git worktree add ../myapp-main main
+
+# Now you can run both versions simultaneously
+# Terminal 1:
+cd ../myapp-main && npm start  # Port 3000
+
+# Terminal 2:
+cd ../myapp && npm start       # Port 3001
+
+# Compare behavior in browser
+```
+
+**Scenario 3: Review PR locally**
+
+```bash
+# Fetch and create worktree for PR branch
+git fetch origin pull/123/head:pr-123
+git worktree add ../review-pr-123 pr-123
+
+# Review code
+cd ../review-pr-123
+npm install && npm test
+
+# Clean up after review
+cd ../myapp
+git worktree remove ../review-pr-123
+git branch -D pr-123
+```
+
+#### Worktree Tips
+
+```bash
+# Check which worktree you're in
+git worktree list
+
+# Output:
+# /home/user/myapp        abc1234 [main]
+# /home/user/myapp-hotfix def5678 [hotfix/critical]
+
+# Lock worktree (prevent accidental removal)
+git worktree lock ../important-worktree
+
+# Unlock
+git worktree unlock ../important-worktree
+
+# Move worktree to new location
+git worktree move ../old-path ../new-path
+```
+
+#### Worktree vs Stash vs Clone
+
+| Method | Use Case | Disk Space | Shares .git |
+|--------|----------|------------|-------------|
+| Stash | Quick context switch | None | N/A |
+| Worktree | Multiple active branches | Low | Yes |
+| Clone | Completely separate work | High | No |
+
+**Worktree is best when:**
+- You need to actively work on multiple branches
+- You want to run/build different versions simultaneously
+- You want to share git history and remotes between directories
 
 ### Submodules
 

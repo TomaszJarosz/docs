@@ -8,12 +8,16 @@ This repository contains documentation for:
 - **Development Environment** - Omakub setup, terminal tools, editors
 - **AI-Assisted Coding** - Claude Code configuration and usage patterns
 - **Productivity Tools** - Git workflows, IDE shortcuts, editor guides
+- **DevOps** - Docker, SSH, task runners, debugging tools
 - **System Configuration** - Linux customization and fixes
 
 ## Quick Start
 
+**New here?** Start with the [Quickstart Guide](quickstart.md) to get productive in 10 minutes.
+
 | Tool | Cheatsheet | Description |
 |------|------------|-------------|
+| Quickstart | [quickstart](quickstart.md) | Get productive in 10 minutes |
 | Omakub | [omakub-cheatsheet](omakub/omakub-cheatsheet.md) | Complete Ubuntu development environment |
 | Zellij | [zellij-cheatsheet](omakub/zellij-cheatsheet.md) | Modern terminal multiplexer |
 | Neovim | [neovim-lazyvim-cheatsheet](omakub/neovim-lazyvim-cheatsheet.md) | Modal text editor with LazyVim |
@@ -24,9 +28,13 @@ This repository contains documentation for:
 
 ```
 docs/
-├── README.md                     # This file
-├── omakub/                       # Omakub environment tools
-│   ├── omakub-cheatsheet.md      # Main Omakub overview
+├── README.md                           # This file
+├── quickstart.md                       # 10-minute quickstart guide
+├── keyboard-shortcuts-index.md         # All shortcuts in one place
+├── troubleshooting-faq.md              # Common issues and solutions
+│
+├── omakub/                             # Omakub environment tools
+│   ├── omakub-cheatsheet.md            # Main Omakub overview
 │   ├── shell-productivity-cheatsheet.md
 │   ├── git-lazygit-cheatsheet.md
 │   ├── fzf-cheatsheet.md
@@ -35,18 +43,36 @@ docs/
 │   ├── alacritty-cheatsheet.md
 │   ├── omakub-webapps-guide.md
 │   └── window-navigation-cheatsheet.md
-├── claude/                       # Claude Code AI assistant
+│
+├── claude/                             # Claude Code AI assistant
 │   ├── claude-code-config-cheatsheet.md
 │   └── claude-code-usage-tips.md
-├── tools/                        # Development tools
-│   ├── git-console-cheatsheet.md
+│
+├── tools/                              # Development tools
+│   ├── git-console-cheatsheet.md       # Advanced Git CLI
 │   ├── intellij-keyboard-productivity.md
-│   └── neovim-productivity-guide.md
-└── system/                       # System configuration
-    └── keyboard-remapping-fix.md
+│   ├── neovim-productivity-guide.md
+│   ├── docker-podman-cheatsheet.md     # Containers
+│   ├── tmux-cheatsheet.md              # Terminal multiplexer
+│   ├── ssh-remote-dev-guide.md         # SSH & remote work
+│   ├── debugging-tools-guide.md        # gdb, strace, perf
+│   └── task-runners-cheatsheet.md      # Make, Just, Task
+│
+├── system/                             # System configuration
+│   └── keyboard-remapping-fix.md
+│
+└── mkdocs.yml                          # MkDocs configuration
 ```
 
 ## Documentation Categories
+
+### Getting Started
+
+| Guide | Description |
+|-------|-------------|
+| [Quickstart](quickstart.md) | Get productive in 10 minutes |
+| [Keyboard Shortcuts Index](keyboard-shortcuts-index.md) | All shortcuts from all docs in one place |
+| [Troubleshooting FAQ](troubleshooting-faq.md) | Common issues and solutions |
 
 ### Omakub Environment
 
@@ -71,7 +97,7 @@ Guides for using Claude Code effectively:
 | Guide | Description |
 |-------|-------------|
 | [Configuration](claude/claude-code-config-cheatsheet.md) | Setup, settings.json, hooks, MCP servers |
-| [Usage Tips](claude/claude-code-usage-tips.md) | Best practices, prompting patterns, workflows |
+| [Usage Tips](claude/claude-code-usage-tips.md) | Best practices, prompting patterns, custom slash commands |
 
 ### Development Tools
 
@@ -79,9 +105,19 @@ IDE and tool productivity guides:
 
 | Guide | Description |
 |-------|-------------|
-| [Git Console](tools/git-console-cheatsheet.md) | Command-line Git workflows and aliases |
+| [Git Console](tools/git-console-cheatsheet.md) | Command-line Git workflows, bisect, worktree |
 | [IntelliJ IDEA](tools/intellij-keyboard-productivity.md) | Keyboard-only IntelliJ productivity |
 | [Neovim Guide](tools/neovim-productivity-guide.md) | Deep dive into Vim/Neovim productivity |
+| [tmux](tools/tmux-cheatsheet.md) | Terminal multiplexer (alternative to Zellij) |
+
+### DevOps & Infrastructure
+
+| Guide | Description |
+|-------|-------------|
+| [Docker & Podman](tools/docker-podman-cheatsheet.md) | Containers, images, Docker Compose |
+| [SSH & Remote Dev](tools/ssh-remote-dev-guide.md) | SSH config, tunnels, remote development |
+| [Task Runners](tools/task-runners-cheatsheet.md) | Make, Just, Task (go-task) |
+| [Debugging Tools](tools/debugging-tools-guide.md) | gdb, strace, ltrace, perf, valgrind |
 
 ### System Configuration
 
@@ -117,6 +153,26 @@ Linux system customization:
 | `Super+←/→` | Tile window left/right |
 | `Alt+Tab` | Switch windows |
 
+See [Keyboard Shortcuts Index](keyboard-shortcuts-index.md) for the complete list.
+
+## Building the Documentation Site
+
+This documentation can be built as a searchable website using MkDocs:
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Serve locally
+mkdocs serve
+
+# Build static site
+mkdocs build
+
+# Deploy to GitHub Pages
+mkdocs gh-deploy
+```
+
 ## Usage
 
 Clone this repository or browse individual files:
@@ -130,6 +186,9 @@ cat docs/omakub/fzf-cheatsheet.md
 
 # Or use your editor
 nvim docs/
+
+# Or serve as website
+cd docs && mkdocs serve
 ```
 
 ## Contributing
@@ -148,6 +207,8 @@ Feel free to:
 - [LazyVim](https://www.lazyvim.org/) - Neovim configuration
 - [fzf](https://github.com/junegunn/fzf) - Fuzzy finder
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) - AI coding assistant
+- [Docker](https://docs.docker.com/) - Container platform
+- [tmux](https://github.com/tmux/tmux/wiki) - Terminal multiplexer
 
 ### Learning Resources
 - [Vim Adventures](https://vim-adventures.com/) - Learn Vim through games

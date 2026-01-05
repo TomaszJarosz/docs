@@ -702,6 +702,219 @@ If something is missing - ask me first."
 # - Suggest improvements
 ```
 
+### Custom Slash Commands
+
+Create custom commands in `.claude/commands/` directory. Each command is a markdown file.
+
+#### Example: Code Review Command
+
+**File:** `.claude/commands/review.md`
+```markdown
+Review the code in $ARGUMENTS for:
+
+## Quality Checks
+- [ ] Code follows project conventions
+- [ ] Functions are single-responsibility
+- [ ] Error handling is appropriate
+- [ ] No obvious security issues
+
+## Performance
+- [ ] No unnecessary loops or allocations
+- [ ] Database queries are optimized
+- [ ] No N+1 query problems
+
+## Maintainability
+- [ ] Code is self-documenting or has comments
+- [ ] No magic numbers or strings
+- [ ] Tests exist for critical paths
+
+Provide specific suggestions with line numbers.
+```
+
+**Usage:**
+```bash
+/review src/api/users.ts
+```
+
+#### Example: Test Generator Command
+
+**File:** `.claude/commands/test.md`
+```markdown
+Generate comprehensive tests for $ARGUMENTS
+
+Requirements:
+1. Use the project's testing framework (check package.json/go.mod/etc.)
+2. Include:
+   - Happy path tests
+   - Edge cases
+   - Error handling tests
+   - Boundary conditions
+3. Use descriptive test names
+4. Add comments explaining what each test verifies
+5. Mock external dependencies appropriately
+
+Output the tests to the appropriate test file location.
+```
+
+**Usage:**
+```bash
+/test src/utils/validation.ts
+```
+
+#### Example: Documentation Generator
+
+**File:** `.claude/commands/docs.md`
+```markdown
+Generate documentation for $ARGUMENTS
+
+Include:
+1. **Overview** - What this module/function does
+2. **API Reference** - All public functions with:
+   - Parameters (types and descriptions)
+   - Return values
+   - Exceptions/errors
+   - Example usage
+3. **Architecture notes** - How it fits in the larger system
+
+Format as JSDoc/docstrings inline in the code.
+```
+
+#### Example: Security Audit
+
+**File:** `.claude/commands/security.md`
+```markdown
+Perform a security audit of $ARGUMENTS
+
+Check for:
+1. **Injection vulnerabilities**
+   - SQL injection
+   - Command injection
+   - XSS (Cross-Site Scripting)
+
+2. **Authentication/Authorization**
+   - Proper access control
+   - Session management
+   - Password handling
+
+3. **Data exposure**
+   - Sensitive data in logs
+   - PII handling
+   - API response filtering
+
+4. **Dependencies**
+   - Known vulnerable packages
+   - Outdated dependencies
+
+Output format:
+| Severity | Location | Issue | Recommendation |
+|----------|----------|-------|----------------|
+```
+
+#### Example: Refactor Command
+
+**File:** `.claude/commands/refactor.md`
+```markdown
+Refactor $ARGUMENTS to improve:
+
+1. **Readability**
+   - Extract complex conditions
+   - Use meaningful names
+   - Reduce nesting
+
+2. **Maintainability**
+   - Single responsibility principle
+   - DRY (Don't Repeat Yourself)
+   - Proper abstraction levels
+
+3. **Testability**
+   - Dependency injection
+   - Pure functions where possible
+   - Mockable interfaces
+
+Rules:
+- Keep the same public interface
+- Don't change behavior
+- Add/update tests if needed
+
+First explain what you'll change, then do it.
+```
+
+#### Example: Commit Message Generator
+
+**File:** `.claude/commands/commit.md`
+```markdown
+Generate a commit message for the current staged changes.
+
+Format: Conventional Commits
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build
+
+Requirements:
+- Subject line max 50 characters
+- Body wrapped at 72 characters
+- Reference issues if applicable
+- Explain WHY, not just WHAT
+
+First show `git diff --staged`, then generate the message.
+```
+
+#### Example: PR Description Generator
+
+**File:** `.claude/commands/pr.md`
+```markdown
+Generate a Pull Request description for the current branch.
+
+Compare against: main (or $ARGUMENTS if specified)
+
+Include:
+## Summary
+[2-3 sentence overview of changes]
+
+## Changes
+- [Bullet list of specific changes]
+
+## Testing
+- [ ] Unit tests added/updated
+- [ ] Integration tests pass
+- [ ] Manual testing performed
+
+## Screenshots
+[If UI changes, mention what to screenshot]
+
+## Checklist
+- [ ] Code follows style guidelines
+- [ ] Self-review completed
+- [ ] Documentation updated
+- [ ] No breaking changes (or documented)
+
+First run `git log main..HEAD --oneline` to see commits.
+```
+
+### Command Arguments
+
+Use `$ARGUMENTS` in your command files to pass arguments:
+
+```bash
+# These pass "src/api" as $ARGUMENTS
+/review src/api
+/test src/api
+```
+
+### Multi-file Commands
+
+You can reference multiple files in arguments:
+
+```bash
+/review src/api/users.ts src/api/auth.ts
+```
+
 ### 2. Template Prompts
 
 Create `.claude/prompts/` with ready-made:
